@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Tikety</title>
-    <link href="{{ asset('image/favicon.ico')}}" rel="icon">
+    <link href="{{ asset('image/icon.ico')}}" rel="icon">
     <link rel="stylesheet" href="{{ asset('style/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('style/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('style/animate.min.css') }}">
@@ -31,13 +31,16 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-lg padding-nav">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ route('welcome') }}">
                     <img src="{{ asset('image/logo.png')}}" alt="logo">
                 </a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto mr-auto">
                         <li class="nav-item dropdown static">
-                            <a class="nav-link" href="{{ route('home') }}"> Home </a>
+                            <a class="nav-link" href="{{ route('welcome') }}"> Home </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('about') }}">About</a>
@@ -59,9 +62,9 @@
                     </ul>
                 </div>
                 <ul class="social-icons social-icons-simple d-lg-inline-block d-none animated fadeInUp" data-wow-delay="300ms">
-                    <li><a href="#."><i class="fab fa-facebook-f"></i> </a> </li>
-                    <li><a href="#."><i class="fab fa-twitter"></i> </a> </li>
-                    <li><a href="#."><i class="fab fa-linkedin-in"></i> </a> </li>
+                    <li><a href="https://www.facebook.com/tiketyllc"><i class="fab fa-facebook-f"></i> </a> </li>
+                    <li><a href="https://twitter.com/Tikety_LLC"><i class="fab fa-twitter"></i> </a> </li>
+                    <li><a href="https://www.linkedin.com/company/tikety/"><i class="fab fa-linkedin-in"></i> </a> </li>
                 </ul>
 
             </div>
@@ -78,7 +81,10 @@
                 <nav class="side-nav w-100">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#sideNavPages1">Home</a>
+                            <a class="nav-link" href="{{ route('welcome') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('about') }}">About</a>
@@ -90,9 +96,9 @@
                 </nav>
                 <div class="side-footer w-100">
                     <ul class="social-icons-simple white top40">
-                        <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i> </a> </li>
-                        <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i> </a> </li>
-                        <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i> </a> </li>
+                        <li><a href="https://www.facebook.com/tiketyllc"><i class="fab fa-facebook-f"></i> </a> </li>
+                        <li><a href="https://twitter.com/Tikety_LLC"><i class="fab fa-twitter"></i> </a> </li>
+                        <li><a href="https://www.instagram.com/tikety_llc/"><i class="fab fa-instagram"></i> </a> </li>
                     </ul>
                     <p class="whitecolor">&copy; <span id="year"></span> Tikety. Made With Love by Tikety Team</p>
                 </div>
@@ -114,7 +120,8 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                        <form class="getin_form wow fadeInUp" data-wow-delay="400ms" onsubmit="return false;">
+                        <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('') }}">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-12 col-sm-12" id="result"></div>
                                 <div class="col-md-3 col-sm-6">
@@ -161,10 +168,10 @@
                             </p>
                         </div>
                         <ul class="social-icons white wow fadeInUp" data-wow-delay="300ms">
-                            <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i> </a> </li>
-                            <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i> </a> </li>
-                            <li><a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i> </a> </li>
-                            <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i> </a> </li>
+                            <li><a href="https://www.facebook.com/tiketyllc"><i class="fab fa-facebook-f"></i> </a> </li>
+                            <li><a href="https://twitter.com/Tikety_LLC"><i class="fab fa-twitter"></i> </a> </li>
+                            <li><a href="https://www.linkedin.com/company/tikety/"><i class="fab fa-linkedin-in"></i> </a> </li>
+                            <li><a href="https://www.instagram.com/tikety_llc/"><i class="fab fa-instagram"></i> </a> </li>
                         </ul>
                     </div>
                 </div>
@@ -172,12 +179,10 @@
                     <div class="footer_panel padding_bottom_half bottom20">
                         <h3 class="whitecolor bottom25">Our Services</h3>
                         <ul class="links">
-                            <li><a href="{{ route('home') }}">Home</a></li>
+                            <li><a href="{{ route('welcome') }}">Home</a></li>
                             <li><a href="{{ route('about') }}">About Us</a></li>
-                            <li><a href="blog-1.html">Latest News</a></li>
-                            <li><a href="javascript:void(0)">Business Planning</a></li>
                             <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                            <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                            <li><a href="{{ route('') }}">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>

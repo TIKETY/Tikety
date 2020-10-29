@@ -30,14 +30,14 @@
     <header class="site-header" id="header">
         <nav class="navbar navbar-expand-lg transparent-bg static-nav">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ route('welcome') }}">
                     <img src="{{ asset('image/logo.png') }}" alt="logo" class="logo-default">
                     <img src="{{ asset('image/logo.png') }}" alt="logo" class="logo-scrolled">
                 </a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown static">
-                            <a class="nav-link text-black-50 active" href="" aria-haspopup="true" aria-expanded="false"> Home </a>
+                            <a class="nav-link text-black-50 active" href="{{ route('welcome') }}" aria-haspopup="true" aria-expanded="false"> Home </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('about') }}">About</a>
@@ -67,9 +67,6 @@
                 </div>
             </div>
             <!--side menu open button-->
-            <a href="javascript:void(0)" class="d-inline-block sidemenu_btn" id="sidemenu_toggle">
-                <span></span> <span></span> <span></span>
-            </a>
         </nav>
         <!-- side menu -->
         <div class="side-menu opacity-0 gradient-bg">
@@ -79,15 +76,18 @@
                 <nav class="side-nav w-100">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#sideNavPages1">
+                            <a class="nav-link" href="{{ route('welcome') }}">
                                 Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="{{ route('about') }}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                         </li>
                         @auth
                         <li class="nav-item">
@@ -109,9 +109,9 @@
                 </nav>
                 <div class="side-footer w-100">
                     <ul class="social-icons-simple white top40">
-                        <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i> </a> </li>
-                        <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i> </a> </li>
-                        <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i> </a> </li>
+                        <li><a href="https://www.facebook.com/tiketyllc"><i class="fab fa-facebook-f"></i> </a> </li>
+                        <li><a href="https://twitter.com/Tikety_LLC"><i class="fab fa-twitter"></i> </a> </li>
+                        <li><a href="https://www.instagram.com/tikety_llc/"><i class="fab fa-instagram"></i> </a> </li>
                     </ul>
                     <p class="whitecolor">&copy; <span id="year"></span> Tikety. Made With Love by Tikety Team</p>
                 </div>
@@ -387,14 +387,14 @@
                         <div class="d-table w-100 address-item whitecolor bottom25">
                             <span class="d-table-cell align-middle"><i class="fas fa-mobile-alt"></i></span>
                             <p class="d-table-cell align-middle bottom0">
-                                +01 - 123 - 4567 <a class="d-block" href="mailto:web@support.com">web@support.com</a>
+                                +255 654 660 654 <a class="d-block" href="mailto:web@support.com">web@support.com</a>
                             </p>
                         </div>
                         <ul class="social-icons white wow fadeInUp" data-wow-delay="300ms">
-                            <li><a href="javascript:void(0)" class="facebook"><i class="fab fa-facebook-f"></i> </a> </li>
-                            <li><a href="javascript:void(0)" class="twitter"><i class="fab fa-twitter"></i> </a> </li>
-                            <li><a href="javascript:void(0)" class="linkedin"><i class="fab fa-linkedin-in"></i> </a> </li>
-                            <li><a href="javascript:void(0)" class="insta"><i class="fab fa-instagram"></i> </a> </li>
+                            <li><a href="https://www.facebook.com/tiketyllc" class="facebook"><i class="fab fa-facebook-f"></i> </a> </li>
+                            <li><a href="https://twitter.com/Tikety_LLC" class="twitter"><i class="fab fa-twitter"></i> </a> </li>
+                            <li><a href="https://www.linkedin.com/company/tikety/" class="linkedin"><i class="fab fa-linkedin-in"></i> </a> </li>
+                            <li><a href="https://www.instagram.com/tikety_llc/" class="insta"><i class="fab fa-instagram"></i> </a> </li>
                         </ul>
                     </div>
                 </div>
@@ -412,12 +412,12 @@
                     <div class="footer_panel padding_bottom_half bottom20 pl-0 pl-lg-5">
                         <h3 class="whitecolor bottom25">Our Services</h3>
                         <ul class="links">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="blog-1.html">Latest News</a></li>
-                            <li><a href="pricing.html">Business Planning</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
-                            <li><a href="faq.html">Faq's</a></li>
+                            <li><a href="{{ route('welcome') }}">Home</a></li>
+                            <li><a href="{{ route('about') }}">About Us</a></li>
+                            <li><a href="{{ route('') }}">Latest News</a></li>
+                            <li><a href="{{ route('') }}">Business Planning</a></li>
+                            <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                            <li><a href="{{ route('faq') }}">Faq's</a></li>
                         </ul>
                     </div>
                 </div>

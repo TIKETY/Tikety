@@ -24,12 +24,10 @@
                             <p class="bottom10"><a href="mailto:polpo@traxagency.co.au">tikety@tikety.net</a></p>
                             <p class="bottom10">Mon-Fri: 9am-5pm</p>
                             <ul class="social-icons mt-4 mb-4 mb-sm-0 wow fadeInUp" data-wow-delay="300ms">
-                                <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i> </a> </li>
-                                <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i> </a> </li>
-                                <li><a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i> </a> </li>
-                                <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i> </a> </li>
-                                <li><a href="javascript:void(0)"><i class="fab fa-whatsapp"></i> </a> </li>
-                                <li><a href="javascript:void(0)"><i class="far fa-envelope"></i> </a> </li>
+                                <li><a href="https://www.facebook.com/tiketyllc"><i class="fab fa-facebook-f"></i> </a> </li>
+                                <li><a href="https://twitter.com/Tikety_LLC"><i class="fab fa-twitter"></i> </a> </li>
+                                <li><a href="https://www.linkedin.com/company/tikety/"><i class="fab fa-linkedin-in"></i> </a> </li>
+                                <li><a href="https://www.instagram.com/tikety_llc/"><i class="fab fa-instagram"></i> </a> </li>
                             </ul>
                         </div>
                     </div>
