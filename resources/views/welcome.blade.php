@@ -48,10 +48,13 @@
 
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('') }}">My Services</a>
+                            <a class="nav-link text-black-50" href="">My Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('logout') }}">Logout</a>
+                            <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn nav-link text-black-50">Logout</button>
+                            </form>
                         </li>
                         @endauth
 
@@ -91,7 +94,7 @@
                         </li>
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('') }}">My Services</a>
+                            <a class="nav-link" href="">My Services</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">Logout</a>
@@ -414,8 +417,8 @@
                         <ul class="links">
                             <li><a href="{{ route('welcome') }}">Home</a></li>
                             <li><a href="{{ route('about') }}">About Us</a></li>
-                            <li><a href="{{ route('') }}">Latest News</a></li>
-                            <li><a href="{{ route('') }}">Business Planning</a></li>
+                            <li><a href="">Latest News</a></li>
+                            <li><a href="">Business Planning</a></li>
                             <li><a href="{{ route('contact') }}">Contact Us</a></li>
                             <li><a href="{{ route('faq') }}">Faq's</a></li>
                         </ul>

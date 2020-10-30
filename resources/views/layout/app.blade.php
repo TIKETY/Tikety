@@ -120,7 +120,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                        <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('') }}">
+                        <form class="getin_form wow fadeInUp" data-wow-delay="400ms">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 col-sm-12" id="result"></div>
@@ -182,7 +182,7 @@
                             <li><a href="{{ route('welcome') }}">Home</a></li>
                             <li><a href="{{ route('about') }}">About Us</a></li>
                             <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                            <li><a href="{{ route('') }}">Privacy Policy</a></li>
+                            <li><a href="">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>

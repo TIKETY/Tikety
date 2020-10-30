@@ -14,51 +14,43 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
                                         <label for="registerName" class="d-none"></label>
-                                        <input class="form-control" type="text" placeholder="Full Name:" required id="name">
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong class="danger">{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                        <input id="name" placeholder="Name:" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
                                         <label for="registerEmail" class="d-none"></label>
-                                        <input class="form-control" type="email" placeholder="Email:" required id="email">
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong class="danger">{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                        <input id="email" placeholder="Email:" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
                                         <label for="registerPass" class="d-none"></label>
-                                        <input class="form-control" type="password" placeholder="Password:" required id="password">
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong class="danger">{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                        <input id="password" placeholder="Password:" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
                                         <label for="registerPassConfirm" class="d-none"></label>
-                                        <input class="form-control" type="password" placeholder="Confirm Password:" required id="password-confirm">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="form-group bottom35">
-                                        <div class="form-check text-left">
-                                            <input class="form-check-input" checked type="checkbox" value="" id="rememberMe">
-                                            <label class="form-check-label" for="rememberMe">
-                                            Remember me on this device
-                                        </label>
-                                        </div>
+                                        <input id="password-confirm" placeholder="Confirm Password:" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
