@@ -28,7 +28,7 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
                                         <label for="registerPass" class="d-none"></label>
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                        <input id="password" placeholder="Password:" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
                                         <label for="registerPassConfirm" class="d-none"></label>
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                        <input id="password-confirm" placeholder="Confirm Password:" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
