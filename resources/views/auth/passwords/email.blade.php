@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- reset password -->
-    <section id="sign-in" class="bglight position-relative padding">
+    <section id="sign-in" class="whitebox position-relative padding">
         <div class="container">
             <div class="row">
 
@@ -15,6 +15,7 @@
                         </div>
                         @endif
                         <form class="getin_form border-form" id="ResetPassword" method="POST" action="{{ route('password.email') }}">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
