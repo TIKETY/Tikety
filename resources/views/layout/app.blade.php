@@ -49,7 +49,12 @@
                             <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                         </li>
                         @auth
-                        <li class="nav-item"><a href="{{ route('logout') }}">Logout</i> </a> </li>
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn nav-link text-black-50">Logout</button>
+                            </form>
+                        </li>
                         @endauth
                         @guest
                         <li class="nav-item">
