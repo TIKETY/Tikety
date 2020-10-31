@@ -47,10 +47,15 @@ class BusController extends Controller
     }
 
     public function updatebus(Bus $bus){
+        if(auth()->user()->id != $bus->user_id){
+            abort(404);
+        }
+
         return view('updatebus', compact('bus'));
     }
 
     public function update(Request $request, Bus $bus){
+
         $validated = $request->validate([
             'name'=>['required', Rule::unique('buses')->ignore($bus)],
             'body'=>'required',

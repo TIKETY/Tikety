@@ -38,7 +38,6 @@
                             </p>
                         </div>
                     </div>
-                    <a href="#." class="button btnsecondary gradient-btn top30"> Download Brochure</a>
                 </div>
             </div>
             <div class="col-lg-8 col-md-7">
@@ -92,8 +91,17 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 shadow mt-5 mt-md-0">
-                        <form class="getin_form wow fadeInUp" data-wow-delay="400ms">
-                            <div class="row">
+                                @if (auth()->user()->id == $bus->user_id)
+                                    <div style="width: 400px;" class="row">
+                                            <a href=""><img src="{{ asset('image/selected_seat.png') }}" width="80px" height="80px" alt=""></a>
+                                            <a href=""><img src="{{ asset('image/selected_seat.png') }}" width="80px" height="80px" alt=""></a>
+                                            <div style="width: 50px;"></div>
+                                            <a href=""><img src="{{ asset('image/selected_seat.png') }}" width="80px" height="80px" alt=""></a>
+                                            <a href=""><img src="{{ asset('image/selected_seat.png') }}" width="80px" height="80px" alt=""></a>
+                                    </div>
+                                @else
+                                <form class="getin_form wow fadeInUp" data-wow-delay="400ms">
+                                <div class="row">
                                 <div class="col-md-12 col-sm-12 mt-4">
                                     <div class="form-group">
                                         <input class="form-control" type="text" placeholder="First Name:" required id="first_name1" name="first_name">
@@ -121,8 +129,11 @@
                                 <div class="col-md-12 col-sm-12 mb-4">
                                     <button type="submit" class="button btn-primary w-100" id="submit_btn1">Free Consultation</button>
                                 </div>
+                                </div>
+                                </form>
+                                @endif
                             </div>
-                        </form>
+
                     </div>
                 </div>
             </div>

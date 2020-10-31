@@ -51,6 +51,9 @@
                             <a class="nav-link text-black-50" href="{{ route('bus', auth()->user()) }}">My Buses</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-black-50" href="{{ route('buses') }}">Buses</a>
+                        </li>
+                        <li class="nav-item">
                             <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button type="submit" class="btn nav-link text-black-50">Logout</button>
@@ -98,6 +101,9 @@
                         @auth
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('bus', auth()->user()) }}">My Buses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('buses') }}">Buses</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">Logout</a>
