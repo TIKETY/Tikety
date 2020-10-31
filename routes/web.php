@@ -29,4 +29,7 @@ Route::get('/faq', [RegularController::class, 'faq'])->name('faq');
 Route::get('/buses/{user}', [BusController::class, 'MyBus'])->name('bus')->middleware('verified');
 Route::get('/createbus', [BusController::class, 'CreateBus'])->name('CreateBus')->middleware('verified');
 Route::get('/showbus/{bus}', [BusController::class, 'show'])->name('ShowBus');
+Route::get('/buses', [BusController::class, 'showbuses'])->name('buses');
 Route::post('/createbus/{user}', [BusController::class, 'CreateBusForm'])->name('CreateBusForm')->middleware('verified');
+Route::get('/updatebus/{bus}', [BusController::class, 'updatebus'])->name('UpdateBus')->middleware('verified');
+Route::put('/updatebus/{bus}', [BusController::class, 'update'])->name('UpdateBusForm')->middleware('verified');

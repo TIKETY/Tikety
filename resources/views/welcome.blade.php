@@ -60,6 +60,9 @@
 
                         @guest
                         <li class="nav-item">
+                            <a class="nav-link text-black-50" href="{{ route('buses') }}">Buses</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('login') }}">Login</a>
                         </li>
                         <li class="nav-item">
@@ -101,6 +104,9 @@
                         </li>
                         @endauth
                         @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('buses') }}">Buses</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Login</a>
                         </li>

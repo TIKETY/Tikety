@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Bus;
 
@@ -37,6 +38,27 @@ class BusController extends Controller
     }
 
     public function show(Bus $bus){
+        return view('busdetail', compact('bus'));
+    }
+
+    public function showbuses(){
+        $buses = Bus::latest()->get();
+        return view('bus', compact('buses'));
+    }
+
+    public function updatebus(Bus $bus){
+        return view('updatebus', compact('bus'));
+    }
+
+    public function update(Request $request, Bus $bus){
+        $validated = $request->validate([
+            'name'=>['required', Rule::unique('buses')->ignore($bus)],
+            'body'=>'required',
+            'route'=>'required'
+        ]);
+
+        $bus->update($validated);
+
         return view('busdetail', compact('bus'));
     }
 }

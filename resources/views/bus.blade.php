@@ -27,7 +27,9 @@
                             <h3 class="bottom10 darkcolor"><a href="{{ route('ShowBus', $bus->id) }}">{{ $bus->name }}</a></h3>
                             <p class="bottom15">{{ $bus->route }}
                             </p>
-                            <a href="{{ route('ShowBus', $bus->id) }}" class="button-readmore">Learn More</a>
+                            @if ($bus->user_id == auth()->user()->id)
+                            <a href="{{ route('UpdateBus', $bus->id) }}" class="button-readmore">Edit Bus</a>
+                            @endif
                         </div>
                     </div>
                 </div>
