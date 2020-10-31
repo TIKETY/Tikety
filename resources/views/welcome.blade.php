@@ -48,7 +48,7 @@
 
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="">My Services</a>
+                            <a class="nav-link text-black-50" href="{{ route('bus', auth()->user()) }}">My Buses</a>
                         </li>
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="POST">
@@ -94,7 +94,7 @@
                         </li>
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="">My Services</a>
+                            <a class="nav-link" href="{{ route('bus', auth()->user()) }}">My Buses</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">Logout</a>
