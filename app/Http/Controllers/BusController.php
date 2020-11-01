@@ -25,11 +25,13 @@ class BusController extends Controller
         $validated = $request->validate([
             'name'=>'required|unique:buses',
             'body'=>'required',
+            'rows'=>'required',
             'route'=>'required'
         ]);
         Bus::create([
             'name'=>$validated['name'],
             'body'=>$validated['body'],
+            'rows'=>$validated['rows'],
             'route'=>$validated['route'],
             'user_id'=>$user->id
         ]);
@@ -59,6 +61,7 @@ class BusController extends Controller
         $validated = $request->validate([
             'name'=>['required', Rule::unique('buses')->ignore($bus)],
             'body'=>'required',
+            'rows'=>'required',
             'route'=>'required'
         ]);
 

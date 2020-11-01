@@ -26,6 +26,7 @@ class BusFactory extends Factory
             'user_id'=>User::factory(),
             'name'=> $this->faker->unique()->name,
             'route'=> $this->faker->name,
+            'rows'=> $this->faker->numberBetween($min = 4, $max = 14),
             'body'=> $this->faker->paragraph
         ];
     }

@@ -17,6 +17,7 @@ class CreateBusesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('name')->unique();
+            $table->integer('rows');
             $table->string('route');
             $table->string('body');
             $table->timestamps();

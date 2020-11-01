@@ -9,7 +9,7 @@
                 <h2 class="heading bottom30 darkcolor font-light2"><span class="font-weight-light">My Buses</span> Details
                 </h2>
                 <div class="col-md-8 offset-md-2">
-                    <p class="mb-n3"><a href="{{ route('CreateBus') }}">Add A Bus</a></p>
+                    <p class="mb-n3"><a class="btn btn-primary" href="{{ route('CreateBus') }}">Add A Bus</a></p>
                 </div>
             </div>
 
@@ -27,16 +27,18 @@
                             <h3 class="bottom10 darkcolor"><a href="{{ route('ShowBus', $bus->id) }}">{{ $bus->name }}</a></h3>
                             <p class="bottom15">{{ $bus->route }}
                             </p>
-                            @if ($bus->user_id == auth()->user()->id)
+                            @auth
+                            @if (auth()->user()->id==$bus->user_id)
                             <a href="{{ route('UpdateBus', $bus->id) }}" class="button-readmore">Edit Bus</a>
                             @endif
+                            @endauth
                         </div>
                     </div>
                 </div>
                 @empty
                     <div class="shadow card">
-                        <p>Sory, you havent registed any bus yet</p>
-                        <a href="{{ route('CreateBus') }}">Add A Bus</a>
+                        <p class="text-black-50">Sory, you havent registed any bus yet</p>
+                        <a href="{{ route('CreateBus') }}" class="btn-primary">Add A Bus</a>
                     </div>
                 @endforelse
             </div>

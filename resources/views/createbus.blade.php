@@ -37,6 +37,15 @@
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
+                                            <label for="email1" class="d-none"></label>
+                                            <input class="form-control" type="number" id="rows" placeholder="Rows:" name="rows">
+                                        @error('rows')
+                                            <p class="danger">{{ $message }}</p>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
                                             <label for="message1" class="d-none"></label>
                                             <textarea class="form-control" id="body" placeholder="Body:" required name="body"></textarea>
                                         </div>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegularController;
 use App\Http\Controllers\BusController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,6 @@ Route::get('/buses', [BusController::class, 'showbuses'])->name('buses');
 Route::post('/createbus/{user}', [BusController::class, 'CreateBusForm'])->name('CreateBusForm')->middleware('verified');
 Route::get('/updatebus/{bus}', [BusController::class, 'updatebus'])->name('UpdateBus')->middleware('verified');
 Route::put('/updatebus/{bus}', [BusController::class, 'update'])->name('UpdateBusForm')->middleware('verified');
+Route::post('/connected', [ContactController::class, 'store'])->name('connected');
+Route::post('/contactform', [ContactController::class, 'contact'])->name('ContactForm');
+Route::post('/contactbus/{bus}', [ContactController::class, 'contactbus'])->name('ContactBus')->middleware('auth');

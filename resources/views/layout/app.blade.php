@@ -124,27 +124,32 @@
                             <h3 class="darkcolor bottom20">Stay Connected</h3>
                         </div>
                     </div>
+                    @if (session('message'))
+                    <div class="alert alert-success" role="alert">
+                       {{ session('message') }}
+                      </div>
+                    @endif
                     <div class="col-md-12 col-sm-12">
-                        <form class="getin_form wow fadeInUp" data-wow-delay="400ms">
+                        <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('connected') }}">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 col-sm-12" id="result"></div>
                                 <div class="col-md-3 col-sm-6">
                                     <div class="form-group">
                                         <label for="userName" class="d-none"></label>
-                                        <input class="form-control" type="text" placeholder="First Name:" required id="userName" name="userName">
+                                        <input class="form-control" type="text" placeholder="First Name:" required id="name" name="name">
+                                        @error('name')
+                                        <p class="danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="companyName" class="d-none"></label>
-                                        <input class="form-control" type="tel" placeholder="Company Name" id="companyName" name="companyName">
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="email" class="d-none"></label>
                                         <input class="form-control" type="email" placeholder="Email:" required id="email" name="email">
+                                        @error('email')
+                                            <p class="danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6">

@@ -36,8 +36,13 @@
                 </a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown static">
-                            <a class="nav-link text-black-50 active" href="{{ route('welcome') }}" aria-haspopup="true" aria-expanded="false"> Home </a>
+                        <li class="nav-item">
+                            <a class="nav-link text-black-50" href="{{ route('welcome') }}">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black-50" href="{{ route('faq') }}">FAQ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('about') }}">About</a>
@@ -45,7 +50,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('contact') }}">Contact</a>
                         </li>
-
                         @auth
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('bus', auth()->user()) }}">My Buses</a>
@@ -54,13 +58,9 @@
                             <a class="nav-link text-black-50" href="{{ route('buses') }}">Buses</a>
                         </li>
                         <li class="nav-item">
-                            <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn nav-link text-black-50">Logout</button>
-                            </form>
+                            <a class="nav-link text-black-50" href="{{ route('logout') }}">Logout</a>
                         </li>
                         @endauth
-
                         @guest
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('buses') }}">Buses</a>
@@ -76,6 +76,9 @@
                 </div>
             </div>
             <!--side menu open button-->
+            <a href="javascript:void(0)" class="d-inline-block sidemenu_btn" id="sidemenu_toggle">
+                <span></span> <span></span> <span></span>
+            </a>
         </nav>
         <!-- side menu -->
         <div class="side-menu opacity-0 gradient-bg">
@@ -359,25 +362,26 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12">
-                        <form class="getin_form wow fadeInUp" data-wow-delay="400ms" onsubmit="return false;">
+                        <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactForm') }}">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-12 col-sm-12" id="result"></div>
                                 <div class="col-md-3 col-sm-6">
                                     <div class="form-group">
                                         <label for="userName" class="d-none"></label>
-                                        <input class="form-control" type="text" placeholder="First Name:" required id="userName" name="userName">
+                                        <input class="form-control" type="text" placeholder="First Name:" required id="name" name="name">
+                                        @error('name')
+                                            <p class="danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="companyName" class="d-none"></label>
-                                        <input class="form-control" type="tel" placeholder="Company Name" id="companyName" name="companyName">
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="email" class="d-none"></label>
                                         <input class="form-control" type="email" placeholder="Email:" required id="email" name="email">
+                                        @error('email')
+                                            <p class="danger">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6">

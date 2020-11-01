@@ -91,27 +91,63 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 shadow mt-5 mt-md-0">
-                                @if (auth()->user()->id == $bus->user_id)
-                                    <div style="width: 400px;" class="row">
-                                            <a href=""><img src="{{ asset('image/selected_seat.png') }}" width="80px" height="80px" alt=""></a>
-                                            <a href=""><img src="{{ asset('image/selected_seat.png') }}" width="80px" height="80px" alt=""></a>
-                                            <div style="width: 50px;"></div>
-                                            <a href=""><img src="{{ asset('image/selected_seat.png') }}" width="80px" height="80px" alt=""></a>
-                                            <a href=""><img src="{{ asset('image/selected_seat.png') }}" width="80px" height="80px" alt=""></a>
+                        @auth
+                            @if (auth()->user()->id == $bus->user_id)
+                            @for ($i = 0; $i < $bus->rows; $i++)
+                            <div style="width: 400px;" class="row">
+                                <a href=""><img src="{{ asset('image/selected_seat.png') }}" width="80px" height="80px" alt=""></a>
+                                <a href=""><img src="{{ asset('image/selected_seat.png') }}" width="80px" height="80px" alt=""></a>
+                                <div style="width: 50px;"></div>
+                                <a href=""><img src="{{ asset('image/selected_seat.png') }}" width="80px" height="80px" alt=""></a>
+                                <a href=""><img src="{{ asset('image/selected_seat.png') }}" width="80px" height="80px" alt=""></a>
+                            </div>
+                            @endfor
+                            @endif
+                        @endauth
+                            @auth
+                                @if (auth()->user()->id!=$bus->user_id)
+                                <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactBus', $bus->id) }}">
+                                    @csrf
+                                    <div class="row">
+                                    <div class="col-md-12 col-sm-12 mt-4">
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" placeholder="First Name:" required id="name" name="name">
+                                            <label for="first_name1" class="d-none"></label>
+                                        </div>
                                     </div>
-                                @else
-                                <form class="getin_form wow fadeInUp" data-wow-delay="400ms">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <input class="form-control" type="email" placeholder="Email:" required id="email1" name="email">
+                                            <label for="email1" class="d-none"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="body"  placeholder="Request a FreeConsultation" required id="body"></textarea>
+                                            <label for="FreeConsultation1" class="d-none"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 mb-4">
+                                        <button type="submit" class="button btn-primary w-100" id="submit_btn1">Free Consultation</button>
+                                    </div>
+                                    </div>
+                                    </form>
+                                @endif
+                            @endauth
+
+                            @guest
+                            @if (session('message'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('message') }}
+                              </div>
+                            @endif
+                            <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactBus', $bus->id) }}">
+                                @csrf
                                 <div class="row">
                                 <div class="col-md-12 col-sm-12 mt-4">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" placeholder="First Name:" required id="first_name1" name="first_name">
+                                        <input class="form-control" type="text" placeholder="First Name:" required id="name" name="name">
                                         <label for="first_name1" class="d-none"></label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="form-group">
-                                        <input class="form-control" type="tel" placeholder="Company Name" id="company-name1">
-                                        <label for="company-name1" class="d-none"></label>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
@@ -122,7 +158,7 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
-                                        <textarea class="form-control"  placeholder="Request a FreeConsultation" required id="FreeConsultation1"></textarea>
+                                        <textarea class="form-control" name="body"  placeholder="Request a FreeConsultation" required id="body"></textarea>
                                         <label for="FreeConsultation1" class="d-none"></label>
                                     </div>
                                 </div>
@@ -131,7 +167,8 @@
                                 </div>
                                 </div>
                                 </form>
-                                @endif
+                            @endguest
+
                             </div>
 
                     </div>
