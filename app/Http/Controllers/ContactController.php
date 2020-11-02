@@ -22,7 +22,7 @@ class ContactController extends Controller
             'email'=>$validated['email'],
         ]);
 
-        return redirect()->route('home')->with('message', 'You are Connected');
+        return redirect()->route('home')->with('message_connected', 'You are Connected');
     }
 
     public function contact(Request $request){

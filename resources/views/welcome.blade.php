@@ -58,7 +58,10 @@
                             <a class="nav-link text-black-50" href="{{ route('buses') }}">Buses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('logout') }}">Logout</a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn nav-link text-black-50">Logout</button>
+                            </form>
                         </li>
                         @endauth
                         @guest
@@ -109,7 +112,10 @@
                             <a class="nav-link" href="{{ route('buses') }}">Buses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn nav-link text-black-50">Logout</button>
+                            </form>
                         </li>
                         @endauth
                         @guest

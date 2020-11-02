@@ -124,7 +124,7 @@
                             <h3 class="darkcolor bottom20">Stay Connected</h3>
                         </div>
                     </div>
-                    @if (session('message'))
+                    @if (session('message_connected'))
                     <div class="alert alert-success" role="alert">
                        {{ session('message') }}
                       </div>

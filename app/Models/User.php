@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Role;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -43,5 +44,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function bus(){
         return $this->hasMany(Bus::class);
+    }
+
+    public function roles(){
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+
+    public function addRole($role){
+        $this->roles()->save($role);
     }
 }
