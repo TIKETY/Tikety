@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Tikety</title>
     <link href="{{ asset('image/icon.ico')}}" rel="icon">
-    <link rel="stylesheet" href="{{ asset('style/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('style/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('style/animate.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('style/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('style/jquery.fancybox.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('style/tooltipster.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('style/cubeportfolio.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('style/revolution/navigation.css') }}">
-    <link rel="stylesheet" href="{{ asset('style/revolution/settings.css') }}">
-    <link rel="stylesheet" href="{{ asset('style/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css_style/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css_style/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css_style/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css_style/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css_style/jquery.fancybox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css_style/tooltipster.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css_style/cubeportfolio.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css_style/revolution/navigation.css') }}">
+    <link rel="stylesheet" href="{{ asset('css_style/revolution/settings.css') }}">
+    <link rel="stylesheet" href="{{ asset('css_style/style.css') }}">
 </head>
 
 <body>
@@ -88,6 +88,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('welcome') }}">Home</a>
                         </li>
+                        @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('role') }}">Change Your Role?</a>
+                        </li>
+                        @endauth
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
                         </li>
@@ -125,8 +130,8 @@
                         </div>
                     </div>
                     @if (session('message_connected'))
-                    <div class="alert alert-success" role="alert">
-                       {{ session('message') }}
+                    <div class="alert alert-success ml-3" role="alert">
+                       {{ session('message_connected') }}
                       </div>
                     @endif
                     <div class="col-md-12 col-sm-12">
@@ -139,7 +144,7 @@
                                         <label for="userName" class="d-none"></label>
                                         <input class="form-control" type="text" placeholder="First Name:" required id="name" name="name">
                                         @error('name')
-                                        <p class="danger">{{ $message }}</p>
+                                        <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
@@ -148,7 +153,7 @@
                                         <label for="email" class="d-none"></label>
                                         <input class="form-control" type="email" placeholder="Email:" required id="email" name="email">
                                         @error('email')
-                                            <p class="danger">{{ $message }}</p>
+                                            <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
@@ -233,41 +238,41 @@
         </div>
     </div>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{{ asset('script/jquery-3.4.1.min.js')}}"></script>
+    <script src="{{ asset('javascript/jquery-3.4.1.min.js')}}"></script>
     <!--Bootstrap Core-->
-    <script src="{{ asset('script/propper.min.js')}}"></script>
-    <script src="{{ asset('script/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('javascript/propper.min.js')}}"></script>
+    <script src="{{ asset('javascript/bootstrap.min.js')}}"></script>
     <!--to view items on reach-->
-    <script src="{{ asset('script/jquery.appear.js')}}"></script>
+    <script src="{{ asset('javascript/jquery.appear.js')}}"></script>
     <!--Owl Slider-->
-    <script src="{{ asset('script/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('javascript/owl.carousel.min.js')}}"></script>
     <!--number counters-->
-    <script src="{{ asset('script/jquery-countTo.js')}}"></script>
+    <script src="{{ asset('javascript/jquery-countTo.js')}}"></script>
     <!--Parallax Background-->
-    <script src="{{ asset('script/parallaxie.js')}}"></script>
+    <script src="{{ asset('javascript/parallaxie.js')}}"></script>
     <!--Cubefolio Gallery-->
-    <script src="{{ asset('script/jquery.cubeportfolio.min.js')}}"></script>
+    <script src="{{ asset('javascript/jquery.cubeportfolio.min.js')}}"></script>
     <!--Fancybox js-->
-    <script src="{{ asset('script/jquery.fancybox.min.js')}}"></script>
+    <script src="{{ asset('javascript/jquery.fancybox.min.js')}}"></script>
     <!--tooltip js-->
-    <script src="{{ asset('script/tooltipster.min.js')}}"></script>
+    <script src="{{ asset('javascript/tooltipster.min.js')}}"></script>
     <!--wow js-->
-    <script src="{{ asset('script/wow.js')}}"></script>
+    <script src="{{ asset('javascript/wow.js')}}"></script>
     <!--Revolution SLider-->
-    <script src="{{ asset('script/revolution/jquery.themepunch.tools.min.js')}}"></script>
-    <script src="{{ asset('script/revolution/jquery.themepunch.revolution.min.js')}}"></script>
+    <script src="{{ asset('javascript/revolution/jquery.themepunch.tools.min.js')}}"></script>
+    <script src="{{ asset('javascript/revolution/jquery.themepunch.revolution.min.js')}}"></script>
     <!-- SLIDER REVOLUTION 5.0 EXTENSIONS -->
-    <script src="{{ asset('script/revolution/extensions/revolution.extension.actions.min.js')}}"></script>
-    <script src="{{ asset('script/revolution/extensions/revolution.extension.carousel.min.js')}}"></script>
-    <script src="{{ asset('script/revolution/extensions/revolution.extension.kenburn.min.js')}}"></script>
-    <script src="{{ asset('script/revolution/extensions/revolution.extension.layeranimation.min.js')}}"></script>
-    <script src="{{ asset('script/revolution/extensions/revolution.extension.migration.min.js')}}"></script>
-    <script src="{{ asset('script/revolution/extensions/revolution.extension.navigation.min.js')}}"></script>
-    <script src="{{ asset('script/revolution/extensions/revolution.extension.parallax.min.js')}}"></script>
-    <script src="{{ asset('script/revolution/extensions/revolution.extension.slideanims.min.js')}}"></script>
-    <script src="{{ asset('script/revolution/extensions/revolution.extension.video.min.js')}}"></script>
+    <script src="{{ asset('javascript/revolution/extensions/revolution.extension.actions.min.js')}}"></script>
+    <script src="{{ asset('javascript/revolution/extensions/revolution.extension.carousel.min.js')}}"></script>
+    <script src="{{ asset('javascript/revolution/extensions/revolution.extension.kenburn.min.js')}}"></script>
+    <script src="{{ asset('javascript/revolution/extensions/revolution.extension.layeranimation.min.js')}}"></script>
+    <script src="{{ asset('javascript/revolution/extensions/revolution.extension.migration.min.js')}}"></script>
+    <script src="{{ asset('javascript/revolution/extensions/revolution.extension.navigation.min.js')}}"></script>
+    <script src="{{ asset('javascript/revolution/extensions/revolution.extension.parallax.min.js')}}"></script>
+    <script src="{{ asset('javascript/revolution/extensions/revolution.extension.slideanims.min.js')}}"></script>
+    <script src="{{ asset('javascript/revolution/extensions/revolution.extension.video.min.js')}}"></script>
     <!--custom functions and script-->
-    <script src="{{ asset('script/functions.js')}}"></script>
+    <script src="{{ asset('javascript/functions.js')}}"></script>
 </body>
 
 </html>

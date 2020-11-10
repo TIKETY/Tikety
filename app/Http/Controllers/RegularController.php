@@ -16,7 +16,7 @@ class RegularController extends Controller
     }
 
     public function faq(){
-        return view('about');
+        return view('faq');
     }
 
 }

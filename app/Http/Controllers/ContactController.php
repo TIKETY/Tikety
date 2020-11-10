@@ -22,7 +22,7 @@ class ContactController extends Controller
             'email'=>$validated['email'],
         ]);
 
-        return redirect()->route('home')->with('message_connected', 'You are Connected');
+        return redirect()->back()->with('message_connected', 'You are Connected');
     }
 
     public function contact(Request $request){
@@ -60,7 +60,7 @@ class ContactController extends Controller
 
         Mail::to($user->email)->send(new NotifyUser($details));
 
-        return redirect()->route('ShowBus', $bus)->with('message', 'You have contacted this service provider');
+        return redirect()->back()->with('message_contact', 'You have contacted this service provider');
 
     }
 }

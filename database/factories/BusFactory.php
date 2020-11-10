@@ -27,7 +27,11 @@ class BusFactory extends Factory
             'name'=> $this->faker->unique()->name,
             'route'=> $this->faker->name,
             'rows'=> $this->faker->numberBetween($min = 4, $max = 14),
-            'body'=> $this->faker->paragraph
+            'body'=> $this->faker->paragraph,
+            'from'=> $this->faker->city,
+            'to'=> $this->faker->city,
+            'date'=> $this->faker->date,
+            'time'=> $this->faker->time,
         ];
     }
 }

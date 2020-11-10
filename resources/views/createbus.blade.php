@@ -44,14 +44,53 @@
                                         @enderror
                                         </div>
                                     </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email1" class="d-none"></label>
+                                            <input class="form-control" type="date" id="date" placeholder="Date:" name="date">
+                                        @error('date')
+                                            <p class="danger">{{ $message }}</p>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email1" class="d-none"></label>
+                                            <input class="form-control" type="time" id="rows" placeholder="Time:" name="time">
+                                        @error('time')
+                                            <p class="danger">{{ $message }}</p>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email1" class="d-none"></label>
+                                            <input class="form-control" type="text" id="from" placeholder="From:" name="from">
+                                        @error('from')
+                                            <p class="danger">{{ $message }}</p>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="email1" class="d-none"></label>
+                                            <input class="form-control" type="text" id="to" placeholder="To:" name="to">
+                                        @error('to')
+                                            <p class="danger">{{ $message }}</p>
+                                        @enderror
+                                        </div>
+                                    </div>
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="message1" class="d-none"></label>
                                             <textarea class="form-control" id="body" placeholder="Body:" required name="body"></textarea>
+                                        @error('body')
+                                            <p class="danger">{{ $message }}</p>
+                                        @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
-                                        <button type="submit" id="submit_btn1" class="button btn-primary w-100">Send</button>
+                                        <button type="submit" id="submit_btn1" class="button btn-primary w-100">Create Bus</button>
                                     </div>
                                 </div>
                             </form>

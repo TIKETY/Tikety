@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Role;
+use App\Models\Bus;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -43,7 +44,11 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function bus(){
-        return $this->hasMany(Bus::class);
+        return $this->belongsToMany(Bus::class);
+    }
+
+    public function seat(){
+        return $this->hasOneThrough('App\Models\Seat', 'App\Models\Bus');
     }
 
     public function roles(){
@@ -51,6 +56,23 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function addRole($role){
-        $this->roles()->save($role);
+        $this->roles()->sync($role, false);
     }
+
+    public function addBus($bus){
+        $this->bus()->sync($bus, false);
+    }
+
+    public function abilities(){
+        return $this->roles->map->abilities->flatten()->pluck('name')->unique();
+    }
+
+    public function roleChecker(){
+        if($this->roles->map->abilities->flatten()->pluck('name')!='[]'){
+            return true;
+        } else{
+            return false;
+        };
+    }
+
 }

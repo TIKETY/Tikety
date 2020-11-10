@@ -17,6 +17,6 @@ class Role extends Model
     }
 
     public function addAbility($ability){
-        $this->abilities()->save($ability);
+        $this->abilities()->sync($ability, false);
     }
 }

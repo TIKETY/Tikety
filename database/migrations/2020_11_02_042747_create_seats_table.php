@@ -13,29 +13,44 @@ class CreateSeatsTable extends Migration
      */
     public function up()
     {
+        Schema::create('buses', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id');
+            $table->string('name')->unique();
+            $table->integer('rows');
+            $table->string('from');
+            $table->string('to');
+            $table->date('date');
+            $table->time('time');
+            $table->string('route');
+            $table->string('body');
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+        });
+
         Schema::create('seats', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-        });
-        Schema::create('seat_bus', function (Blueprint $table) {
-            $table->primary(['seat_id', 'bus_id']);
-            $table->foreignId('seat_id');
             $table->foreignId('bus_id');
+            $table->foreignId('user_id')->nullable();
+            $table->string('seat');
             $table->timestamps();
 
-            $table->foreign('seat_id')->references('id')->on('seats')->onDelete('cascade');
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
-        });
-
-        Schema::create('seat_user', function (Blueprint $table) {
-            $table->primary(['seat_id', 'user_id']);
-            $table->foreignId('user_id');
-            $table->foreignId('seat_id');
-            $table->timestamps();
-
-            $table->foreign('seat_id')->references('id')->on('seats')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+
+        Schema::create('bus_user', function (Blueprint $table) {
+            $table->primary(['bus_id', 'user_id']);
+            $table->foreignId('bus_id');
+            $table->foreignId('user_id');
+            $table->timestamps();
+
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        });
+
     }
 
     /**
