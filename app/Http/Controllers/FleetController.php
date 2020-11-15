@@ -3,8 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Fleet;
+use App\Models\User;
+use App\Models\Bus;
 
 class FleetController extends Controller
 {
-    //
+    public function ShowFleet(User $user){
+    $fleet = Fleet::where('user_id', $user->id)->get()->pluck('bus_id');
+    $buses = Bus::find($fleet);
+    return view('fleet', compact('buses'));
+    }
+
+    public function AddBusFleet(Bus $bus){
+        $fleet = new Fleet;
+        $fleet->addBus($bus, auth()->user());
+        return $this->ShowFleet(auth()->user())->with('fleet_message', 'Bus added to the fleet');
+    }
+
 }

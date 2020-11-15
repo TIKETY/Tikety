@@ -17,7 +17,12 @@ class CreateSeatsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('name')->unique();
+            $table->string('platenumber')->unique();
             $table->integer('rows');
+            $table->integer('amount');
+            $table->string('phonenumber');
+            $table->string('address');
+            $table->string('workinghours');
             $table->string('from');
             $table->string('to');
             $table->date('date');

@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Fleet;
+use App\Models\Bus;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FleetFactory extends Factory
@@ -22,7 +24,8 @@ class FleetFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'bus_id'=>Bus::factory(),
+            'user_id'=>User::factory()
         ];
     }
 }

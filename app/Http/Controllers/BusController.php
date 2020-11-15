@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facade\Notification;
+use App\Notifications\BusNotification;
+use Nexmo\Laravel\Facade\Nexmo;
 use App\Models\User;
 use App\Models\Bus;
 
@@ -26,6 +29,11 @@ class BusController extends Controller
         $validated = $request->validate([
             'name'=>'required|unique:buses',
             'body'=>'required',
+            'amount'=>'required',
+            'address'=>'required',
+            'phonenumber'=>'required',
+            'platenumber'=>'required|unique:buses',
+            'workinghours'=>'required',
             'rows'=>'required',
             'from'=>'required|max:30',
             'to'=>'required|max:30',
@@ -38,6 +46,11 @@ class BusController extends Controller
             'name'=>$validated['name'],
             'body'=>$validated['body'],
             'rows'=>$validated['rows'],
+            'amount'=>$validated['amount'],
+            'phonenumber'=>$validated['phonenumber'],
+            'platenumber'=>$validated['platenumber'],
+            'workinghours'=>$validated['workinghours'],
+            'address'=>$validated['address'],
             'from'=>$validated['from'],
             'to'=>$validated['to'],
             'date'=>$validated['date'],
@@ -57,9 +70,11 @@ class BusController extends Controller
 
     public function show(Bus $bus){
         $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')));
+
         return view('busdetail', [
             'bus'=>$bus,
-            'seats'=>$seats
+            'seats'=>$seats,
+            'notifications'=>auth()->user()->unreadNotifications
         ]);
     }
 
@@ -81,6 +96,11 @@ class BusController extends Controller
         $validated = $request->validate([
             'name'=>['required', Rule::unique('buses')->ignore($bus)],
             'body'=>'required',
+            'amount'=>'required',
+            'platenumber'=>'required',
+            'address'=>'required',
+            'workinghours'=>'required',
+            'phonenumber'=>'required',
             'rows'=>'required|max:2',
             'from'=>'required|max:30',
             'to'=>'required|max:30',
@@ -104,7 +124,8 @@ class BusController extends Controller
         $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')));
         return view('busdetail', [
             'bus'=>$bus,
-            'seats'=>$seats
+            'seats'=>$seats,
+            'notifications'=>auth()->user()->unreadNotifications
         ])->with('update_message', 'The Bus has been updated successfully');
     }
 
@@ -114,8 +135,33 @@ class BusController extends Controller
     }
 
     public function takeseat(Request $request, Bus $bus){
-        $array = [0=>$request->seats_id];
+        $string = $request->seats_id;
+        $array = explode(',', $string);
         $bus->seats_to_user($array, $bus->user);
         return redirect()->back()->with('seat_message', 'Seat has been taken');
     }
+
+    public function payseat(Request $request, Bus $bus){
+        $string = $request->seats_id;
+        $array = explode(',', $string);
+        $bus->seats_to_user($array, auth()->user());
+        $bus->user->notify(new BusNotification($string));
+        Nexmo::message()->send([
+            'to'   => '255654660654',
+            'from' => '16105552344',//set it to Tikety
+            'text' => 'Using the facade to send a message.'
+        ]);
+        return redirect()->back()->with('seat_message', 'Seats has been taken');
+    }
+
+    public function travel(Request $request){
+        $from = $request['from'];
+        $to = $request['to'];
+
+        $buses = Bus::where('from', $from)->where('to', $to)->get();
+
+        return view('travel-output', compact('buses'));
+    }
 }
+
+

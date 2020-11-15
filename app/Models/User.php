@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Role;
 use App\Models\Bus;
+use App\Models\Fleet;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -45,6 +46,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function bus(){
         return $this->belongsToMany(Bus::class);
+    }
+
+    public function fleet(){
+        return $this->hasOne(Fleet::class);
     }
 
     public function seat(){

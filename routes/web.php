@@ -7,6 +7,7 @@ use App\Http\Controllers\BusController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SeatController;
+use App\Http\Controllers\FleetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/contact', [RegularController::class, 'contact'])->name('contact');
 Route::get('/about', [RegularController::class, 'about'])->name('about');
 Route::get('/faq', [RegularController::class, 'faq'])->name('faq')->middleware('haverole');
+Route::get('/travel', [RegularController::class, 'travel'])->name('travel');
+Route::post('/travel/form', [BusController::class, 'travel'])->name('TravelForm')->middleware('auth');
 Route::get('/buses/{user}', [BusController::class, 'MyBus'])->name('bus');
 Route::get('/createbus', [BusController::class, 'CreateBus'])->name('CreateBus');
 Route::get('/showbus/{bus}', [BusController::class, 'show'])->name('ShowBus');
@@ -43,3 +46,7 @@ Route::post('/contactform', [ContactController::class, 'contact'])->name('Contac
 Route::post('/contactbus/{bus}', [ContactController::class, 'contactbus'])->name('ContactBus')->middleware('auth');
 Route::post('/takeseat/{bus}', [BusController::class, 'takeseat'])->name('takeseat')->middleware('auth');
 Route::delete('/removebus/{bus}',[BusController::class, 'removebus'])->name('removebus');
+
+Route::get('/fleet/{user}', [FleetController::class, 'ShowFleet'])->name('ShowFleet');
+Route::post('/buses/{bus}',[FleetController::class, 'AddBusFleet'])->name('AddBusFleet');
+Route::post('/payseat/{bus}',[BusController::class, 'payseat'])->name('payseat');

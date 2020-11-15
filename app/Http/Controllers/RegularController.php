@@ -19,4 +19,8 @@ class RegularController extends Controller
         return view('faq');
     }
 
+    public function travel(){
+        return view('travel');
+    }
+
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Seat;
 use App\Models\User;
+use App\Models\Fleet;
 
 class Bus extends Model
 {
@@ -23,6 +24,10 @@ class Bus extends Model
 
     public function seats(){
         return $this->hasMany(Seat::class);
+    }
+
+    public function fleet(){
+        return $this->belongsTo(Fleet::class);
     }
 
     public function check_seat($seat){
@@ -47,5 +52,9 @@ class Bus extends Model
 
     public function removeSeat($seat){
         return $this->seats()->where('seat', $seat)->delete();
+    }
+
+    public function checkfleet(){
+       return Fleet::where('bus_id', $this->id)->exists();
     }
 }

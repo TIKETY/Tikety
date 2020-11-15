@@ -15,7 +15,12 @@ class CreateFleetsTable extends Migration
     {
         Schema::create('fleets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('bus_id');
+            $table->foreignId('user_id');
             $table->timestamps();
+
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

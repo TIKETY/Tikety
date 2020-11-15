@@ -16,14 +16,19 @@
                     {{ session('create_message') }}
                     </div>
                 @endif
-                <h2 class="heading bottom30 darkcolor font-light2"><span class="font-weight-light">My Buses</span> Details
+                @if (session('fleet_message'))
+                    <div class="alert alert-success mt-3" role="alert">
+                    {{ session('fleet_message') }}
+                    </div>
+                @endif
+                <h2 class="heading bottom30 darkcolor font-light2"><span class="font-weight-light">My Fleet</span>
                 </h2>
-                   {{-- @can('create_bus', Role::class) --}}
                 <div class="col-md-8 offset-md-2">
                     <p class="mb-n3"><a class="btn btn-primary" href="{{ route('CreateBus') }}">Add A Bus</a></p>
                 </div>
-                {{-- @endcan --}}
             </div>
+
+
             <div id="services-measonry" class="cbp">
                 @foreach ($buses as $bus)
                 <div class="cbp-item digital brand design shadow">
@@ -41,15 +46,10 @@
                             @auth
                             @if (auth()->user()->id==$bus->user_id)
                             <a href="{{ route('UpdateBus', $bus->id) }}" class="button-readmore">Edit Bus</a>
-                            @if (!$bus->checkfleet())
-                            <form action="{{ route('AddBusFleet', $bus) }}" method="POST">
-                                @csrf
-                            <button type="submit" class="mt-3  btn btn-primary">Add to Fleet</button>
-                            </form>
-                            @endif
                             @endif
                             @endauth
                         </div>
+
                     </div>
                 </div>
                 @endforeach

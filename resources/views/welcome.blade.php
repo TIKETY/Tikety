@@ -51,9 +51,16 @@
                             <a class="nav-link text-black-50" href="{{ route('contact') }}">Contact</a>
                         </li>
                         @auth
+                        {{-- @can('create_multiple_buses', Role::class) --}}
+                        <li class="nav-item">
+                            <a class="nav-link text-black-50" href="{{ route('ShowFleet', auth()->user()) }}">My Fleet</a>
+                        </li>
+                        {{-- @endcan --}}
+                        {{-- @can('create_bus', Role::class) --}}
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('bus', auth()->user()) }}">My Buses</a>
                         </li>
+                        {{-- @endcan --}}
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('buses') }}">Buses</a>
                         </li>
@@ -109,7 +116,7 @@
                             <a class="nav-link" href="{{ route('role') }}">Change Your Role?</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('fleet', auth()->user()) }}">My Fleet</a>
+                            <a class="nav-link" href="{{ route('ShowFleet', auth()->user()) }}">My Fleet</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('bus', auth()->user()) }}">My Buses</a>
@@ -180,7 +187,8 @@
                         <div class="tp-caption tp-resizeme" data-x="['center','center','center','center']" data-hoffset="['20','20','20','20']" data-y="['middle','middle','middle','middle']" data-voffset="['90','90','90','90']" data-whitespace="nowrap" data-transform_idle="o:1;"
                             data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="s:900;e:Power2.easeInOut;s:900;e:Power2.easeInOut;" data-start="1600" data-splitin="none" data-splitout="none"
                             data-responsive_offset="on">
-                            <a class="transition-3 button btn-primary button-padding pagescroll font-13" href="#our-feature">Learn More</a>
+                            <a class="transition-3 button btn-primary button-padding pagescroll font-13 mr-4" href="#our-feature">Learn More</a>
+                            <a class="button btn-primary button-paddingfont-13" href="{{ route('travel') }}">Traveling Today?</a>
                         </div>
                     </li>
                 </ul>
