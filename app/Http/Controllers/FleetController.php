@@ -18,7 +18,7 @@ class FleetController extends Controller
     public function AddBusFleet(Bus $bus){
         $fleet = new Fleet;
         $fleet->addBus($bus, auth()->user());
-        return $this->ShowFleet(auth()->user())->with('fleet_message', 'Bus added to the fleet');
+        return redirect()->back()->with('fleet_message', 'Bus added to the fleet successful');
     }
 
 }

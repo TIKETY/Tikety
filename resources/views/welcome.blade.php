@@ -58,7 +58,7 @@
                         {{-- @endcan --}}
                         {{-- @can('create_bus', Role::class) --}}
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('bus', auth()->user()) }}">My Buses</a>
+                            <a class="nav-link text-black-50" href="{{ route('mybuses') }}">My Buses</a>
                         </li>
                         {{-- @endcan --}}
                         <li class="nav-item">
@@ -116,10 +116,10 @@
                             <a class="nav-link" href="{{ route('role') }}">Change Your Role?</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ShowFleet', auth()->user()) }}">My Fleet</a>
+                            <a class="nav-link" href="{{ route('ShowFleet', auth()->user()) }}">Fleet</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('bus', auth()->user()) }}">My Buses</a>
+                            <a class="nav-link" href="{{ route('mybuses') }}">My Buses</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('buses') }}">Buses</a>

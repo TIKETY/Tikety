@@ -57,4 +57,12 @@ class Bus extends Model
     public function checkfleet(){
        return Fleet::where('bus_id', $this->id)->exists();
     }
+
+    public function busstate(){
+        return !$this->seats()->where('user_id', NULL)->exists();
+    }
+
+    public function revokeSeat($seat){
+        return $this->seats()->where('seat', $seat)->update(['user_id'=>NULL]);
+    }
 }

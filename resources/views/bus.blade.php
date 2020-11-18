@@ -11,6 +11,11 @@
                     {{ session('message_bus') }}
                     </div>
                 @endif
+                @if (session('fleet_message'))
+                    <div class="alert alert-success" role="alert">
+                    {{ session('fleet_message') }}
+                    </div>
+                @endif
                 @if (session('create_message'))
                     <div class="alert alert-success mt-3" role="alert">
                     {{ session('create_message') }}
@@ -39,7 +44,7 @@
                             <p class="bottom15">{{ $bus->route }}
                             </p>
                             @auth
-                            @if (auth()->user()->id==$bus->user_id)
+                            @can('isowner', $bus)
                             <a href="{{ route('UpdateBus', $bus->id) }}" class="button-readmore">Edit Bus</a>
                             @if (!$bus->checkfleet())
                             <form action="{{ route('AddBusFleet', $bus) }}" method="POST">
@@ -47,7 +52,7 @@
                             <button type="submit" class="mt-3  btn btn-primary">Add to Fleet</button>
                             </form>
                             @endif
-                            @endif
+                            @endcan
                             @endauth
                         </div>
                     </div>

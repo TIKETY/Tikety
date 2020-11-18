@@ -16,9 +16,10 @@ class BusNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($string, $user)
     {
-        //
+        $this->string = $string;
+        $this->user = $user;
     }
 
     /**
@@ -55,7 +56,8 @@ class BusNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'seats'=>$this->string,
+            'user'=>$this->user
         ];
     }
 }

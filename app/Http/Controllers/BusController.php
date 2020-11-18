@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Twilio\Rest\Client;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facade\Notification;
 use App\Notifications\BusNotification;
-use Nexmo\Laravel\Facade\Nexmo;
 use App\Models\User;
 use App\Models\Bus;
 
 class BusController extends Controller
 {
-    public function MyBus(User $user){
-        $buses = $user->bus;
+    public function MyBus(){
+        $buses = auth()->user()->bus;
 
         return view('bus', compact('buses'));
     }
@@ -84,10 +84,6 @@ class BusController extends Controller
     }
 
     public function updatebus(Bus $bus){
-        if(auth()->user()->id != $bus->user_id){
-            abort(404);
-        }
-
         return view('updatebus', compact('bus'));
     }
 
@@ -144,13 +140,17 @@ class BusController extends Controller
     public function payseat(Request $request, Bus $bus){
         $string = $request->seats_id;
         $array = explode(',', $string);
+        $seats = sizeof($array);
+        $user = auth()->user()->name;
+        $fare = ($seats*$bus->amount); //for later use of integrating with tigopesa and mpesa push
         $bus->seats_to_user($array, auth()->user());
-        $bus->user->notify(new BusNotification($string));
-        Nexmo::message()->send([
-            'to'   => '255654660654',
-            'from' => '16105552344',//set it to Tikety
-            'text' => 'Using the facade to send a message.'
-        ]);
+        $account_sid = getenv("TWILIO_SID");
+        $auth_token = getenv("TWILIO_AUTH_TOKEN");
+        $twilio_number = getenv("TWILIO_NUMBER");
+        $client = new Client($account_sid, $auth_token);
+        $client->messages->create("+255654660654",
+            ['from' => $twilio_number, 'body' => 'You have taken the seat '.$string.' with the price of '.$fare] );
+        $bus->user->notify(new BusNotification($string, $user));
         return redirect()->back()->with('seat_message', 'Seats has been taken');
     }
 
@@ -161,6 +161,12 @@ class BusController extends Controller
         $buses = Bus::where('from', $from)->where('to', $to)->get();
 
         return view('travel-output', compact('buses'));
+    }
+
+    public function revokeSeat(Request $request, Bus $bus){
+        $bus1 = Bus::find($bus->id);
+        $bus1->revokeSeat($request['seat']);
+        return redirect()->back()->with('revoke_message', 'Seat revoked');
     }
 }
 

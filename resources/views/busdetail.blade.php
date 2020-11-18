@@ -37,16 +37,16 @@
                         </div>
                     </div>
                     @auth
+                    @if (session('message_contact'))
+                            <div class="alert alert-success mt-3" role="alert">
+                            {{ session('message_contact') }}
+                            </div>
+                    @endif
                     @if (auth()->user()->id!=$bus->user_id)
                     <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactBus', $bus->id) }}">
                         @csrf
                         <div class="row">
                         <div class="col-md-12 col-sm-12 mt-4">
-                            @if (session('message_contact'))
-                            <div class="alert alert-success" role="alert">
-                            {{ session('message_contact') }}
-                            </div>
-                            @endif
                             <div class="form-group">
                                 <input class="form-control" type="text" placeholder="First Name:" required id="name" name="name">
                                 <label for="first_name1" class="d-none"></label>
@@ -70,19 +70,39 @@
                         </div>
                         </form>
                     @else
-                    @if (auth()->user()->id == $bus->user_id)
+                    @can('isowner', $bus)
+                    <h4 class="text-capitalize darkcolor bottom10 mt-2">Revoke Seat</h4>
+                    @if (session('revoke_message'))
+                            <div class="alert alert-success mt-3" role="alert">
+                            {{ session('revoke_message') }}
+                            </div>
+                    @endif
+                        <form action="{{ route('revokeSeat', $bus) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="row">
+                                <div class="form-group mr-1">
+                                    <input class="form-control ml-3" style="width: 200px;" type="text" placeholder="Seat No:" required id="seat" name="seat">
+                                    <label for="first_name1" class="d-none"></label>
+                                </div>
+                                <button class="btn btn-primary mb-4" type="submit">Revoke</button>
+                            </div>
+                        </form>
                     <h4 class="text-capitalize darkcolor bottom35">Notifications</h4>
                     <div class="contact-table colorone d-table bottom15">
                         @foreach ($notifications as $notification)
                         <div class="alert alert-info mt-3" role="alert">
-                            <a href="{{ $notification->markAsRead() }}">{{ $notification->type }}</a>
+                            <a href="{{ $notification->markAsRead() }}">The seats {{ $notification->data['seats'] }} by the user {{ $notification->data['user'] }}</a>
+                            @if ($bus->busstate())
+                                <p>The bus is full</p>
+                            @endif
                         </div>
                         @endforeach
                         @empty($notifications)
                             <p>You have no new notifications</p>
                         @endempty
                     </div>
-                    @endif
+                    @endcan
                     @endif
                     @endauth
                 </div>
@@ -95,7 +115,8 @@
 
                     @auth
                     {{-- @can('edit_bus', Role::class) --}}
-                    @if (auth()->user()->id == $bus->user_id)
+                    {{-- @if (auth()->user()->id == $bus->user_id) --}}
+                    @can('isowner', $bus)
                     <div class="row">
                         <a href="{{ route('UpdateBus', $bus) }}" class="btn btn-primary mr-3">Edit Bus</a>
                         <form action="{{ route('removebus', $bus) }}" method="POST">
@@ -104,7 +125,9 @@
                         <button type="submit" class="btn btn-primary" >Remove Bus</button>
                         </form>
                     </div>
-                    @endif
+                    @endcan
+
+                    {{-- @endif --}}
                     {{-- @endcan --}}
                     @endauth
                 </div>
@@ -130,7 +153,7 @@
                                     </div>
                                     <div class="ml-4">
                                         <div class="row align-items-center">
-                                        <img src="{{ asset('image/selected_seat.png') }}" width="70px" height="70px" alt="" class="mr-4">
+                                        <img src="{{ asset('image/selected_seat.png') }}" width="70px" height="70px" alt="" class="mr-4 mb-4">
                                         <p>Selected Seat</p>
                                         </div>
                                     </div>
@@ -177,7 +200,7 @@
                         @auth
                             @csrf
                             @for ($i = 0; $i < $bus->rows; $i++)
-                            <div style="width: 400px;" class="row">
+                            <div style="width: 400px;" class="row ml-1">
                                 @if ($i<4)
                                 <div class="seat-container">
                                     <img @if (!in_array((($i%4)*4)+1, $seats))
@@ -528,7 +551,7 @@
                                 @endif
                             </div>
                             @endfor
-                        @if (auth()->user()->id == $bus->user_id)
+                        @can('isowner', $bus)
                         <form action="{{ route('takeseat', $bus) }}" method="post">
                             @csrf
                             <div class="col-md-12 col-sm-12">
@@ -536,7 +559,7 @@
                                 <button type="submit" class="btn rounded-lg w-100 mb-4 mt-4 btn-primary">Take Seat</button>
                             </div>
                         </form>
-                        @else
+                        @elsecan('use', $bus)
                         <form action="{{ route('payseat', $bus) }}" method="post">
                             @csrf
                             <div class="col-md-12 col-sm-12">
@@ -544,8 +567,7 @@
                                 <button type="submit" class="btn rounded-lg w-100 mb-4 mt-4 btn-primary">Pay For Seat</button>
                             </div>
                         </form>
-                        @endif
-
+                        @endcan
                         @endauth
                         </div>
                     </div>
