@@ -92,7 +92,7 @@
                     <div class="contact-table colorone d-table bottom15">
                         @foreach ($notifications as $notification)
                         <div class="alert alert-info mt-3" role="alert">
-                            <a href="{{ $notification->markAsRead() }}">The seats {{ $notification->data['seats'] }} by the user {{ $notification->data['user'] }}</a>
+                            <a href="{{ $notification->markAsRead() }}">Seat(s) {{ $notification->data['seats'] }} was taken by {{ $notification->data['user'] }}</a>
                             @if ($bus->busstate())
                                 <p>The bus is full</p>
                             @endif
@@ -109,6 +109,11 @@
             </div>
             <div class="col-lg-8 col-md-7">
                 <div class="widget shadow heading_space text-center text-md-left">
+                    @if (session('reset_message'))
+                            <div class="alert alert-success mt-3" role="alert">
+                            {{ session('reset_message') }}
+                            </div>
+                    @endif
                     <h3 class="darkcolor font-normal bottom30">{{ $bus->name }} {{ $bus->platenumber }}</h3>
                     <p class="bottom30">{{ $bus->from }} to {{ $bus->to }}</p>
                     <p class="bottom30">{{ $bus->date->diffForHumans() }} departure time on {{ $bus->time }}</p>
@@ -122,7 +127,11 @@
                         <form action="{{ route('removebus', $bus) }}" method="POST">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-primary" >Remove Bus</button>
+                        <button type="submit" class="btn btn-primary mr-3" >Remove Bus</button>
+                        </form>
+                        <form action="{{ route('resetbus', $bus) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary" >Reset Bus</button>
                         </form>
                     </div>
                     @endcan

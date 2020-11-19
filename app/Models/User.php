@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Role;
+use Twilio\Rest\Client;
 use App\Models\Bus;
 use App\Models\Fleet;
 
@@ -80,4 +81,30 @@ class User extends Authenticatable implements MustVerifyEmail
         };
     }
 
+    public function verifyphone($phone){
+        $code = mt_rand(100000, 999999);
+
+        $this->forceFill([
+          'verification_code' => $code
+        ])->save();
+
+        $account_sid = getenv("TWILIO_SID");
+        $auth_token = getenv("TWILIO_AUTH_TOKEN");
+        $twilio_number = getenv("TWILIO_NUMBER");
+        $client = new Client($account_sid, $auth_token);
+        return $client->messages->create($phone,
+                ['from' => $twilio_number, 'body' => 'Your Verification code is: '.$code] );
+    }
+
+    public function PhoneIsVerified(){
+        return is_null($this->phone_verified_at);
+    }
+
+    public function phone_register($phone){
+        return User::where('id', $this->id)->update(['phone_number'=>$phone]);
+    }
+
+    public function verify(){
+        return User::where('id', $this->id)->update(['phone_verified_at'=>date("Y-m-d H:i:s")]);
+    }
 }

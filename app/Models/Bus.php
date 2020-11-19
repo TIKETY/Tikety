@@ -65,4 +65,8 @@ class Bus extends Model
     public function revokeSeat($seat){
         return $this->seats()->where('seat', $seat)->update(['user_id'=>NULL]);
     }
+
+    public function resetbus(){
+        return $this->seats()->update(['user_id'=>NULL]);
+    }
 }

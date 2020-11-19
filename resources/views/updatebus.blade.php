@@ -40,7 +40,7 @@
                                         <div class="form-group">
                                             <input class="form-control" type="number" id="rows" placeholder="Rows:" value="{{ $bus->rows }}" name="rows">
                                         @error('rows')
-                                            <p class="danger">{{ $message }}</p>
+                                            <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
                                     </div>
@@ -48,7 +48,7 @@
                                         <div class="form-group">
                                             <input class="form-control" type="number" id="amount" placeholder="Amount:" value="{{ $bus->amount }}" name="amount">
                                         @error('amount')
-                                            <p class="danger">{{ $message }}</p>
+                                            <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
                                     </div>
@@ -56,7 +56,7 @@
                                         <div class="form-group">
                                             <input class="form-control" type="date" id="date" placeholder="Date:" value="{{ $bus->date }}" name="date">
                                         @error('date')
-                                            <p class="danger">{{ $message }}</p>
+                                            <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@
                                         <div class="form-group">
                                             <input class="form-control" type="time" id="rows" placeholder="Time:" value="{{ $bus->time }}" name="time">
                                         @error('time')
-                                            <p class="danger">{{ $message }}</p>
+                                            <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@
                                         <div class="form-group">
                                             <input class="form-control" type="text" id="from" placeholder="From:" value="{{ $bus->from }}" name="from">
                                         @error('from')
-                                            <p class="danger">{{ $message }}</p>
+                                            <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
                                     </div>
@@ -80,7 +80,7 @@
                                         <div class="form-group">
                                             <input class="form-control" type="text" id="route" placeholder="Route:" value="{{ $bus->route }}" name="route">
                                         @error('route')
-                                            <p class="danger">{{ $message }}</p>
+                                            <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@
                                         <div class="form-group">
                                             <input class="form-control" type="text" id="to" placeholder="To:" value="{{ $bus->to }}" name="to">
                                         @error('to')
-                                            <p class="danger">{{ $message }}</p>
+                                            <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
                                     </div>
@@ -96,7 +96,7 @@
                                         <div class="form-group">
                                             <input class="form-control" type="tel" id="phonenumber" placeholder="Phone Number:" value="{{ $bus->phonenumber }}" name="phonenumber">
                                         @error('phonenumber')
-                                            <p class="danger">{{ $message }}</p>
+                                            <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
                                     </div>
@@ -104,7 +104,7 @@
                                         <div class="form-group">
                                             <input class="form-control" type="text" id="address" placeholder="Address:" value="{{ $bus->address }}" name="address">
                                         @error('address')
-                                            <p class="danger">{{ $message }}</p>
+                                            <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@
                                         <div class="form-group">
                                             <input class="form-control" type="text" id="workinghours" placeholder="Working Hours:" value="{{ $bus->workinghours }}" name="workinghours">
                                         @error('workinghours')
-                                            <p class="danger">{{ $message }}</p>
+                                            <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
                                     </div>
@@ -121,7 +121,7 @@
                                             <label for="message1" class="d-none"></label>
                                             <textarea class="form-control" id="body" placeholder="Body:" required name="body">{{ $bus->body }}</textarea>
                                         @error('body')
-                                            <p class="danger">{{ $message }}</p>
+                                            <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
                                     </div>

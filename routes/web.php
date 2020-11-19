@@ -27,14 +27,14 @@ Route::get('/', function () {
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/contact', [RegularController::class, 'contact'])->name('contact');
+Route::get('/contact', [RegularController::class, 'contact'])->name('contact')->middleware('verifiedphone');
 Route::get('/about', [RegularController::class, 'about'])->name('about');
-Route::get('/faq', [RegularController::class, 'faq'])->name('faq')->middleware('haverole');
+Route::get('/faq', [RegularController::class, 'faq'])->name('faq')->middleware(['auth', 'haverole']);
 Route::get('/travel', [RegularController::class, 'travel'])->name('travel');
 Route::post('/travel/form', [BusController::class, 'travel'])->name('TravelForm')->middleware('auth');
 Route::get('/mybuses', [BusController::class, 'MyBus'])->name('mybuses');
 Route::get('/createbus', [BusController::class, 'CreateBus'])->name('CreateBus');
-Route::get('/showbus/{bus}', [BusController::class, 'show'])->name('ShowBus');
+Route::get('/showbus/{bus}', [BusController::class, 'show'])->name('ShowBus')->middleware('auth');
 Route::get('/buses', [BusController::class, 'showbuses'])->name('buses');
 Route::post('/createbus/{user}', [BusController::class, 'CreateBusForm'])->name('CreateBusForm');
 Route::get('/updatebus/{bus}', [BusController::class, 'updatebus'])->name('UpdateBus')->middleware('can:isowner,bus');
@@ -51,3 +51,8 @@ Route::get('/fleet/{user}', [FleetController::class, 'ShowFleet'])->name('ShowFl
 Route::post('/buses/{bus}',[FleetController::class, 'AddBusFleet'])->name('AddBusFleet');
 Route::post('/payseat/{bus}',[BusController::class, 'payseat'])->name('payseat')->middleware('can:use,bus');
 Route::put('/revokeseat/{bus}',[BusController::class, 'revokeSeat'])->name('revokeSeat')->middleware('can:isowner,bus');
+Route::get('/phoneverified', [RegularController::class, 'phoneverified'])->name('phoneverified');
+Route::post('/phoneverified', [BusController::class, 'phoneverified'])->name('phoneverified');
+Route::get('/verification_code', [RegularController::class, 'verification_code'])->name('verification_code');
+Route::put('/verification_code_post', [BusController::class, 'verification_code'])->name('verification_code_post');
+Route::post('/resetbus/{bus}', [BusController::class, 'resetbus'])->name('resetbus');

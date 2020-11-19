@@ -64,6 +64,7 @@ class BusController extends Controller
         for ($i=1; $i <= $validated['rows']*4; $i++) {
          $bus->addSeat($i);
         }
+        $bus->addSeat(($validated['rows']*4) + 1);
 
         return redirect()->route('buses')->with('create_message', 'Bus created Successfully');
     }
@@ -109,12 +110,14 @@ class BusController extends Controller
             for ($i=1; $i < (($bus->rows - $validated['rows'])*4)+1; $i++) {
                 $bus->removeSeat(($validated['rows']*4)+$i);
             }
+            $bus->addSeat(($validated['rows']*4)+1);
         } else if($validated['rows'] > $bus->rows){
             for ($i=1; $i < ($validated['rows']*4)+1; $i++){
                 if(!$bus->seat_existence($i)){
                     $bus->addSeat($i);
                 }
             }
+            $bus->addSeat(($validated['rows']*4) + 1);
         }
         $bus->update($validated);
         $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')));
@@ -138,20 +141,25 @@ class BusController extends Controller
     }
 
     public function payseat(Request $request, Bus $bus){
-        $string = $request->seats_id;
-        $array = explode(',', $string);
+        $array = explode(',', $request->seats_id);
         $seats = sizeof($array);
         $user = auth()->user()->name;
         $fare = ($seats*$bus->amount); //for later use of integrating with tigopesa and mpesa push
-        $bus->seats_to_user($array, auth()->user());
-        $account_sid = getenv("TWILIO_SID");
-        $auth_token = getenv("TWILIO_AUTH_TOKEN");
-        $twilio_number = getenv("TWILIO_NUMBER");
-        $client = new Client($account_sid, $auth_token);
-        $client->messages->create("+255654660654",
-            ['from' => $twilio_number, 'body' => 'You have taken the seat '.$string.' with the price of '.$fare] );
-        $bus->user->notify(new BusNotification($string, $user));
-        return redirect()->back()->with('seat_message', 'Seats has been taken');
+        if(auth()->user()->PhoneIsVerified()){
+            return redirect()->route('phoneverified');
+        } else{
+            $bus->seats_to_user($array, auth()->user());
+            $account_sid = getenv("TWILIO_SID");
+            $auth_token = getenv("TWILIO_AUTH_TOKEN");
+            $twilio_number = getenv("TWILIO_NUMBER");
+            $client = new Client($account_sid, $auth_token);
+            $client->messages->create("+255654660654",
+            ['from' => $twilio_number, 'body' => 'You have taken the seat '.$request->seats_id.' with the price of '.$fare] );
+            $bus->user->notify(new BusNotification($request->seats_id, $user));
+            return redirect()->back()->with('seat_message', 'Seats has been taken');
+        }
+
+
     }
 
     public function travel(Request $request){
@@ -167,6 +175,36 @@ class BusController extends Controller
         $bus1 = Bus::find($bus->id);
         $bus1->revokeSeat($request['seat']);
         return redirect()->back()->with('revoke_message', 'Seat revoked');
+    }
+
+    public function phoneverified(Request $request){
+        $validated = $request->validate([
+            'phone_number'=>'numeric|required'
+        ]);
+
+        auth()->user()->verifyphone($validated['phone_number']);
+
+        $phone_number = $validated['phone_number'];
+        return view('verification_code', [
+            'phone_number'=>$phone_number,
+        ])->with('number_message', 'The Number will receive a Verification code');
+    }
+
+    public function verification_code(Request $request){
+        $code = auth()->user()->verification_code;
+        if($code === $request['verification_code']){
+            auth()->user()->phone_register($request['phone_number']);
+            auth()->user()->verify();
+            return redirect()->route('buses')->with('message_bus', 'You have registered your number Successfully');
+        } else{
+            return redirect()->route('phoneverified')->with('phone_message','Oops, something is wrong');
+        }
+
+    }
+
+    public function resetbus(Bus $bus){
+        $bus->resetbus();
+        return redirect()->back()->with('reset_message', 'You have Successfully reseted this bus!');
     }
 }
 

@@ -23,4 +23,12 @@ class RegularController extends Controller
         return view('travel');
     }
 
+    public function phoneverified(){
+        return view('phoneverified');
+    }
+
+    public function verification_code(){
+        return view('verification_code');
+    }
+
 }

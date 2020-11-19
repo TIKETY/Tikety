@@ -26,7 +26,7 @@
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group bottom35">
                                     <label for="loginPass" class="d-none"></label>
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password:" required autocomplete="current-password">
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
