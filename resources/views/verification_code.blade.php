@@ -20,7 +20,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
-                                        <label for="loginverification_code" class="mb-3 pl-0">Please enter the Verification Code which was sent to {{ $phone_number }}</label>
+                                        <label for="loginverification_code" class="mb-3 pl-0">Please enter the Verification Code which was sent to {{ auth()->user()->phone_number }}</label>
                                         <input id="verification_code" type="verification_code" class="form-control @error('verification_code') is-invalid @enderror" name="verification_code" required autocomplete="verification_code" autofocus>
 
                                 @error('verification_code')
@@ -35,7 +35,7 @@
                                     <a href="{{ redirect()->back() }}" class="mr-4">Cancel</a>
                                 </div>
                             </div>
-                            <input type="hidden" name="phone_number" value="{{ $phone_number }}">
+                            <input type="hidden" name="phone_number" value="{{ auth()->user()->phone_number }}">
                         </form>
                     </div>
                 </div>

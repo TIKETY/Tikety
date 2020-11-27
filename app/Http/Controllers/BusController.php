@@ -195,7 +195,7 @@ class BusController extends Controller
         if($code === $request['verification_code']){
             auth()->user()->phone_register($request['phone_number']);
             auth()->user()->verify();
-            return redirect()->route('buses')->with('message_bus', 'You have registered your number Successfully');
+            return redirect()->route('role')->with('message_role', 'You have registered your number Successfully');
         } else{
             return redirect()->route('phoneverified')->with('phone_message','Oops, something is wrong');
         }

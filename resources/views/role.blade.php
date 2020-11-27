@@ -4,6 +4,11 @@
 
 <section id="aboutus" class="padding_top padding_bottom">
     <div class="container align-items-center">
+        @if (session('message_role'))
+                    <div class="alert alert-success" role="alert">
+                    {{ session('message_role') }}
+                    </div>
+                @endif
         <div class="row align-items-center">
             <div class="col-lg-4  col-md-6 padding_top_half text-center text-md-left">
                 <h2 class="darkcolor font-normal bottom30">Do You Own a<span class="defaultcolor">Fleet?</span> </h2>

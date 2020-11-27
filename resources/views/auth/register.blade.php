@@ -25,10 +25,10 @@
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
-                                        <label for="registerEmail" class="d-none"></label>
-                                        <input id="email" placeholder="Email:" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                        <label for="registerphone_number" class="d-none"></label>
+                                        <input id="phone_number" placeholder="Phone Number:" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
 
-                                        @error('email')
+                                        @error('phone_number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
