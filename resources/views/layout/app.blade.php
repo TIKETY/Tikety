@@ -35,7 +35,7 @@
                     <img src="{{ asset('image/logo.png')}}" alt="logo">
                 </a>
                 <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav ml-auto mr-auto">
+                    <ul class="navbar-nav ml-auto mr-auto align-items-center">
                         <li class="nav-item dropdown static">
                             <a class="nav-link" href="{{ route('welcome') }}"> Home </a>
                         </li>
@@ -54,6 +54,13 @@
                             @csrf
                             <button type="submit" class="btn nav-link text-black-50">Logout</button>
                             </form>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('profile', auth()->user()) }}"><img @if (is_null(auth()->user()->image_url))
+                                src="{{ asset('image/tikety_user.png') }}"
+                            @else
+                                src="{{ asset('storage/'.auth()->user()->image_url) }}"
+                            @endif  class="rounded-circle" width="50px" height="50px" alt=""></a>
                         </li>
                         @endauth
                         @guest

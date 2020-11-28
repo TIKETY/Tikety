@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\FleetController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ Route::get('/faq', [RegularController::class, 'faq'])->name('faq')->middleware([
 Route::get('/travel', [RegularController::class, 'travel'])->name('travel');
 Route::post('/travel/form', [BusController::class, 'travel'])->name('TravelForm')->middleware('auth');
 Route::get('/mybuses', [BusController::class, 'MyBus'])->name('mybuses');
-Route::get('/createbus', [BusController::class, 'CreateBus'])->name('CreateBus');
+Route::get('/createbus', [BusController::class, 'CreateBus'])->name('CreateBus')->middleware('auth');
 Route::get('/showbus/{bus}', [BusController::class, 'show'])->name('ShowBus')->middleware('auth');
 Route::get('/buses', [BusController::class, 'showbuses'])->name('buses');
 Route::post('/createbus/{user}', [BusController::class, 'CreateBusForm'])->name('CreateBusForm');
@@ -56,3 +57,7 @@ Route::post('/phoneverified', [BusController::class, 'phoneverified'])->name('ph
 Route::get('/verification_code', [RegularController::class, 'verification_code'])->name('verification_code');
 Route::put('/verification_code_post', [BusController::class, 'verification_code'])->name('verification_code_post');
 Route::post('/resetbus/{bus}', [BusController::class, 'resetbus'])->name('resetbus');
+
+Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile');
+Route::get('/profile/edit/{user}', [ProfileController::class, 'editprofileview'])->name('editprofileview');
+Route::put('/profile/edit/{user}', [ProfileController::class, 'editprofile'])->name('editprofile')->middleware('can:edit_profile');

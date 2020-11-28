@@ -7,7 +7,11 @@
     <div class="container">
         <div class="row whitebox top15">
             <div class="col-lg-4 col-md-5">
-                <div class="image widget bottom20 shadow"><img alt="SEO" src="https://i.pravatar.cc/300?u={{ $bus->id }}"></div>
+                <div class="image widget bottom20 shadow"><img alt="SEO" @if (is_null($bus->image_url))
+                    src="{{ asset('image/tikety_bus_image.png') }}"
+                    @else
+                    src="{{ asset('storage/'.$bus->image_url) }}"
+                @endif ></div>
                 <div class="widget shadow heading_space text-center text-md-left">
                     <h4 class="text-capitalize darkcolor bottom35">Need Help?</h4>
                     <div class="contact-table colorone d-table bottom15">

@@ -7,17 +7,23 @@
         <div class="row whitebox top15">
             <div class="col-lg-4 col-md-5 ">
                 <div class="image widget bottom20 shadow"><img alt="SEO" @if (is_null($user->image_url))
-                    src="{{ asset('image/tikety_user.png') }}" class="rounded"  @else src="{{ asset('storage/'.$user->image_url) }}" class="rounded-circle"
+                    src="{{ asset('image/tikety_user.png') }}" class="rounded"
+                    @else src="{{ asset('storage/'.$user->image_url) }}" class="rounded-circle"
                 @endif  >
                 <div class="row">
                 @if ($user->is(auth()->user()))
-                <a href="{{ route('editprofileshow', auth()->user()) }}" class="btn mt-3 mr-3 btn-primary button">Edit</a>
+                <a href="{{ route('editprofileview', auth()->user()) }}" class="btn mt-3 mr-3 btn-primary button">Edit</a>
                 @else
                  @auth
                  @if ($user->user_has_bus())
                     <a href="" class="btn mt-3 btn-primary button">Message</a>
                  @endif
                  @endauth
+                @endif
+                @if (session('update_message'))
+                    <div class="alert alert-success" role="alert">
+                    {{ session('update_message') }}
+                    </div>
                 @endif
                 </div>
                 </div>

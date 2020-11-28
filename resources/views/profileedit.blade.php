@@ -18,12 +18,14 @@
                                             <p style="color: red;">{{ $message }}</p>
                                         @enderror
                             </div>
-                            <div class="form-group mr-1">
+                            <div class="form-group ml-2">
+                                <div class="row">
                                 <input class="form-control ml-3" style="width: 280px;" type="file" placeholder="Profile Image:" required id="image_url" name="image_url">
-                                <label for="first_name1" class="d-none"></label>
+                                <img src="{{ asset('storage/'.$user->image_url) }}" alt="user profile image" width="100px" height="100px">
+                                </div>
                                 @error('image_url')
                                             <p style="color: red;">{{ $message }}</p>
-                                        @enderror
+                                @enderror
                             </div>
                             <div class="form-group mr-1">
                                 <input class="form-control ml-3" style="width: 280px;" type="password" placeholder="Password:" required id="password" name="password">

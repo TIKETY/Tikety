@@ -21,7 +21,7 @@ class ProfileController extends Controller
 
     }
 
-    public function editprofileshow(User  $user){
+    public function editprofileview(User  $user){
         return view('profileedit', compact('user'));
     }
 
@@ -38,7 +38,7 @@ class ProfileController extends Controller
 
         $user->update($validated);
 
-        return redirect()->route('ShowProfile', $user)->with('update_message', 'Your Profile was updated successfully');
+        return redirect()->route('profile', $user)->with('update_message', 'Your Profile was updated successfully');
     }
 
 }

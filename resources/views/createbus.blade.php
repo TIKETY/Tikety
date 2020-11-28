@@ -13,13 +13,22 @@
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
-                            <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('CreateBusForm', auth()->user()) }}">
+                            <form class="getin_form wow fadeInUp" enctype="multipart/form-data" data-wow-delay="400ms" method="POST" action="{{ route('CreateBusForm', auth()->user()) }}">
                                 @csrf
                                 <div class="row px-2">
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="name1" class="d-none"></label>
                                             <input class="form-control" id="name" type="text" placeholder="Name Of the Bus:" required name="name">
+                                        @error('name')
+                                            <p style="color: red;">{{ $message }}</p>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="name1" class="d-none"></label>
+                                            <input class="form-control" id="image_url" type="file" placeholder="Name Of the Bus:" required name="image_url">
                                         @error('name')
                                             <p style="color: red;">{{ $message }}</p>
                                         @enderror

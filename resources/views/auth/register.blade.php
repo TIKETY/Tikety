@@ -26,7 +26,7 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
                                         <label for="registerphone_number" class="d-none"></label>
-                                        <input id="phone_number" placeholder="Phone Number:" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
+                                        <input id="phone_number" placeholder="Phone Number:" type="text" value="+255" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number">
 
                                         @error('phone_number')
                                             <span class="invalid-feedback" role="alert">

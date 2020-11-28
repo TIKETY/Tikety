@@ -34,7 +34,11 @@
                 <div class="cbp-item digital brand design shadow">
                     <div class="services-main">
                         <div class="image bottom10">
-                            <div class="image"><img alt="SEO" src="https://i.pravatar.cc/300?u={{ $bus->id }}"></div>
+                            <div class="image"><img alt="SEO" @if (is_null($bus->image_url))
+                                src="{{ asset('image/tikety_bus_image.png') }}"
+                                @else
+                                src="{{ asset('storage/'.$bus->image_url) }}"
+                            @endif ></div>
                             <div class="overlay">
                                 <a href="{{ route('ShowBus', $bus->id) }}" class="overlay_center border_radius"><i class="fa fa-eye"></i></a>
                             </div>

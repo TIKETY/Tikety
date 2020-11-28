@@ -22,6 +22,7 @@ class CreateSeatsTable extends Migration
             $table->integer('amount');
             $table->string('phonenumber');
             $table->string('address');
+            $table->string('image_url');
             $table->string('workinghours');
             $table->string('from');
             $table->string('to');

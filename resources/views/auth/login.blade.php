@@ -14,9 +14,9 @@
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group bottom35">
                                     <label for="loginEmail" class="d-none"></label>
-                                    <input id="email" type="text" placeholder="Phone Number:" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input id="phone_number" type="text" placeholder="Phone Number:" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" required  autofocus>
 
-                                    @error('email')
+                                    @error('phone_number')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

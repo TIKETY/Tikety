@@ -28,6 +28,7 @@ class BusController extends Controller
 
         $validated = $request->validate([
             'name'=>'required|unique:buses',
+            'image_url'=>'file',
             'body'=>'required',
             'amount'=>'required',
             'address'=>'required',
@@ -42,8 +43,11 @@ class BusController extends Controller
             'route'=>'required'
         ]);
 
+        $validated['image_url'] = request('image_url')->store('buses');
+
         $bus = Bus::create([
             'name'=>$validated['name'],
+            'image_url'=>$validated['image_url'],
             'body'=>$validated['body'],
             'rows'=>$validated['rows'],
             'amount'=>$validated['amount'],
