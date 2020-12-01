@@ -55,9 +55,10 @@ Route::put('/revokeseat/{bus}',[BusController::class, 'revokeSeat'])->name('revo
 Route::get('/phoneverified', [RegularController::class, 'phoneverified'])->name('phoneverified');
 Route::post('/phoneverified', [BusController::class, 'phoneverified'])->name('phoneverified');
 Route::get('/verification_code', [RegularController::class, 'verification_code'])->name('verification_code');
-Route::put('/verification_code_post', [BusController::class, 'verification_code'])->name('verification_code_post');
+Route::put('/verification_code_post', [RegularController::class, 'verification_code_post'])->name('verification_code_post');
+Route::get('/verification_code_resend', [RegularController::class, 'verification_code_resend'])->name('verification_resend');
 Route::post('/resetbus/{bus}', [BusController::class, 'resetbus'])->name('resetbus');
 
 Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile');
 Route::get('/profile/edit/{user}', [ProfileController::class, 'editprofileview'])->name('editprofileview');
-Route::put('/profile/edit/{user}', [ProfileController::class, 'editprofile'])->name('editprofile')->middleware('can:edit_profile');
+Route::put('/profile/edit/{user}', [ProfileController::class, 'editprofile'])->name('editprofile');

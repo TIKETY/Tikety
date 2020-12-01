@@ -7,16 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Seat;
 use App\Models\User;
 use App\Models\Fleet;
+use Laravel\Scout\Searchable;
 
 class Bus extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $guarded = [];
 
     protected $dates = [
         'date'
     ];
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+
+        // Customize array...
+
+        return $array;
+    }
 
     public function user(){
         return $this->belongsTo(User::class);

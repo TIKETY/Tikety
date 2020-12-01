@@ -280,6 +280,7 @@
     <script src="{{ asset('javascript/revolution/extensions/revolution.extension.video.min.js')}}"></script>
     <!--custom functions and script-->
     <script src="{{ asset('javascript/functions.js')}}"></script>
+    @yield('script')
 </body>
 
 </html>

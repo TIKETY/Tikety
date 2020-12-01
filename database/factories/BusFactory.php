@@ -24,12 +24,14 @@ class BusFactory extends Factory
     {
         return [
             'user_id'=>User::factory(),
-            'name'=> $this->faker->unique()->name,
+            'name'=> $this->faker->unique()->company,
             'platenumber'=> $this->faker->unique()->swiftBicNumber,
             'route'=> $this->faker->name,
             'rows'=> $this->faker->numberBetween($min = 4, $max = 14),
             'body'=> $this->faker->paragraph,
             'from'=> $this->faker->city,
+            'image_url'=>'profile_images/3Rh3KnwOmPG9zdVM0DqTSomstAcMWNeNm1AgN5xg.jpeg',
+            'amount'=>25000,
             'phonenumber'=> $this->faker->phoneNumber,
             'address'=> $this->faker->address,
             'workinghours'=> $this->faker->time,

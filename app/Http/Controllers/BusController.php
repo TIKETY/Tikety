@@ -194,18 +194,6 @@ class BusController extends Controller
         ])->with('number_message', 'The Number will receive a Verification code');
     }
 
-    public function verification_code(Request $request){
-        $code = auth()->user()->verification_code;
-        if($code === $request['verification_code']){
-            auth()->user()->phone_register($request['phone_number']);
-            auth()->user()->verify();
-            return redirect()->route('role')->with('message_role', 'You have registered your number Successfully');
-        } else{
-            return redirect()->route('phoneverified')->with('phone_message','Oops, something is wrong');
-        }
-
-    }
-
     public function resetbus(Bus $bus){
         $bus->resetbus();
         return redirect()->back()->with('reset_message', 'You have Successfully reseted this bus!');

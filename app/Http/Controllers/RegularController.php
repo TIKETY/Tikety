@@ -31,4 +31,19 @@ class RegularController extends Controller
         return view('verification_code');
     }
 
+    public function verification_code_post(Request $request){
+        $code = auth()->user()->verification_code;
+        if($code === $request['verification_code']){
+            auth()->user()->phone_register($request['phone_number']);
+            auth()->user()->verify();
+            return redirect()->route('role')->with('message_role', 'You have registered your number Successfully');
+        } else{
+            return redirect()->route('phoneverified')->with('phone_message','Oops, something is wrong');
+        }
+    }
+
+    public function verification_resend(){
+        auth()->user()->verifyphone(auth()->user()->phone_number);
+        return redirect()->back()->with('number_message', 'The verification Code was resent');
+    }
 }

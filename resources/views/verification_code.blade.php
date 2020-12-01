@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-sm-12 forget-buttons">
                                     <button type="submit" class="button btn-primary mr-4">Verify</button>
-                                    <a href="{{ redirect()->back() }}" class="mr-4">Cancel</a>
+                                    <a href="{{ route('verification_resend' }}" class="mr-4">Resend</a>
                                 </div>
                             </div>
                             <input type="hidden" name="phone_number" value="{{ auth()->user()->phone_number }}">
