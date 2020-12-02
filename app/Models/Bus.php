@@ -81,6 +81,10 @@ class Bus extends Model
         return $this->seats()->where('seat', $seat)->update(['user_id'=>NULL]);
     }
 
+    public function seatowner($seat){
+        return $this->seats()->where('seat', $seat)->pluck('user_id');
+    }
+
     public function resetbus(){
         return $this->seats()->update(['user_id'=>NULL]);
     }

@@ -17,7 +17,8 @@ class PhoneIsVerified
     public function handle(Request $request, Closure $next)
     {
         if (! $request->user()->PhoneIsVerified()) {
-            return redirect()->route('phoneverification.show');
+            $request->user()->verifyphone($request->user()->phone_number);
+            return redirect()->route('verification_code');
         }
 
         return $next($request);

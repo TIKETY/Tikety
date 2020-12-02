@@ -14,7 +14,7 @@
                             {{ session('number_message') }}
                         </div>
                         @endif
-                        <form class="getin_form border-form" id="ResetPassword" method="POST" action="{{ route('verification_code_post') }}">
+                        <form class="getin_form border-form" id="ResetPassword" method="POST" action="{{ route('verification_code_put') }}">
                             @csrf
                             @method('PUT')
                             <div class="row">

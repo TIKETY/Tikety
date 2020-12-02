@@ -114,7 +114,7 @@
             <div class="col-lg-8 col-md-7">
                 <div class="widget shadow heading_space text-center text-md-left">
                     @if (session('reset_message'))
-                            <div class="alert alert-success mt-3" role="alert">
+                            <div class="alert alert-info mt-3" role="alert">
                             {{ session('reset_message') }}
                             </div>
                     @endif

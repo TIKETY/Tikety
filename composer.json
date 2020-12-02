@@ -16,6 +16,7 @@
         "laravel/framework": "^8.12",
         "laravel/nexmo-notification-channel": "^2.4",
         "laravel/scout": "^8.4",
+        "laravel/socialite": "^5.1",
         "laravel/telescope": "^4.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",

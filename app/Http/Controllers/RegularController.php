@@ -31,7 +31,7 @@ class RegularController extends Controller
         return view('verification_code');
     }
 
-    public function verification_code_post(Request $request){
+    public function verification_code_put(Request $request){
         $code = auth()->user()->verification_code;
         if($code === $request['verification_code']){
             auth()->user()->phone_register($request['phone_number']);
@@ -42,7 +42,7 @@ class RegularController extends Controller
         }
     }
 
-    public function verification_resend(){
+    public function verification_code_resend(){
         auth()->user()->verifyphone(auth()->user()->phone_number);
         return redirect()->back()->with('number_message', 'The verification Code was resent');
     }

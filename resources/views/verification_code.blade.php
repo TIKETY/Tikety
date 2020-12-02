@@ -14,7 +14,7 @@
                             {{ session('number_message') }}
                         </div>
                         @endif
-                        <form class="getin_form border-form" id="ResetPassword" method="POST" action="{{ route('verification_code_post') }}">
+                        <form class="getin_form border-form" id="ResetPassword" method="POST" action="{{ route('verification_code_put') }}">
                             @csrf
                             @method('PUT')
                             <div class="row">
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-sm-12 forget-buttons">
                                     <button type="submit" class="button btn-primary mr-4">Verify</button>
-                                    <a href="{{ route('verification_resend' }}" class="mr-4">Resend</a>
+                                    <a href="{{ route('verification_resend') }}" class="mr-4">Resend</a>
                                 </div>
                             </div>
                             <input type="hidden" name="phone_number" value="{{ auth()->user()->phone_number }}">

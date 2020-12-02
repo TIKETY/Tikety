@@ -10,6 +10,7 @@ use Illuminate\Support\Facade\Notification;
 use App\Notifications\BusNotification;
 use App\Models\User;
 use App\Models\Bus;
+use Carbon\Carbon;
 
 class BusController extends Controller
 {
@@ -125,11 +126,7 @@ class BusController extends Controller
         }
         $bus->update($validated);
         $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')));
-        return view('busdetail', [
-            'bus'=>$bus,
-            'seats'=>$seats,
-            'notifications'=>auth()->user()->unreadNotifications
-        ])->with('update_message', 'The Bus has been updated successfully');
+        return redirect()->route('ShowBus', $bus)->with('update_message', 'The Bus has been updated successfully');
     }
 
     public function removeBus(Bus $bus){
@@ -149,21 +146,20 @@ class BusController extends Controller
         $seats = sizeof($array);
         $user = auth()->user()->name;
         $fare = ($seats*$bus->amount); //for later use of integrating with tigopesa and mpesa push
-        if(auth()->user()->PhoneIsVerified()){
-            return redirect()->route('phoneverified');
+        if(!auth()->user()->PhoneIsVerified()){
+            auth()->user()->verifyphone(auth()->user()->phone_number);
+            return redirect()->route('verification_code')->with('number_message', 'Verification code was sent to your number');
         } else{
             $bus->seats_to_user($array, auth()->user());
             $account_sid = getenv("TWILIO_SID");
             $auth_token = getenv("TWILIO_AUTH_TOKEN");
             $twilio_number = getenv("TWILIO_NUMBER");
             $client = new Client($account_sid, $auth_token);
-            $client->messages->create("+255654660654",
+            $client->messages->create($request->user()->phone_number,
             ['from' => $twilio_number, 'body' => 'You have taken the seat '.$request->seats_id.' with the price of '.$fare] );
             $bus->user->notify(new BusNotification($request->seats_id, $user));
-            return redirect()->back()->with('seat_message', 'Seats has been taken');
+            return redirect()->back()->with('seat_message', 'Seat(s) has been reserved');
         }
-
-
     }
 
     public function travel(Request $request){
@@ -177,21 +173,16 @@ class BusController extends Controller
 
     public function revokeSeat(Request $request, Bus $bus){
         $bus1 = Bus::find($bus->id);
+        $seatowner = $bus1->seatowner($request['seat']);
+        $user_phone = User::find($seatowner)->pluck('phone_number')->flatten();
+        $account_sid = getenv("TWILIO_SID");
+        $auth_token = getenv("TWILIO_AUTH_TOKEN");
+        $twilio_number = getenv("TWILIO_NUMBER");
+        $client = new Client($account_sid, $auth_token);
+        $client->messages->create($user_phone,
+                ['from' => $twilio_number, 'body' => 'The seat: '.$request['seat'].' was revoked and your Money will be refunded, immediately!'] );
         $bus1->revokeSeat($request['seat']);
         return redirect()->back()->with('revoke_message', 'Seat revoked');
-    }
-
-    public function phoneverified(Request $request){
-        $validated = $request->validate([
-            'phone_number'=>'numeric|required'
-        ]);
-
-        auth()->user()->verifyphone($validated['phone_number']);
-
-        $phone_number = $validated['phone_number'];
-        return view('verification_code', [
-            'phone_number'=>$phone_number,
-        ])->with('number_message', 'The Number will receive a Verification code');
     }
 
     public function resetbus(Bus $bus){

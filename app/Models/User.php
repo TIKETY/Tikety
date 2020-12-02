@@ -119,7 +119,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function PhoneIsVerified(){
-        return is_null($this->phone_verified_at);
+        return !is_null($this->phone_verified_at);
     }
 
     public function phone_register($phone){

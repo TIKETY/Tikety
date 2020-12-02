@@ -47,6 +47,7 @@
                             </div>
                             <div class="col-sm-12">
                                 <button type="submit" class="button gradient-btn">Login</button>
+                                <a href="{{ route('loginfacebook') }}" class="button gradient-btn">Login with Facebook</a>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}

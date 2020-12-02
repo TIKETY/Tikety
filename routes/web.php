@@ -6,8 +6,8 @@ use App\Http\Controllers\RegularController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SeatController;
 use App\Http\Controllers\FleetController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -50,15 +50,16 @@ Route::delete('/removebus/{bus}',[BusController::class, 'removebus'])->name('rem
 
 Route::get('/fleet/{user}', [FleetController::class, 'ShowFleet'])->name('ShowFleet')->middleware('can:view, fleet');
 Route::post('/buses/{bus}',[FleetController::class, 'AddBusFleet'])->name('AddBusFleet');
-Route::post('/payseat/{bus}',[BusController::class, 'payseat'])->name('payseat')->middleware('can:use,bus');
+Route::post('/payseat/{bus}',[BusController::class, 'payseat'])->name('payseat');
 Route::put('/revokeseat/{bus}',[BusController::class, 'revokeSeat'])->name('revokeSeat')->middleware('can:isowner,bus');
-Route::get('/phoneverified', [RegularController::class, 'phoneverified'])->name('phoneverified');
-Route::post('/phoneverified', [BusController::class, 'phoneverified'])->name('phoneverified');
 Route::get('/verification_code', [RegularController::class, 'verification_code'])->name('verification_code');
-Route::put('/verification_code_post', [RegularController::class, 'verification_code_post'])->name('verification_code_post');
-Route::get('/verification_code_resend', [RegularController::class, 'verification_code_resend'])->name('verification_resend');
+Route::put('/verification_code_put', [RegularController::class, 'verification_code_put'])->name('verification_code_put')->middleware('throttle:10,1440');
+Route::get('/verification_code_resend', [RegularController::class, 'verification_code_resend'])->name('verification_resend')->middleware('throttle:3,1440');
 Route::post('/resetbus/{bus}', [BusController::class, 'resetbus'])->name('resetbus');
 
 Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile');
 Route::get('/profile/edit/{user}', [ProfileController::class, 'editprofileview'])->name('editprofileview');
 Route::put('/profile/edit/{user}', [ProfileController::class, 'editprofile'])->name('editprofile');
+
+Route::get('login/facebook', [LoginController::class, 'redirectToProvider'])->name('loginfacebook');
+Route::get('login/facebook/callback', [LoginController::class, 'handleProviderCallback'])->name('loginfacebook_callback');
