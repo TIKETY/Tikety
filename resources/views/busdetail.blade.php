@@ -192,16 +192,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card shadow">
-                                <div class="card-header">
-                                    <a class="collapsed card-link darkcolor" data-toggle="collapse" href="#collapseFour">Top Achievements </a>
-                                </div>
-                                <div id="collapseFour" class="collapse" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 shadow mt-5 mt-md-0">

@@ -2,6 +2,8 @@
 
 return [
 
+    'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -161,8 +163,10 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Nexmo\Laravel\NexmoServiceProvider::class,
-
+        /*
+        *For sweet alerts
+        */
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         /*
          * Package Service Providers...
          */

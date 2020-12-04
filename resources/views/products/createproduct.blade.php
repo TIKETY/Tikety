@@ -16,7 +16,7 @@
                             <form class="getin_form wow fadeInUp" enctype="multipart/form-data" data-wow-delay="400ms" method="POST" action="{{ route('CreateBusForm', auth()->user()) }}">
                                 @csrf
                                 <div class="row px-2">
-                                    <div class="col-md-6 col-sm-6">
+                                    <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="name1" class="d-none"></label>
                                             <input class="form-control" id="name" type="text" placeholder="Name Of the Bus:" required name="name">
@@ -25,7 +25,7 @@
                                         @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6">
+                                    <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="name1" class="d-none"></label>
                                             <input class="form-control" id="image_url" type="file" placeholder="Name Of the Bus:" required name="image_url">
@@ -34,7 +34,7 @@
                                         @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6">
+                                    <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="name1" class="d-none"></label>
                                             <input class="form-control" id="name" type="text" placeholder="Plate Number:" required name="platenumber">
@@ -44,7 +44,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 col-sm-6">
+                                    <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <input class="form-control" type="number" id="rows" placeholder="Rows:" name="rows">
                                         @error('rows')
@@ -52,7 +52,7 @@
                                         @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <input class="form-control" type="number" id="amount" placeholder="Amount:" name="amount">
                                         @error('amount')
@@ -60,7 +60,7 @@
                                         @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <input class="form-control" type="date" id="date" placeholder="Date:" name="date">
                                         @error('date')
@@ -68,7 +68,7 @@
                                         @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
+                                    <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <input class="form-control" type="time" id="rows" placeholder="Time:" name="time">
                                         @error('time')

@@ -11,6 +11,7 @@ use App\Notifications\BusNotification;
 use App\Models\User;
 use App\Models\Bus;
 use Carbon\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BusController extends Controller
 {
@@ -70,7 +71,7 @@ class BusController extends Controller
          $bus->addSeat($i);
         }
         $bus->addSeat(($validated['rows']*4) + 1);
-
+        Alert::success('Bus Create', 'The bus has been created successfully');
         return redirect()->route('buses')->with('create_message', 'Bus created Successfully');
     }
 
@@ -126,6 +127,7 @@ class BusController extends Controller
         }
         $bus->update($validated);
         $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')));
+        Alert::success('Bus Update', 'The bus has been updated');
         return redirect()->route('ShowBus', $bus)->with('update_message', 'The Bus has been updated successfully');
     }
 
@@ -138,6 +140,7 @@ class BusController extends Controller
         $string = $request->seats_id;
         $array = explode(',', $string);
         $bus->seats_to_user($array, $bus->user);
+        Alert::success('Seat Taken', 'You have taken a seat successfully');
         return redirect()->back()->with('seat_message', 'Seat has been taken');
     }
 
@@ -158,6 +161,7 @@ class BusController extends Controller
             $client->messages->create($request->user()->phone_number,
             ['from' => $twilio_number, 'body' => 'You have taken the seat '.$request->seats_id.' with the price of '.$fare] );
             $bus->user->notify(new BusNotification($request->seats_id, $user));
+            Alert::toast('Seat reserved', 'success');
             return redirect()->back()->with('seat_message', 'Seat(s) has been reserved');
         }
     }
@@ -182,11 +186,13 @@ class BusController extends Controller
         $client->messages->create($user_phone,
                 ['from' => $twilio_number, 'body' => 'The seat: '.$request['seat'].' was revoked and your Money will be refunded, immediately!'] );
         $bus1->revokeSeat($request['seat']);
+        Alert::info('Revoke Seat', 'You have successfully revoked seat '.$request['seat']);
         return redirect()->back()->with('revoke_message', 'Seat revoked');
     }
 
     public function resetbus(Bus $bus){
         $bus->resetbus();
+        Alert::info('Bus Reset', 'Bus Reseted successfully');
         return redirect()->back()->with('reset_message', 'You have Successfully reseted this bus!');
     }
 }

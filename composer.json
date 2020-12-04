@@ -14,7 +14,6 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
-        "laravel/nexmo-notification-channel": "^2.4",
         "laravel/scout": "^8.4",
         "laravel/socialite": "^5.1",
         "laravel/telescope": "^4.3",
@@ -22,7 +21,7 @@
         "laravel/ui": "^3.0",
         "livewire/livewire": "^2.3",
         "meilisearch/meilisearch-laravel-scout": "^0.12.0",
-        "nexmo/laravel": "^2.3",
+        "realrashid/sweet-alert": "^3.2",
         "twilio/sdk": "^6.12"
     },
     "require-dev": {

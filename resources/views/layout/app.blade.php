@@ -126,6 +126,7 @@
     </header>
     <!-- header -->
     @yield('content')
+    @include('sweetalert::alert')
     <!-- Contact US -->
     <section id="stayconnect" class="whitebox position-relative">
         <div class="container">

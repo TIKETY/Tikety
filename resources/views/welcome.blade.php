@@ -448,9 +448,7 @@
                     <div class="footer_panel padding_bottom_half bottom20">
                         <h3 class="whitecolor bottom25">Latest News</h3>
                         <ul class="latest_news whitecolor">
-                            <li> <a href="#.">Aenean tristique justo et... </a> <span class="date defaultcolor">15 March 2019</span> </li>
-                            <li> <a href="#.">Phasellus dapibus dictum augue... </a> <span class="date defaultcolor">15 March 2019</span> </li>
-                            <li> <a href="#.">Mauris blandit vitae. Praesent non... </a> <span class="date defaultcolor">15 March 2019</span> </li>
+                            <li> <a href="#.">Do your transactions easily... </a> <span class="date defaultcolor">15 March 2019</span> </li>
                         </ul>
                     </div>
                 </div>
@@ -460,8 +458,6 @@
                         <ul class="links">
                             <li><a href="{{ route('welcome') }}">Home</a></li>
                             <li><a href="{{ route('about') }}">About Us</a></li>
-                            <li><a href="">Latest News</a></li>
-                            <li><a href="">Business Planning</a></li>
                             <li><a href="{{ route('contact') }}">Contact Us</a></li>
                             <li><a href="{{ route('faq') }}">Faq's</a></li>
                         </ul>
