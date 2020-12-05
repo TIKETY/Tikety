@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PragmaRX\Countries\Package\Services\Countries;
 
 class RegularController extends Controller
 {
@@ -20,7 +21,9 @@ class RegularController extends Controller
     }
 
     public function travel(){
-        return view('travel');
+        $countries = new Countries;
+        $states = $countries->whereNameCommon('Tanzania')->first()->hydrateStates()->states->pluck('name', 'postal')->toArray();
+        return view('travel', compact('states'));
     }
 
     public function phoneverified(){

@@ -30,7 +30,7 @@
                                         <div class="form-group">
                                             <label for="name1" class="d-none"></label>
                                             <input class="form-control" id="name" type="text" placeholder="Plate Number:" value="{{ $bus->platenumber }}" required name="platenumber">
-                                        @error('name')
+                                        @error('platenumber')
                                             <p style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
@@ -70,7 +70,14 @@
                                     </div>
                                     <div class="col-md-4 col-sm-4">
                                         <div class="form-group">
-                                            <input class="form-control" type="text" id="from" placeholder="From:" value="{{ $bus->from }}" name="from">
+                                            <select name= "from" class="form-control">
+                                                <option value="">Select Region</option>
+                                                @foreach ($states as $state)
+
+                                                 <option>{{$state}}</option>
+
+                                                @endforeach
+                                            </select>
                                         @error('from')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
@@ -86,7 +93,14 @@
                                     </div>
                                     <div class="col-md-4 col-sm-4">
                                         <div class="form-group">
-                                            <input class="form-control" type="text" id="to" placeholder="To:" value="{{ $bus->to }}" name="to">
+                                            <select name= "from" class="form-control">
+                                                <option value="">Select Region</option>
+                                                @foreach ($states as $state)
+
+                                                 <option>{{$state}}</option>
+
+                                                @endforeach
+                                            </select>
                                         @error('to')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror

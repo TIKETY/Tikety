@@ -11,6 +11,7 @@ use App\Notifications\BusNotification;
 use App\Models\User;
 use App\Models\Bus;
 use Carbon\Carbon;
+use PragmaRX\Countries\Package\Services\Countries;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class BusController extends Controller
@@ -22,7 +23,9 @@ class BusController extends Controller
     }
 
     public function CreateBus(){
-        return view('createbus');
+        $countries = new Countries;
+        $states = $countries->whereNameCommon('Tanzania')->first()->hydrateStates()->states->pluck('name', 'postal')->toArray();
+        return view('createbus', compact('states'));
     }
 
     public function CreateBusForm(Request $request, User $user){
@@ -91,7 +94,12 @@ class BusController extends Controller
     }
 
     public function updatebus(Bus $bus){
-        return view('updatebus', compact('bus'));
+        $countries = new Countries;
+        $states = $countries->whereNameCommon('Tanzania')->first()->hydrateStates()->states->pluck('name', 'postal')->toArray();
+        return view('updatebus', [
+            'bus'=> $bus,
+            'states'=>$states
+        ]);
     }
 
     public function update(Request $request, Bus $bus){

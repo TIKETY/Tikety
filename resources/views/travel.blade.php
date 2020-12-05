@@ -18,7 +18,14 @@
                             <div class="col-md-12 col-sm-12" id="result"></div>
                             <div class="col-md-3 col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="From:" required id="from" name="from">
+                                    <select name= "from" class="form-control">
+                                        <option value="">Select Region</option>
+                                        @foreach ($states as $state)
+
+                                         <option>{{$state}}</option>
+
+                                        @endforeach
+                                    </select>
                                     @error('from')
                                     <p class="danger" style="color: red;">{{ $message }}</p>
                                     @enderror
@@ -26,7 +33,14 @@
                             </div>
                             <div class="col-md-3 col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="To:" required id="to" name="to">
+                                    <select name= "to" class="form-control">
+                                        <option value="">Select Region</option>
+                                        @foreach ($states as $state)
+
+                                         <option>{{$state}}</option>
+
+                                        @endforeach
+                                    </select>
                                     @error('to')
                                         <p class="danger" style="color: red;">{{ $message }}</p>
                                     @enderror
