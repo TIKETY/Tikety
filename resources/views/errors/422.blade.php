@@ -8,10 +8,10 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="error wow bounceIn" data-wow-delay="300ms">
-                        <h1>403</h1>
-                        <h2>403</h2>
+                        <h1>422</h1>
+                        <h2>422</h2>
                     </div>
-                    <p class="heading_space">{{ __('We are sorry, You are not authorized to see this page.') }}</p>
+                    <p class="heading_space">{{ __('Uh, Oh... Something went wrong') }}</p>
                     <a href="{{ route('home') }}" class="button btn-primary wow fadeIn mb-3 mb-sm-0" data-wow-delay="400ms">back to home</a>
                 </div>
             </div>

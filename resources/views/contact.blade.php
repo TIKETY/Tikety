@@ -8,21 +8,21 @@
             <div class="widget py-5 ">
                 <div class="row">
                     <div class="col-md-12 text-center wow fadeIn mt-n3" data-wow-delay="300ms">
-                        <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Contact Us</span>
+                        <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">{{ __('Contact Us') }}</span>
                         </h2>
                         <div class="col-md-8 offset-md-2 bottom35">
-                            <p>Please, leave us a message</p>
+                            <p>{{ __('Please, leave us a message') }}</p>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 order-sm-2">
                         <div class="contact-meta px-2 text-center text-md-left">
                             <div class="heading-title">
-                                <h2 class="darkcolor font-normal mb-4"><span class="d-none d-md-inline-block">Our</span> Offices <span class="d-none d-md-inline-block">In Tanzania</span></h2>
+                                <h2 class="darkcolor font-normal mb-4"><span class="d-none d-md-inline-block">{{ __('Our Offices In Tanzania') }}</span></h2>
                             </div>
-                            <p class="bottom10">Address: 10290, Majengo, MOSHI</p>
+                            <p class="bottom10">{{ __('Address:') }} 10290, Majengo, MOSHI</p>
                             <p class="bottom10">+255 654 660 654</p>
                             <p class="bottom10"><a href="mailto:polpo@traxagency.co.au">tikety@tikety.net</a></p>
-                            <p class="bottom10">Mon-Fri: 9am-5pm</p>
+                            <p class="bottom10">{{ __('Mon-Fri') }}: 9am-5pm</p>
                             <ul class="social-icons mt-4 mb-4 mb-sm-0 wow fadeInUp" data-wow-delay="300ms">
                                 <li><a href="https://www.facebook.com/tiketyllc"><i class="fab fa-facebook-f"></i> </a> </li>
                                 <li><a href="https://twitter.com/Tikety_LLC"><i class="fab fa-twitter"></i> </a> </li>
@@ -40,7 +40,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="name1" class="d-none"></label>
-                                            <input class="form-control" id="name" type="text" placeholder="Name:" required name="name">
+                                            <input class="form-control" id="name" type="text" placeholder="{{ __('Name:') }}" required name="name">
                                             @error('name')
                                             <p class="danger">{{ $message }}</p>
                                             @enderror
@@ -49,7 +49,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="email1" class="d-none"></label>
-                                            <input class="form-control" type="email" id="email" placeholder="Email:" name="email">
+                                            <input class="form-control" type="email" id="email" placeholder="{{ __('Email:') }}" name="email">
                                             @error('email')
                                             <p class="danger">{{ $message }}</p>
                                             @enderror
@@ -58,14 +58,14 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="message1" class="d-none"></label>
-                                            <textarea class="form-control" id="body" placeholder="Message:" required name="body"></textarea>
+                                            <textarea class="form-control" id="body" placeholder="{{ __('Message:') }}" required name="body"></textarea>
                                             @error('body')
                                             <p class="danger">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
-                                        <button type="submit" id="submit_btn1" class="button btn-primary w-100">Submit</button>
+                                        <button type="submit" id="submit_btn1" class="button btn-primary w-100">{{ __('Submit') }}</button>
                                     </div>
                                 </div>
                             </form>

@@ -31,28 +31,28 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-lg padding-nav">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('welcome') }}">
+                <a class="navbar-brand" href="{{ route('welcome', app()->getLocale()) }}">
                     <img src="{{ asset('image/logo.png')}}" alt="logo">
                 </a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto mr-auto align-items-center">
                         <li class="nav-item dropdown static">
-                            <a class="nav-link" href="{{ route('welcome') }}"> Home </a>
+                            <a class="nav-link" href="{{ route('welcome', app()->getLocale()) }}"> {{ __('Home') }} </a>
+                        </li>
+                        {{-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('faq') }}">{{ __('FAQ') }}</a>
+                        </li> --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('about', app()->getLocale()) }}">{{ __('About') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('about') }}">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                            <a class="nav-link" href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact') }}</a>
                         </li>
                         @auth
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn nav-link text-black-50">Logout</button>
+                            <button type="submit" class="btn nav-link text-black-50">{{ __('Logout') }}</button>
                             </form>
                         </li>
                         <li class="nav-item">
@@ -65,10 +65,10 @@
                         @endauth
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</i> </a>
+                            <a class="nav-link" href="{{ route('login', app()->getLocale()) }}">{{ __('Login') }}</i> </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Signup</i> </a>
+                            <a class="nav-link" href="{{ route('register', app()->getLocale()) }}">{{ __('Signup') }}</i> </a>
                         </li>
                         @endguest
                     </ul>
@@ -93,21 +93,16 @@
                 <nav class="side-nav w-100">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('welcome') }}">Home</a>
-                        </li>
-                        @auth
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('role') }}">Change Your Role?</a>
-                        </li>
-                        @endauth
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
+                            <a class="nav-link" href="{{ route('welcome', app()->getLocale()) }}">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('about') }}">About</a>
+                            <a class="nav-link" href="{{ route('faq', app()->getLocale()) }}">{{ __('FAQ') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                            <a class="nav-link" href="{{ route('about', app()->getLocale()) }}">{{ __('About') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact') }}</a>
                         </li>
                     </ul>
                 </nav>
@@ -117,7 +112,7 @@
                         <li><a href="https://twitter.com/Tikety_LLC"><i class="fab fa-twitter"></i> </a> </li>
                         <li><a href="https://www.instagram.com/tikety_llc/"><i class="fab fa-instagram"></i> </a> </li>
                     </ul>
-                    <p class="whitecolor">&copy; <span id="year"></span> Tikety. Made With Love by Tikety Team</p>
+                    <p class="whitecolor">&copy; <span id="year"></span>{{ __('Tikety. Made With Love by Tikety Team') }}</p>
                 </div>
             </div>
         </div>
@@ -134,7 +129,7 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="heading-title wow fadeInUp text-center text-md-left" data-wow-delay="300ms">
-                            <h3 class="darkcolor bottom20">Stay Connected</h3>
+                            <h3 class="darkcolor bottom20">{{ __('Stay Connected') }}</h3>
                         </div>
                     </div>
                     @if (session('message_connected'))
@@ -143,14 +138,14 @@
                       </div>
                     @endif
                     <div class="col-md-12 col-sm-12">
-                        <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('connected') }}">
+                        <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('connected', app()->getLocale()) }}">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 col-sm-12" id="result"></div>
                                 <div class="col-md-3 col-sm-6">
                                     <div class="form-group">
                                         <label for="userName" class="d-none"></label>
-                                        <input class="form-control" type="text" placeholder="First Name:" required id="name" name="name">
+                                        <input class="form-control" type="text" placeholder="{{ __('First Name:') }}" required id="name" name="name">
                                         @error('name')
                                         <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
@@ -159,14 +154,14 @@
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="email" class="d-none"></label>
-                                        <input class="form-control" type="email" placeholder="Email:" required id="email" name="email">
+                                        <input class="form-control" type="email" placeholder="{{ __('Email:') }}" required id="email" name="email">
                                         @error('email')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6">
-                                    <button type="submit" class="button btn-primary w-100" id="submit_btn">subscribe</button>
+                                    <button type="submit" class="button btn-primary w-100" id="submit_btn">{{ __('Subscribe') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -200,12 +195,12 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer_panel padding_bottom_half bottom20">
-                        <h3 class="whitecolor bottom25">Our Services</h3>
+                        <h3 class="whitecolor bottom25">{{ __('Our Services') }}</h3>
                         <ul class="links">
-                            <li><a href="{{ route('welcome') }}">Home</a></li>
-                            <li><a href="{{ route('about') }}">About Us</a></li>
-                            <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                            <li><a href="">Privacy Policy</a></li>
+                            <li><a href="{{ route('welcome', app()->getLocale()) }}">{{ __('Home') }}</a></li>
+                            <li><a href="{{ route('about', app()->getLocale()) }}">{{ __('About Us') }}</a></li>
+                            <li><a href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact Us') }}</a></li>
+                            <li><a href="">{{ __('Privacy Policy') }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -221,8 +216,8 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer_panel padding_bottom_half bottom20">
-                        <h3 class="whitecolor bottom25">Business hours</h3>
-                        <p class="whitecolor bottom25">Our support available to help you 24 hours a day, seven days week</p>
+                        <h3 class="whitecolor bottom25">{{ __('Business hours') }}</h3>
+                        <p class="whitecolor bottom25">{{ __('Our support available to help you 24 hours a day, seven days week') }}</p>
                         <ul class="hours_links whitecolor">
                             <li><span>Monday-Saturday:</span> <span>8.00-18.00</span></li>
                             <li><span>Friday:</span> <span>09:00-21:00</span></li>
@@ -240,7 +235,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center wow fadeIn animated" data-wow-delay="300ms">
-                    <p class="m-0 py-3 text-white">Copyright © <span id="year1"></span> <a href="javascript:void(0)" class="hover-default">Tikety</a>. All Rights Reserved.</p>
+                    <p class="m-0 py-3 text-white">{{ __('Copyright') }} © <span id="year1"></span> <a href="javascript:void(0)" class="hover-default">Tikety</a>. {{ __('All Rights Reserved.') }}</p>
                 </div>
             </div>
         </div>

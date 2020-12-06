@@ -4,6 +4,8 @@ return [
 
     'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
+    'Image' => Intervention\Image\Facades\Image::class,
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -163,6 +165,10 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        /*
+        * For Image Editing
+        */
+        Intervention\Image\ImageServiceProvider::class,
         /*
         *For sweet alerts
         */

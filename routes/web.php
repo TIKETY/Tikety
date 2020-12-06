@@ -9,6 +9,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\FleetController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Auth::routes(['verify'=>true]);
+    Auth::routes(['verify'=>true]);
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/contact', [RegularController::class, 'contact'])->name('contact')->middleware('verifiedphone');
 Route::get('/about', [RegularController::class, 'about'])->name('about');
 Route::get('/faq', [RegularController::class, 'faq'])->name('faq')->middleware(['auth', 'haverole']);

@@ -38,36 +38,36 @@
                     <ul class="navbar-nav ml-auto align-items-center">
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('welcome') }}">
-                                Home
+                                {{ __('Home') }}
                             </a>
                         </li>
+                        {{-- <li class="nav-item">
+                            <a class="nav-link text-black-50" href="{{ route('faq') }}">{{ __('FAQ') }}</a>
+                        </li> --}}
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('faq') }}">FAQ</a>
+                            <a class="nav-link text-black-50" href="{{ route('about') }}">{{ __('About') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('about') }}">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('contact') }}">Contact</a>
+                            <a class="nav-link text-black-50" href="{{ route('contact') }}">{{ __('Contact') }}</a>
                         </li>
                         @auth
                         {{-- @can('create_multiple_buses', Role::class) --}}
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('ShowFleet', auth()->user()) }}">My Fleet</a>
+                            <a class="nav-link text-black-50" href="{{ route('ShowFleet', auth()->user()) }}">{{ __('My Fleet') }}</a>
                         </li>
                         {{-- @endcan --}}
                         {{-- @can('create_bus', Role::class) --}}
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('mybuses') }}">My Buses</a>
+                            <a class="nav-link text-black-50" href="{{ route('mybuses') }}">{{ __('My Bus') }}</a>
                         </li>
                         {{-- @endcan --}}
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('buses') }}">Buses</a>
+                            <a class="nav-link text-black-50" href="{{ route('buses') }}">{{ __('Buses') }}</a>
                         </li>
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn nav-link text-black-50">Logout</button>
+                                <button type="submit" class="btn nav-link text-black-50">{{ __('Logout') }}</button>
                             </form>
                         </li>
                         <li class="nav-item">
@@ -80,13 +80,13 @@
                         @endauth
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('buses') }}">Buses</a>
+                            <a class="nav-link text-black-50" href="{{ route('buses') }}">{{ __('Buses') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('login') }}">Login</a>
+                            <a class="nav-link text-black-50" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('register') }}">Sign Up</a>
+                            <a class="nav-link text-black-50" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
                         </li>
                         @endguest
                     </ul>
@@ -106,47 +106,44 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('welcome') }}">
-                                Home
+                                {{ __('Home') }}
                             </a>
                         </li>
+                        {{-- <li class="nav-item">
+                            <a class="nav-link" href="{{ route('faq') }}">{{ __('FAQ') }}</a>
+                        </li> --}}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('faq') }}">FAQ</a>
+                            <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('about') }}">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                            <a class="nav-link" href="{{ route('contact') }}">{{ __('Contact') }}</a>
                         </li>
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('role') }}">Change Your Role?</a>
+                            <a class="nav-link" href="{{ route('ShowFleet', auth()->user()) }}">{{ __('Fleet') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ShowFleet', auth()->user()) }}">Fleet</a>
+                            <a class="nav-link" href="{{ route('mybuses') }}">{{ __('My Bus') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('mybuses') }}">My Buses</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('buses') }}">Buses</a>
+                            <a class="nav-link" href="{{ route('buses') }}">{{ __('Buses') }}</a>
                         </li>
                         <li class="nav-item">
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn nav-link text-black-50">Logout</button>
+                                <button type="submit" class="btn nav-link text-black-50">{{ __('Logout') }}</button>
                             </form>
                         </li>
                         @endauth
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('buses') }}">Buses</a>
+                            <a class="nav-link" href="{{ route('buses') }}">{{ __('Buses') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
                         </li>
                         @endguest
                     </ul>
@@ -157,7 +154,7 @@
                         <li><a href="https://twitter.com/Tikety_LLC"><i class="fab fa-twitter"></i> </a> </li>
                         <li><a href="https://www.instagram.com/tikety_llc/"><i class="fab fa-instagram"></i> </a> </li>
                     </ul>
-                    <p class="whitecolor">&copy; <span id="year"></span> Tikety. Made With Love by Tikety Team</p>
+                    <p class="whitecolor">&copy; <span id="year"></span> {{ __('Tikety. Made With Love by Tikety Team') }}</p>
                 </div>
             </div>
         </div>
@@ -184,18 +181,18 @@
                         <div class="tp-caption tp-resizeme" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-70','-70','-70','-70']" data-whitespace="nowrap" data-responsive_offset="on"
                             data-width="['none','none','none','none']" data-type="text" data-textalign="['center','center','center','center']" data-transform_idle="o:1;" data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
                             data-transform_out="s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;" data-start="1000" data-splitin="none" data-splitout="none">
-                            <h2>Easing your Ticketing Experience</h2>
+                            <h2>{{ __('Simplifying your Ticketing processes') }}</h2>
                         </div>
                         <div class="tp-caption tp-resizeme" data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['12','12','12','12']" data-whitespace="nowrap" data-responsive_offset="on"
                             data-width="['none','none','none','none']" data-type="text" data-textalign="['center','center','center','center']" data-fontsize="['24','24','20','20']" data-transform_idle="o:1;" data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:2;sY:2;skX:0;skY:0;opacity:0;s:1000;e:Power2.easeOut;"
                             data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;" data-mask_in="x:0px;y:0px;s:inherit;e:inherit;" data-start="1500" data-splitin="none" data-splitout="none">
-                            <p>A Journey of thousand steps, begins with the first, and we aim to simplify it even better</p>
+                            <p>{{ __('A Journey of thousand steps, begins with the first, and we aim to simplify it even better') }}</p>
                         </div>
                         <div class="tp-caption tp-resizeme" data-x="['center','center','center','center']" data-hoffset="['20','20','20','20']" data-y="['middle','middle','middle','middle']" data-voffset="['90','90','90','90']" data-whitespace="nowrap" data-transform_idle="o:1;"
                             data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="s:900;e:Power2.easeInOut;s:900;e:Power2.easeInOut;" data-start="1600" data-splitin="none" data-splitout="none"
                             data-responsive_offset="on">
-                            <a class="transition-3 button btn-primary button-padding pagescroll font-13 mr-4" href="#our-feature">Learn More</a>
-                            <a class="button btn-primary button-paddingfont-13" href="{{ route('travel') }}">Traveling Today?</a>
+                            <a class="transition-3 button btn-primary button-padding pagescroll font-13 mr-4" href="#our-feature">{{ __('Learn More') }}</a>
+                            <a class="button btn-primary button-paddingfont-13" href="{{ route('travel') }}">{{ __('Traveling Today?') }}</a>
                         </div>
                     </li>
                 </ul>
@@ -212,10 +209,9 @@
             <div class="row d-flex align-items-center">
                 <div class="col-lg-6 col-md-7 col-sm-7 text-sm-left text-center wow fadeInLeft" data-wow-delay="300ms">
                     <div class="heading-title mb-4">
-                        <h2 class="darkcolor font-normal bottom30">Tickets on your Fingertips</h2>
+                        <h2 class="darkcolor font-normal bottom30">{{ __('Tickets on your Fingertips') }}</h2>
                     </div>
-                    <p class="bottom35">Different Services utilizing the ticketing systems are now able to utilize this platform to reach their customers from their phone with convenient ease. These services can be accessed from the customer's mobile phone app which can
-                        be found on the app stores for both platforms</p>
+                    <p class="bottom35">{{ __('Different Services utilizing the ticketing systems are now able to utilize this platform to reach their customers from their phone with convenient ease. These services can be accessed from the customer\'s mobile phone app which can be found in the app stores, for iPhone and Android') }}</p>
                     <div class="mb-4">
                         <a href=""><img src="{{ asset('image/istore_link.jpg')}}" widht="124px" height="43px" class="rounded-lg mr-2" alt=""></a>
                         <a href=""><img src="{{ asset('image/gstore_link.jpg')}}" width="140px" height="43px" class="rounded-lg" alt=""></a>
@@ -235,7 +231,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 text-center">
                     <div class="heading-title whitecolor wow fadeInUp" data-wow-delay="300ms">
-                        <h2 class="font-normal">Simple process of Ticketing </h2>
+                        <h2 class="font-normal">{{ __('Simple process of Ticketing') }} </h2>
                     </div>
                 </div>
             </div>
@@ -243,28 +239,28 @@
                 <ul class="process-wrapp">
                     <li class="whitecolor wow fadeIn" data-wow-delay="300ms">
                         <span class="pro-step bottom20">01</span>
-                        <p class="fontbold bottom25">Information</p>
-                        <p class="mt-n2 mt-sm-0">The App will require relevant information to find you the corelated service</p>
+                        <p class="fontbold bottom25">{{ __('Information') }}</p>
+                        <p class="mt-n2 mt-sm-0">{{ __('The App will require relevant information to find you the corelated service') }}</p>
                     </li>
                     <li class="whitecolor wow fadeIn" data-wow-delay="400ms">
                         <span class="pro-step bottom20">02</span>
-                        <p class="fontbold bottom25">Selection</p>
-                        <p class="mt-n2 mt-sm-0">Then, you will have to select the available options from different service providers</p>
+                        <p class="fontbold bottom25">{{ __('Selection') }}</p>
+                        <p class="mt-n2 mt-sm-0">{{ __('Then, you will have to select the available options from different service providers') }}</p>
                     </li>
                     <li class="whitecolor wow fadeIn" data-wow-delay="500ms">
                         <span class="pro-step bottom20">03</span>
-                        <p class="fontbold bottom25">Choose</p>
-                        <p class="mt-n2 mt-sm-0">Choose the service you would like to reserve from that service Provider</p>
+                        <p class="fontbold bottom25">{{ __('Choose') }}</p>
+                        <p class="mt-n2 mt-sm-0">{{ __('Choose the service you would like to reserve from that service Provider') }}</p>
                     </li>
                     <li class="whitecolor wow fadeIn" data-wow-delay="600ms">
                         <span class="pro-step bottom20">04</span>
-                        <p class="fontbold bottom25">Payment</p>
-                        <p class="mt-n2 mt-sm-0">Via the application you will be able to pay using the mobile money options</p>
+                        <p class="fontbold bottom25">{{ __('Payment') }}</p>
+                        <p class="mt-n2 mt-sm-0">{{ __('Via the application you will be able to pay using the mobile money options') }}</p>
                     </li>
                     <li class="whitecolor wow fadeIn" data-wow-delay="700ms">
                         <span class="pro-step bottom20">05</span>
-                        <p class="fontbold bottom25">Tikety</p>
-                        <p class="mt-n2 mt-sm-0">Finaly the application will generate a valid token (Tikety) to verify when needed by the Service Provider</p>
+                        <p class="fontbold bottom25">{{ __('Tikety') }}</p>
+                        <p class="mt-n2 mt-sm-0">{{ __('Finaly the application will generate a valid token (Tikety) to verify when needed by the Service Provider') }}</p>
                     </li>
                 </ul>
             </div>
@@ -277,7 +273,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-7 col-sm-12">
                     <div class="heading-title bottom30 wow fadeInUp" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeInUp;">
-                        <h2 class="darkcolor font-normal text-center text-md-left">Tikety Design</h2>
+                        <h2 class="darkcolor font-normal text-center text-md-left">{{ __('Tikety Design') }}</h2>
                     </div>
                 </div>
 
@@ -289,18 +285,18 @@
                             <div class="icon"><i class="fas fa-cog"></i></div>
                             <div class="text">
                                 <h3 class="bottom15">
-                                    <span class="d-inline-block">Settings</span>
+                                    <span class="d-inline-block">{{ __('Settings') }}</span>
                                 </h3>
-                                <p>The app gives the user the flexibility of choosing different settings to fit in with own preference</p>
+                                <p>{{ __('The app gives the user the flexibility of choosing different settings to fit in with own preference') }}</p>
                             </div>
                         </div>
                         <div class="feature-item mt-5 wow fadeInLeft" data-wow-delay="350ms" style="visibility: visible; animation-delay: 350ms; animation-name: fadeInLeft;">
                             <div class="icon"><i class="fas fa-edit"></i></div>
                             <div class="text">
                                 <h3 class="bottom15">
-                                    <span class="d-inline-block">Customization</span>
+                                    <span class="d-inline-block">{{ __('Customization') }}</span>
                                 </h3>
-                                <p>The user can create own preferences based on different services wishing to use with convenient ease, and simplification</p>
+                                <p>{{ __('The user can create own preferences based on different services wishing to use with convenient ease, and simplification') }}</p>
                             </div>
                         </div>
                     </div>
@@ -358,18 +354,18 @@
                             <div class="icon"><i class="fas fa-code"></i></div>
                             <div class="text">
                                 <h3 class="bottom15">
-                                    <span class="d-inline-block">Security</span>
+                                    <span class="d-inline-block">{{ __('Security') }}</span>
                                 </h3>
-                                <p>Privacy of your data is our priority and the process is completely secured</p>
+                                <p>{{ __('Privacy of your data is our priority and the process is completely secured') }}</p>
                             </div>
                         </div>
                         <div class="feature-item mt-5 wow fadeInRight" data-wow-delay="350ms" style="visibility: visible; animation-delay: 350ms; animation-name: fadeInRight;">
                             <div class="icon"><i class="far fa-folder-open"></i></div>
                             <div class="text">
                                 <h3 class="bottom15">
-                                    <span class="d-inline-block">Simplify</span>
+                                    <span class="d-inline-block">{{ __('Simplify') }}</span>
                                 </h3>
-                                <p>This app simplify the process of opting services which require reservation of space at particular time with ease and convenience</p>
+                                <p>{{ __('This app simplify the process of opting services which require reservation of space at particular time with ease and convenience') }}</p>
                             </div>
                         </div>
                     </div>
@@ -385,7 +381,7 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="heading-title wow fadeInUp text-center text-md-left" data-wow-delay="300ms">
-                            <h3 class="darkcolor bottom20">Stay Connected</h3>
+                            <h3 class="darkcolor bottom20">{{ __('Stay Connected') }}</h3>
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12">
@@ -396,7 +392,7 @@
                                 <div class="col-md-3 col-sm-6">
                                     <div class="form-group">
                                         <label for="userName" class="d-none"></label>
-                                        <input class="form-control" type="text" placeholder="First Name:" required id="name" name="name">
+                                        <input class="form-control" type="text" placeholder="{{ __('First Name:') }}" required id="name" name="name">
                                         @error('name')
                                             <p class="danger">{{ $message }}</p>
                                         @enderror
@@ -405,14 +401,14 @@
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="email" class="d-none"></label>
-                                        <input class="form-control" type="email" placeholder="Email:" required id="email" name="email">
+                                        <input class="form-control" type="email" placeholder="{{ __('Email:') }}" required id="email" name="email">
                                         @error('email')
                                             <p class="danger">{{ $message }}</p>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6">
-                                    <button type="submit" class="button btn-primary w-100" id="submit_btn">subscribe</button>
+                                    <button type="submit" class="button btn-primary w-100" id="submit_btn">{{ __('Subscribe') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -429,7 +425,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer_panel padding_bottom_half bottom20">
                         <a href="index.html" class="footer_logo bottom25"><img src="{{ asset('image/logo-transparent.png')}}" alt="MegaOne"></a>
-                        <p class="whitecolor bottom25">Keep away from people who try to belittle your ambitions Small people always do that but the really great Friendly.</p>
+                        <p class="whitecolor bottom25">{{ __('Keep away from people who try to belittle your ambitions Small people always do that but the really great Friendly.') }}</p>
                         <div class="d-table w-100 address-item whitecolor bottom25">
                             <span class="d-table-cell align-middle"><i class="fas fa-mobile-alt"></i></span>
                             <p class="d-table-cell align-middle bottom0">
@@ -454,19 +450,19 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer_panel padding_bottom_half bottom20 pl-0 pl-lg-5">
-                        <h3 class="whitecolor bottom25">Our Services</h3>
+                        <h3 class="whitecolor bottom25">{{ __('Our Services') }}</h3>
                         <ul class="links">
-                            <li><a href="{{ route('welcome') }}">Home</a></li>
-                            <li><a href="{{ route('about') }}">About Us</a></li>
-                            <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                            <li><a href="{{ route('faq') }}">Faq's</a></li>
+                            <li><a href="{{ route('welcome') }}">{{ __('Home') }}</a></li>
+                            <li><a href="{{ route('about') }}">{{ __('About') }}</a></li>
+                            <li><a href="{{ route('contact') }}">{{ __('Contact') }}</a></li>
+                            <li><a href="{{ route('faq') }}">{{ __('FAQ') }}'s</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer_panel padding_bottom_half bottom20">
-                        <h3 class="whitecolor bottom25">Business hours</h3>
-                        <p class="whitecolor bottom25">Our support available to help you 24 hours a day, seven days week</p>
+                        <h3 class="whitecolor bottom25">{{ __('Business hours') }}</h3>
+                        <p class="whitecolor bottom25">{{ __('Our support available to help you 24 hours a day, seven days week') }}</p>
                         <ul class="hours_links whitecolor">
                             <li><span>Monday-Saturday:</span> <span>8.00-18.00</span></li>
                             <li><span>Friday:</span> <span>09:00-21:00</span></li>
@@ -484,7 +480,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center wow fadeIn animated" data-wow-delay="300ms">
-                        <p class="m-0 py-3 text-white">Copyright © <span id="year1"></span> <a href="javascript:void(0)" class="hover-default">Tikety</a>. All Rights Reserved.</p>
+                        <p class="m-0 py-3 text-white">{{ __('Copyright') }} © <span id="year1"></span> <a href="javascript:void(0)" class="hover-default">Tikety</a>. {{ __('All Rights Reserved.') }}.</p>
                     </div>
                 </div>
             </div>

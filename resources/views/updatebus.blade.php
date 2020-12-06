@@ -8,7 +8,7 @@
             <div class="widget py-5 ">
                 <div class="row">
                     <div class="col-md-12 text-center wow fadeIn mt-n3" data-wow-delay="300ms">
-                        <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Update This Bus</span>
+                        <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">{{ __('Update This Bus') }}</span>
                         </h2>
                     </div>
                     <div class="col-md-12 col-sm-12">
@@ -20,7 +20,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="name1" class="d-none"></label>
-                                            <input class="form-control" id="name" type="text" placeholder="Name Of the Bus:" value="{{ $bus->name }}" required name="name">
+                                            <input class="form-control" id="name" type="text" placeholder="{{ __('Name Of the Bus:') }}" value="{{ $bus->name }}" required name="name">
                                         @error('name')
                                             <p style="color: red;">{{ $message }}</p>
                                         @enderror
@@ -29,7 +29,7 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="name1" class="d-none"></label>
-                                            <input class="form-control" id="name" type="text" placeholder="Plate Number:" value="{{ $bus->platenumber }}" required name="platenumber">
+                                            <input class="form-control" id="name" type="text" placeholder="{{ __('Plate Number:') }}" value="{{ $bus->platenumber }}" required name="platenumber">
                                         @error('platenumber')
                                             <p style="color: red;">{{ $message }}</p>
                                         @enderror
@@ -38,7 +38,7 @@
 
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <input class="form-control" type="number" id="rows" placeholder="Rows:" value="{{ $bus->rows }}" name="rows">
+                                            <input class="form-control" type="number" id="rows" placeholder="{{ __('Rows:') }}" value="{{ $bus->rows }}" name="rows">
                                         @error('rows')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <input class="form-control" type="number" id="amount" placeholder="Amount:" value="{{ $bus->amount }}" name="amount">
+                                            <input class="form-control" type="number" id="amount" placeholder="{{ __('Amount:') }}" value="{{ $bus->amount }}" name="amount">
                                         @error('amount')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <input class="form-control" type="date" id="date" placeholder="Date:" value="{{ $bus->date }}" name="date">
+                                            <input class="form-control" type="date" id="date" placeholder="{{ __('Date:') }}" value="{{ $bus->date }}" name="date">
                                         @error('date')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <input class="form-control" type="time" id="rows" placeholder="Time:" value="{{ $bus->time }}" name="time">
+                                            <input class="form-control" type="time" id="rows" placeholder="{{ __(Time:) }}" value="{{ $bus->time }}" name="time">
                                         @error('time')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
@@ -71,7 +71,7 @@
                                     <div class="col-md-4 col-sm-4">
                                         <div class="form-group">
                                             <select name= "from" class="form-control">
-                                                <option value="">Select Region</option>
+                                                <option value="">{{ __('Select Region') }}</option>
                                                 @foreach ($states as $state)
 
                                                  <option>{{$state}}</option>
@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="col-md-4 col-sm-4">
                                         <div class="form-group">
-                                            <input class="form-control" type="text" id="route" placeholder="Route:" value="{{ $bus->route }}" name="route">
+                                            <input class="form-control" type="text" id="route" placeholder="{{ __('Route:') }}" value="{{ $bus->route }}" name="route">
                                         @error('route')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
@@ -94,7 +94,7 @@
                                     <div class="col-md-4 col-sm-4">
                                         <div class="form-group">
                                             <select name= "from" class="form-control">
-                                                <option value="">Select Region</option>
+                                                <option value="">{{ __('Select Region') }}</option>
                                                 @foreach ($states as $state)
 
                                                  <option>{{$state}}</option>
@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="col-md-4 col-sm-4">
                                         <div class="form-group">
-                                            <input class="form-control" type="tel" id="phonenumber" placeholder="Phone Number:" value="{{ $bus->phonenumber }}" name="phonenumber">
+                                            <input class="form-control" type="tel" id="phonenumber" placeholder="{{ __('Phone Number:') }}" value="{{ $bus->phonenumber }}" name="phonenumber">
                                         @error('phonenumber')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
@@ -116,7 +116,7 @@
                                     </div>
                                     <div class="col-md-4 col-sm-4">
                                         <div class="form-group">
-                                            <input class="form-control" type="text" id="address" placeholder="Address:" value="{{ $bus->address }}" name="address">
+                                            <input class="form-control" type="text" id="address" placeholder="{{ __('Address:') }}" value="{{ $bus->address }}" name="address">
                                         @error('address')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
@@ -124,7 +124,7 @@
                                     </div>
                                     <div class="col-md-4 col-sm-4">
                                         <div class="form-group">
-                                            <input class="form-control" type="text" id="workinghours" placeholder="Working Hours:" value="{{ $bus->workinghours }}" name="workinghours">
+                                            <input class="form-control" type="text" id="workinghours" placeholder="{{ __('Working Hours:') }}" value="{{ $bus->workinghours }}" name="workinghours">
                                         @error('workinghours')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
@@ -133,14 +133,14 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="message1" class="d-none"></label>
-                                            <textarea class="form-control" id="body" placeholder="Body:" required name="body">{{ $bus->body }}</textarea>
+                                            <textarea class="form-control" id="body" placeholder="{{ __('Body:') }}" required name="body">{{ $bus->body }}</textarea>
                                         @error('body')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
-                                        <button type="submit" id="submit_btn1" class="button btn-primary w-100">Update Bus</button>
+                                        <button type="submit" id="submit_btn1" class="button btn-primary w-100">{{ __('Update Bus') }}</button>
                                     </div>
                                 </div>
                             </form>

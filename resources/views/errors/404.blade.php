@@ -11,7 +11,7 @@
                         <h1>404</h1>
                         <h2>404</h2>
                     </div>
-                    <p class="heading_space">We are sorry, the page you want is not here.</p>
+                    <p class="heading_space">{{ __('We are sorry, the page you want is not here.') }}</p>
                     <a href="{{ route('home') }}" class="button btn-primary wow fadeIn mb-3 mb-sm-0" data-wow-delay="400ms">back to home</a>
                 </div>
             </div>

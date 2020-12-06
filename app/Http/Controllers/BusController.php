@@ -45,10 +45,16 @@ class BusController extends Controller
             'to'=>'required|max:30',
             'date'=>'required|date',
             'time'=>'required|date_format:H:i',
-            'route'=>'required'
+            'route'=>'required',
         ]);
 
-        $validated['image_url'] = request('image_url')->store('buses');
+        $countries = new Countries;
+        $states = $countries->whereNameCommon('Tanzania')->first()->hydrateStates()->states->pluck('name', 'postal')->toArray();
+
+        if(!in_array($validated['from'], $states) || !in_array($validated['to'], $states)){
+            return abort(422);
+        } else{
+            $validated['image_url'] = request('image_url')->store('buses');
 
         $bus = Bus::create([
             'name'=>$validated['name'],
@@ -76,6 +82,9 @@ class BusController extends Controller
         $bus->addSeat(($validated['rows']*4) + 1);
         Alert::success('Bus Create', 'The bus has been created successfully');
         return redirect()->route('buses')->with('create_message', 'Bus created Successfully');
+        }
+
+
     }
 
     public function show(Bus $bus){

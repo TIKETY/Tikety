@@ -13,7 +13,7 @@
                     src="{{ asset('storage/'.$bus->image_url) }}"
                 @endif ></div>
                 <div class="widget shadow heading_space text-center text-md-left">
-                    <h4 class="text-capitalize darkcolor bottom35">Need Help?</h4>
+                    <h4 class="text-capitalize darkcolor bottom35">{{ __('Need Help?') }}</h4>
                     <div class="contact-table colorone d-table bottom15">
                         <div class="d-table-cell cells">
                             <span class="icon-cell"><i class="fas fa-mobile-alt"></i></span>
@@ -52,30 +52,30 @@
                         <div class="row">
                         <div class="col-md-12 col-sm-12 mt-4">
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="First Name:" required id="name" name="name">
+                                <input class="form-control" type="text" placeholder="{{ __('First Name:') }}" required id="name" name="name">
                                 <label for="first_name1" class="d-none"></label>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group">
-                                <input class="form-control" type="email" placeholder="Email:" required id="email1" name="email">
+                                <input class="form-control" type="email" placeholder="{{ __('Email:') }}" required id="email1" name="email">
                                 <label for="email1" class="d-none"></label>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group">
-                                <textarea class="form-control" name="body"  placeholder="Request a FreeConsultation" required id="body"></textarea>
+                                <textarea class="form-control" name="body"  placeholder="{{ __('Request a FreeConsultation') }}" required id="body"></textarea>
                                 <label for="FreeConsultation1" class="d-none"></label>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12 mb-4">
-                            <button type="submit" class="button btn-primary w-100" id="submit_btn1">Free Consultation</button>
+                            <button type="submit" class="button btn-primary w-100" id="submit_btn1">{{ __('Free Consultation') }}</button>
                         </div>
                         </div>
                         </form>
                     @else
                     @can('isowner', $bus)
-                    <h4 class="text-capitalize darkcolor bottom10 mt-2">Revoke Seat</h4>
+                    <h4 class="text-capitalize darkcolor bottom10 mt-2">{{ __('Revoke Seat') }}</h4>
                     @if (session('revoke_message'))
                             <div class="alert alert-success mt-3" role="alert">
                             {{ session('revoke_message') }}
@@ -86,24 +86,24 @@
                             @method('PUT')
                             <div class="row">
                                 <div class="form-group mr-1">
-                                    <input class="form-control ml-3" style="width: 200px;" type="text" placeholder="Seat No:" required id="seat" name="seat">
+                                    <input class="form-control ml-3" style="width: 200px;" type="text" placeholder="{{ __('Seat No:') }}" required id="seat" name="seat">
                                     <label for="first_name1" class="d-none"></label>
                                 </div>
-                                <button class="btn btn-primary mb-4" type="submit">Revoke</button>
+                                <button class="btn btn-primary mb-4" type="submit">{{ __('Revoke') }}</button>
                             </div>
                         </form>
-                    <h4 class="text-capitalize darkcolor bottom35">Notifications</h4>
+                    <h4 class="text-capitalize darkcolor bottom35">{{ __('Notifications') }}</h4>
                     <div class="contact-table colorone d-table bottom15">
                         @foreach ($notifications as $notification)
                         <div class="alert alert-info mt-3" role="alert">
-                            <a href="{{ $notification->markAsRead() }}">Seat(s) {{ $notification->data['seats'] }} was taken by {{ $notification->data['user'] }}</a>
+                            <a href="{{ $notification->markAsRead() }}">{{ __('Seat(s)') }} {{ $notification->data['seats'] }} {{ __('was taken by') }} {{ $notification->data['user'] }}</a>
                             @if ($bus->busstate())
-                                <p>The bus is full</p>
+                                <p>{{ __('The bus is full') }}</p>
                             @endif
                         </div>
                         @endforeach
                         @empty($notifications)
-                            <p>You have no new notifications</p>
+                            <p>{{ __('You have no new notifications') }}</p>
                         @endempty
                     </div>
                     @endcan
@@ -119,23 +119,23 @@
                             </div>
                     @endif
                     <h3 class="darkcolor font-normal bottom30">{{ $bus->name }} {{ $bus->platenumber }}</h3>
-                    <p class="bottom30">{{ $bus->from }} to {{ $bus->to }}</p>
-                    <p class="bottom30">{{ $bus->date->diffForHumans() }} departure time on {{ $bus->time }}</p>
+                    <p class="bottom30">{{ $bus->from }} {{ __('to') }} {{ $bus->to }}</p>
+                    <p class="bottom30">{{ $bus->date->diffForHumans() }} {{ __('departure time on') }} {{ $bus->time }}</p>
 
                     @auth
                     {{-- @can('edit_bus', Role::class) --}}
                     {{-- @if (auth()->user()->id == $bus->user_id) --}}
                     @can('isowner', $bus)
                     <div class="row">
-                        <a href="{{ route('UpdateBus', $bus) }}" class="btn btn-primary mr-3">Edit Bus</a>
+                        <a href="{{ route('UpdateBus', $bus) }}" class="btn btn-primary mr-3">{{ __('Edit Bus') }}</a>
                         <form action="{{ route('removebus', $bus) }}" method="POST">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-primary mr-3" >Remove Bus</button>
+                        <button type="submit" class="btn btn-primary mr-3" >{{ __('Remove Bus') }}</button>
                         </form>
                         <form action="{{ route('resetbus', $bus) }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-primary" >Reset Bus</button>
+                        <button type="submit" class="btn btn-primary" >{{ __('Reset Bus') }}</button>
                         </form>
                     </div>
                     @endcan
@@ -149,32 +149,32 @@
                         <div id="accordion">
                             <div class="card shadow">
                                 <div class="card-header">
-                                    <a class="card-link darkcolor" data-toggle="collapse" href="#collapseOne">Legend</a>
+                                    <a class="card-link darkcolor" data-toggle="collapse" href="#collapseOne">{{ __('Legend') }}</a>
                                 </div>
                                 <div id="collapseOne" class="collapse show align-items-center" data-parent="#accordion">
                                     <div class="ml-4 align-items-center">
                                         <div class="row align-items-center">
                                         <img src="{{ asset('image/empty_seat.png') }}" width="70px" height="70px" alt="" class="mr-4">
-                                        <p>Empyt Seat</p>
+                                        <p>{{ __('Empyt Seat') }}</p>
                                         </div>
                                     </div>
                                     <div class="ml-4">
                                         <div class="row align-items-center">
                                         <img src="{{ asset('image/reserved_seat.png') }}" width="70px" height="70px" alt="" class="mr-4">
-                                        <p>Reserved Seat</p>
+                                        <p>{{ __('Reserved Seat') }}</p>
                                         </div>
                                     </div>
                                     <div class="ml-4">
                                         <div class="row align-items-center">
                                         <img src="{{ asset('image/selected_seat.png') }}" width="70px" height="70px" alt="" class="mr-4 mb-4">
-                                        <p>Selected Seat</p>
+                                        <p>{{ __('Selected Seat') }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card shadow">
                                 <div class="card-header">
-                                    <a class="collapsed card-link darkcolor" data-toggle="collapse" href="#collapseTwo">Contents</a>
+                                    <a class="collapsed card-link darkcolor" data-toggle="collapse" href="#collapseTwo">{{ __('Contents') }}</a>
                                 </div>
                                 <div id="collapseTwo" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
@@ -184,11 +184,11 @@
                             </div>
                             <div class="card shadow">
                                 <div class="card-header">
-                                    <a class="collapsed card-link darkcolor" data-toggle="collapse" href="#collapseThree">Time of Depature</a>
+                                    <a class="collapsed card-link darkcolor" data-toggle="collapse" href="#collapseThree">{{ __('Time of Depature') }}</a>
                                 </div>
                                 <div id="collapseThree" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        <p>{{ $bus->time }} on {{ $bus->date->diffForHumans() }}</p>
+                                        <p>{{ $bus->time }} {{ __('on') }} {{ $bus->date->diffForHumans() }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -559,7 +559,7 @@
                             @csrf
                             <div class="col-md-12 col-sm-12">
                                 <input type="hidden" id="seats_id" name="seats_id">
-                                <button type="submit" class="btn rounded-lg w-100 mb-4 mt-4 btn-primary">Take Seat</button>
+                                <button type="submit" class="btn rounded-lg w-100 mb-4 mt-4 btn-primary">{{ __('Take Seat') }}</button>
                             </div>
                         </form>
                         @elsecan('use', $bus)
@@ -567,7 +567,7 @@
                             @csrf
                             <div class="col-md-12 col-sm-12">
                                 <input type="hidden" id="seats_id" name="seats_id">
-                                <button type="submit" class="btn rounded-lg w-100 mb-4 mt-4 btn-primary">Pay For Seat</button>
+                                <button type="submit" class="btn rounded-lg w-100 mb-4 mt-4 btn-primary">{{ __('Pay For Seat') }}</button>
                             </div>
                         </form>
                         @endcan

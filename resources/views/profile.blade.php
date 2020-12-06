@@ -12,11 +12,11 @@
                 @endif  >
                 <div class="row">
                 @if ($user->is(auth()->user()))
-                <a href="{{ route('editprofileview', auth()->user()) }}" class="btn mt-3 mr-3 btn-primary button">Edit</a>
+                <a href="{{ route('editprofileview', auth()->user()) }}" class="btn mt-3 mr-3 btn-primary button">{{ __('Edit') }}</a>
                 @else
                  @auth
                  @if ($user->user_has_bus())
-                    <a href="" class="btn mt-3 btn-primary button">Message</a>
+                    <a href="" class="btn mt-3 btn-primary button">{{ __('Message') }}</a>
                  @endif
                  @endauth
                 @endif
@@ -28,7 +28,7 @@
                 </div>
                 </div>
                 <div class="widget shadow heading_space text-center text-md-left">
-                    <h4 class="text-capitalize darkcolor bottom20">Need Help?</h4>
+                    <h4 class="text-capitalize darkcolor bottom20">{{ __('Need Help?') }}</h4>
                     <div class="contact-table colorone d-table bottom15">
                         <div class="d-table-cell cells">
                             <span class="icon-cell"><i class="fas fa-mobile-alt"></i></span>

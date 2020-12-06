@@ -37,11 +37,11 @@
                     {{ session('create_message') }}
                     </div>
                 @endif
-                <h2 class="heading bottom30 darkcolor font-light2"><span class="font-weight-light">My Buses</span> Details
+                <h2 class="heading bottom30 darkcolor font-light2"><span class="font-weight-light">{{ __('Buses') }}</span> {{ __('Details') }}
                 </h2>
                    {{-- @can('create_bus', Role::class) --}}
                 <div class="col-md-8 offset-md-2">
-                    <p class="mb-n3"><a class="btn btn-primary" href="{{ route('CreateBus') }}">Add A Bus</a></p>
+                    <p class="mb-n3"><a class="btn btn-primary" href="{{ route('CreateBus') }}">{{ __('Add A Bus') }}</a></p>
                 </div>
                 {{-- @endcan --}}
             </div>
@@ -65,11 +65,11 @@
                             </p>
                             @auth
                             @can('isowner', $bus)
-                            <a href="{{ route('UpdateBus', $bus->id) }}" class="button-readmore">Edit Bus</a>
+                            <a href="{{ route('UpdateBus', $bus->id) }}" class="button-readmore">{{ __('Edit Bus') }}</a>
                             @if (!$bus->checkfleet())
                             <form action="{{ route('AddBusFleet', $bus) }}" method="POST">
                                 @csrf
-                            <button type="submit" class="mt-3  btn btn-primary">Add to Fleet</button>
+                            <button type="submit" class="mt-3  btn btn-primary">{{ __('Add to Fleet') }}</button>
                             </form>
                             @endif
                             @endcan
