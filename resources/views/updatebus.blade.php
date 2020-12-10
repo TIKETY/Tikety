@@ -1,5 +1,9 @@
 @extends('layout.app')
 
+@section('header_script')
+    <x-recaptcha>updatebus</x-recaptcha>
+@endsection
+
 @section('content')
 
     <!-- Contact US -->
@@ -13,7 +17,7 @@
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
-                            <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('UpdateBusForm', $bus->id) }}">
+                            <form id="updatebus" class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('UpdateBusForm', $bus->id) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="row px-2">
@@ -22,6 +26,15 @@
                                             <label for="name1" class="d-none"></label>
                                             <input class="form-control" id="name" type="text" placeholder="{{ __('Name Of the Bus:') }}" value="{{ $bus->name }}" required name="name">
                                         @error('name')
+                                            <p style="color: red;">{{ $message }}</p>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="name1" class="d-none"></label>
+                                            <input class="form-control" id="image_url" type="file" placeholder="{{ __('Image of the Bus:') }}" required name="image_url">
+                                        @error('image_url')
                                             <p style="color: red;">{{ $message }}</p>
                                         @enderror
                                         </div>
@@ -62,7 +75,7 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <input class="form-control" type="time" id="rows" placeholder="{{ __(Time:) }}" value="{{ $bus->time }}" name="time">
+                                            <input class="form-control" type="time" id="rows" placeholder="{{ __('Time:') }}" value="{{ $bus->time }}" name="time">
                                         @error('time')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
@@ -140,7 +153,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
-                                        <button type="submit" id="submit_btn1" class="button btn-primary w-100">{{ __('Update Bus') }}</button>
+                                        <button type="submit" data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" id="submit_btn1" class="g-recaptcha button btn-primary w-100">{{ __('Update Bus') }}</button>
                                     </div>
                                 </div>
                             </form>

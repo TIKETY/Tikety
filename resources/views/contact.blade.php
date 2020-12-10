@@ -1,5 +1,11 @@
 @extends('layout.app')
 
+@section('header_script')
+    <x-recaptcha>
+        contact
+    </x-recaptcha>
+@endsection
+
 @section('content')
 
     <!-- Contact US -->
@@ -33,7 +39,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
-                            <form id="formId" class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactForm') }}">
+                            <form id="contact" class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactForm') }}">
                                 @csrf
                                 <div class="row px-2">
                                     <div class="col-md-12 col-sm-12" id="result1"></div>
@@ -65,7 +71,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
-                                        <button type="submit" id="submit_btn1" class="button btn-primary w-100">{{ __('Submit') }}</button>
+                                        <button type="submit" id="submit_btn1" data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" class="g-recaptcha button btn-primary w-100">{{ __('Submit') }}</button>
                                     </div>
                                 </div>
                             </form>

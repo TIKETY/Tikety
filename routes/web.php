@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegularController;
@@ -28,7 +29,7 @@ Route::get('/', function () {
 
     Auth::routes(['verify'=>true]);
 
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/contact', [RegularController::class, 'contact'])->name('contact')->middleware('verifiedphone');
 Route::get('/about', [RegularController::class, 'about'])->name('about');
 Route::get('/faq', [RegularController::class, 'faq'])->name('faq')->middleware(['auth', 'haverole']);
@@ -64,3 +65,10 @@ Route::put('/profile/edit/{user}', [ProfileController::class, 'editprofile'])->n
 
 Route::get('login/facebook', [LoginController::class, 'redirectToProvider'])->name('loginfacebook');
 Route::get('login/facebook/callback', [LoginController::class, 'handleProviderCallback'])->name('loginfacebook_callback');
+
+Route::get('login/forgot', [RegularController::class, 'forgot_password'])->name('forgot');
+Route::post('login/forgot', [ForgotPasswordController::class, 'forgot_password'])->name('forgot_password');
+Route::get('verify/{phone}', [ForgotPasswordController::class, 'verify'])->name('verify');
+Route::get('verify/phone/{token}', [ForgotPasswordController::class, 'tokenVerify'])->name('tokenVerify');
+Route::get('verify/phone/reset/{user}', [ForgotPasswordController::class, 'resetview'])->name('reset')->middleware('auth');
+Route::put('verify/phone/reset/password', [ForgotPasswordController::class, 'resetpassword'])->name('resetPassword')->middleware('auth');

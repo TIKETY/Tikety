@@ -6,11 +6,10 @@ use Illuminate\Http\Request;
 use Twilio\Rest\Client;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facade\Notification;
 use App\Notifications\BusNotification;
 use App\Models\User;
 use App\Models\Bus;
-use Carbon\Carbon;
+use App\Rules\RecaptchaRule;
 use PragmaRX\Countries\Package\Services\Countries;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -33,7 +32,7 @@ class BusController extends Controller
 
         $validated = $request->validate([
             'name'=>'required|unique:buses',
-            'image_url'=>'file',
+            'image_url'=>'file|max:10240',
             'body'=>'required',
             'amount'=>'required',
             'address'=>'required',
@@ -46,6 +45,7 @@ class BusController extends Controller
             'date'=>'required|date',
             'time'=>'required|date_format:H:i',
             'route'=>'required',
+            'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
 
         $countries = new Countries;
@@ -54,7 +54,7 @@ class BusController extends Controller
         if(!in_array($validated['from'], $states) || !in_array($validated['to'], $states)){
             return abort(422);
         } else{
-            $validated['image_url'] = request('image_url')->store('buses');
+        $validated['image_url'] = request('image_url')->store('buses');
 
         $bus = Bus::create([
             'name'=>$validated['name'],
@@ -80,8 +80,7 @@ class BusController extends Controller
          $bus->addSeat($i);
         }
         $bus->addSeat(($validated['rows']*4) + 1);
-        Alert::success('Bus Create', 'The bus has been created successfully');
-        return redirect()->route('buses')->with('create_message', 'Bus created Successfully');
+        return redirect()->route('buses')->with('success', trans('The bus has been created successfully'));
         }
 
 
@@ -98,7 +97,7 @@ class BusController extends Controller
     }
 
     public function showbuses(){
-        $buses = Bus::latest()->get();
+        $buses = Bus::latest()->paginate(10);
         return view('bus', compact('buses'));
     }
 
@@ -116,6 +115,7 @@ class BusController extends Controller
         $validated = $request->validate([
             'name'=>['required', Rule::unique('buses')->ignore($bus)],
             'body'=>'required',
+            'image_url'=>'file|max:10240',
             'amount'=>'required',
             'platenumber'=>'required',
             'address'=>'required',
@@ -126,8 +126,11 @@ class BusController extends Controller
             'to'=>'required|max:30',
             'date'=>'required|date',
             'time'=>'required|date_format:H:i',
-            'route'=>'required'
+            'route'=>'required',
+            'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
+
+        $validated['image_url'] = request('image_url')->store('buses');
 
         if($bus->rows > $validated['rows']){
             for ($i=1; $i < (($bus->rows - $validated['rows'])*4)+1; $i++) {
@@ -144,21 +147,19 @@ class BusController extends Controller
         }
         $bus->update($validated);
         $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')));
-        Alert::success('Bus Update', 'The bus has been updated');
-        return redirect()->route('ShowBus', $bus)->with('update_message', 'The Bus has been updated successfully');
+        return redirect()->route('ShowBus', $bus)->with('success', trans('The bus has been updated'));
     }
 
     public function removeBus(Bus $bus){
         Bus::where('id', $bus->id)->delete();
-        return redirect()->route('buses')->with('message_bus', 'Bus removed Successfuly');
+        return redirect()->route('buses')->with('success', trans('The bus was removed'));
     }
 
     public function takeseat(Request $request, Bus $bus){
         $string = $request->seats_id;
         $array = explode(',', $string);
         $bus->seats_to_user($array, $bus->user);
-        Alert::success('Seat Taken', 'You have taken a seat successfully');
-        return redirect()->back()->with('seat_message', 'Seat has been taken');
+        return redirect()->back()->with('success', trans('You have taken a seat successfully'));
     }
 
     public function payseat(Request $request, Bus $bus){
@@ -178,8 +179,7 @@ class BusController extends Controller
             $client->messages->create($request->user()->phone_number,
             ['from' => $twilio_number, 'body' => 'You have taken the seat '.$request->seats_id.' with the price of '.$fare] );
             $bus->user->notify(new BusNotification($request->seats_id, $user));
-            Alert::toast('Seat reserved', 'success');
-            return redirect()->back()->with('seat_message', 'Seat(s) has been reserved');
+            return redirect()->back()->with('toast_success', trans('Seat(s) has been reserved'));
         }
     }
 
@@ -201,16 +201,14 @@ class BusController extends Controller
         $twilio_number = getenv("TWILIO_NUMBER");
         $client = new Client($account_sid, $auth_token);
         $client->messages->create($user_phone,
-                ['from' => $twilio_number, 'body' => 'The seat: '.$request['seat'].' was revoked and your Money will be refunded, immediately!'] );
+                ['from' => $twilio_number, 'body' => trans('The seat: ').$request['seat'].trans(' was revoked and your Money will be refunded, immediately!')] );
         $bus1->revokeSeat($request['seat']);
-        Alert::info('Revoke Seat', 'You have successfully revoked seat '.$request['seat']);
-        return redirect()->back()->with('revoke_message', 'Seat revoked');
+        return redirect()->back()->with('success', trans('You have successfully revoked seat ').$request['seat']);
     }
 
     public function resetbus(Bus $bus){
         $bus->resetbus();
-        Alert::info('Bus Reset', 'Bus Reseted successfully');
-        return redirect()->back()->with('reset_message', 'You have Successfully reseted this bus!');
+        return redirect()->back()->with('success', trans('You have Successfully reseted this bus!'));
     }
 }
 

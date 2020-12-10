@@ -8,14 +8,14 @@
                 <div class="widget logincontainer shadow-lg">
                     <h3 class="darkcolor bottom30 text-center text-lg-left">{{ __('Resend Verification Link') }}</h3>
                     <div class="card-body">
-                        @if (session('resent'))
+                        @if (session('message'))
                             <div class="alert alert-success" role="alert">
-                                {{ __('A fresh verification link has been sent to your email address.') }}
+                                {{ __('A fresh verification link has been sent to your phone number.') }}
                             </div>
                         @endif
 
-                        {{ __('Before proceeding, please check your email for a verification link.') }}
-                        {{ __('If you did not receive the email') }},
+                        {{ __('Before proceeding, please check your sms for a verification link.') }}
+                        {{ __('If you did not receive the sms'.$phone) }},
                         <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                             @csrf
                             <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('Please Resend Link') }}</button>

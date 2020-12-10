@@ -4,9 +4,9 @@
 <!-- Services us -->
 <section id="our-services" class="padding whitebox">
     <div class="container">
-        <div class="row whitebox top15">
-            <div class="col-lg-12 col-md-12 ">
-                <div class="widget shadow heading_space text-center text-md-left">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 whitebox">
+                <div class="widget logincontainer shadow-lg">
                     <h4 class="text-capitalize darkcolor bottom20">Edit your profile</h4>
                     <form action="{{ route('editprofile', auth()->user()) }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -18,11 +18,8 @@
                                             <p style="color: red;">{{ $message }}</p>
                                         @enderror
                             </div>
-                            <div class="form-group ml-2">
-                                <div class="row">
+                            <div class="form-group mr-1">
                                 <input class="form-control ml-3" style="width: 280px;" type="file" placeholder="Profile Image:" required id="image_url" name="image_url">
-                                <img src="{{ asset('storage/'.$user->image_url) }}" alt="user profile image" width="100px" height="100px">
-                                </div>
                                 @error('image_url')
                                             <p style="color: red;">{{ $message }}</p>
                                 @enderror

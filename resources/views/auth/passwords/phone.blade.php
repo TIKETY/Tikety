@@ -14,15 +14,15 @@
                             {{ session('status') }}
                         </div>
                         @endif
-                        <form class="getin_form border-form" id="ResetPassword" method="POST" action="{{ route('password.email') }}">
+                        <form class="getin_form border-form" id="ResetPassword" method="POST" action="{{ route('forgot_password') }}">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
-                                        <label for="loginEmail" class="mb-3 pl-0">Please enter Email or Username you remember!</label>
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        <label for="loginphone_number" class="mb-3 pl-0">Please enter Phone Number!</label>
+                                        <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number" autofocus>
 
-                                @error('email')
+                                @error('phone_number')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -31,7 +31,6 @@
                                 </div>
                                 <div class="col-sm-12 forget-buttons">
                                     <button type="submit" class="button btn-primary">Reset</button>
-                                    <button type="button" class="button btn-dark ml-2">Cancel</button>
                                 </div>
                             </div>
                         </form>

@@ -17,9 +17,15 @@
     <link rel="stylesheet" href="{{ asset('css_style/revolution/navigation.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/revolution/settings.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/style.css') }}">
+    @yield('header_script')
+
+        <x-recaptcha>
+            stayconnected
+        </x-recaptcha>
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">
@@ -138,11 +144,11 @@
                       </div>
                     @endif
                     <div class="col-md-12 col-sm-12">
-                        <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('connected', app()->getLocale()) }}">
+                        <form id="stayconnected" class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('connected', app()->getLocale()) }}">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 col-sm-12" id="result"></div>
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-9 col-sm-9">
                                     <div class="form-group">
                                         <label for="userName" class="d-none"></label>
                                         <input class="form-control" type="text" placeholder="{{ __('First Name:') }}" required id="name" name="name">
@@ -150,8 +156,11 @@
                                         <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                     </div>
+                                    This site is protected by reCAPTCHA and the Google.
+                                    <a style="color: #006dbf;" href="https://policies.google.com/privacy">Privacy Policy</a> and
+                                    <a style="color: #006dbf;" href="https://policies.google.com/terms">Terms of Service</a> apply.
                                 </div>
-                                <div class="col-md-6 col-sm-12">
+                                <div class="col-md-3 col-sm-3">
                                     <div class="form-group">
                                         <label for="email" class="d-none"></label>
                                         <input class="form-control" type="email" placeholder="{{ __('Email:') }}" required id="email" name="email">
@@ -159,9 +168,10 @@
                                             <p class="danger" style="color: red;">{{ $message }}</p>
                                         @enderror
                                     </div>
+
                                 </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <button type="submit" class="button btn-primary w-100" id="submit_btn">{{ __('Subscribe') }}</button>
+                                <div class="col-md-3 col-sm-6 mt-3">
+                                    <button type="submit" data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" class="button btn-primary w-100" id="submit_btn">{{ __('Subscribe') }}</button>
                                 </div>
                             </div>
                         </form>

@@ -6,14 +6,14 @@
     <section id="our-services" class="padding whitebox">
         <div class="container">
             <div class="col-md-12 text-center heading_space wow fadeIn" data-wow-delay="300ms">
-                <div class="dropdown nav-item">
+                <div class="dropdown nav-item row align-items-center justify-content-center mb-3">
                     <input
                         class="dropdown-toggle form-control live-search-box"
                         id="searchbar"
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false"
-                        placeholder="Bus Name"
+                        placeholder="{{ __('Search by Bus Name') }}"
                         style="width: 250px;">
                     <div class="dropdown-menu live-search-list" aria-labelledby="dropdownMenuButton" id="results">
                         <li>
@@ -78,6 +78,9 @@
                     </div>
                 </div>
                 @endforeach
+            </div>
+            <div class="row align-items-center justify-content-center mt-3">
+                {{ $buses->links('pagination.pagination') }}
             </div>
         </div>
     </section>

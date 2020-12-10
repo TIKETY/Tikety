@@ -20,6 +20,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">
@@ -374,50 +375,6 @@
         </div>
     </section>
     <!--Mobile Apps ends-->
-    <!-- Contact US -->
-    <section id="stayconnect" class="whitebox position-relative">
-        <div class="container">
-            <div class="contactus-wrapp bglight rounded-lg shadow-lg">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="heading-title wow fadeInUp text-center text-md-left" data-wow-delay="300ms">
-                            <h3 class="darkcolor bottom20">{{ __('Stay Connected') }}</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-sm-12">
-                        <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactForm') }}">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12" id="result"></div>
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="form-group">
-                                        <label for="userName" class="d-none"></label>
-                                        <input class="form-control" type="text" placeholder="{{ __('First Name:') }}" required id="name" name="name">
-                                        @error('name')
-                                            <p class="danger">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="email" class="d-none"></label>
-                                        <input class="form-control" type="email" placeholder="{{ __('Email:') }}" required id="email" name="email">
-                                        @error('email')
-                                            <p class="danger">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <button type="submit" class="button btn-primary w-100" id="submit_btn">{{ __('Subscribe') }}</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Contact US ends -->
     <!--Site Footer Here-->
     <footer id="site-footer" class=" bgdark padding_top">
         <div class="container">

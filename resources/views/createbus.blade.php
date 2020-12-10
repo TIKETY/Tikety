@@ -1,5 +1,11 @@
 @extends('layout.app')
 
+@section('header_script')
+    <x-recaptcha>
+        buscreate
+    </x-recaptcha>
+@endsection
+
 @section('content')
 
     <!-- Contact US -->
@@ -13,7 +19,7 @@
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
-                            <form class="getin_form wow fadeInUp" enctype="multipart/form-data" data-wow-delay="400ms" method="POST" action="{{ route('CreateBusForm', auth()->user()) }}">
+                            <form id="buscreate" class="getin_form wow fadeInUp" enctype="multipart/form-data" data-wow-delay="400ms" method="POST" action="{{ route('CreateBusForm', auth()->user()) }}">
                                 @csrf
                                 <div class="row px-2">
                                     <div class="col-md-6 col-sm-6">
@@ -148,7 +154,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
-                                        <button type="submit" id="submit_btn1" class="button btn-primary w-100">{{ __('Create Bus') }}</button>
+                                        <button type="submit" id="submit_btn1" data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" class="g-recaptcha button btn-primary w-100">{{ __('Create Bus') }}</button>
                                     </div>
                                 </div>
                             </form>

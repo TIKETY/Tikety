@@ -1,5 +1,11 @@
 @extends('layout.app')
 
+@section('header_script')
+    <x-recaptcha>
+        reset
+    </x-recaptcha>
+@endsection
+
 @section('content')
     <!-- Main sign-up section starts -->
     <section id="ourfaq" class="whitebox position-relative padding">
@@ -8,23 +14,15 @@
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 whitebox">
                     <div class="widget logincontainer shadow-lg">
                         <h3 class="darkcolor bottom35 text-center text-md-left">Create Your account </h3>
-                        <form class="getin_form border-form" id="register" method="POST" action="{{ route('password.update') }}">
+                        @error('message')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <form class="getin_form border-form" id="reset" method="POST" action="{{ route('resetPassword') }}">
                             @csrf
-                            <input type="hidden" name="token" value="{{ $token }}">
+                            @method('PUT')
                             <div class="row">
-
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="form-group bottom35">
-                                        <label for="registerEmail" class="d-none"></label>
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                        @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
-                                </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
                                         <label for="registerPass" class="d-none"></label>
@@ -44,8 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <button type="submit" class="button btn-primary w-100">Register</button>
-                                    <p class="top20 log-meta"> Already have an account? &nbsp;<a href="login.html" class="defaultcolor">Sign In</a> </p>
+                                    <button type="submit" data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" class="g-recaptcha button btn-primary w-100">Reset Password</button>
                                 </div>
                             </div>
                         </form>

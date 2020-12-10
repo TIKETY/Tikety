@@ -49,4 +49,8 @@ class RegularController extends Controller
         auth()->user()->verifyphone(auth()->user()->phone_number);
         return redirect()->back()->with('number_message', 'The verification Code was resent');
     }
+
+    public function forgot_password(){
+        return view('auth.passwords.phone');
+    }
 }

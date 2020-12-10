@@ -9,6 +9,8 @@ use App\Models\Contact;
 use App\Notifications\ContactNotification;
 use App\Models\Bus;
 use App\Models\User;
+use App\Rules\RecaptchaRule;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactController extends Controller
 {
@@ -16,13 +18,13 @@ class ContactController extends Controller
         $validated = $request->validate([
             'name'=>'required',
             'email'=>'required|email|unique:contacts',
+            'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
         Contact::create([
             'name'=>$validated['name'],
             'email'=>$validated['email'],
         ]);
-
-        return redirect()->back()->with('message_connected', 'You are Connected');
+        return redirect()->back()->with('toast_success', trans('Contact Made successfully'));
     }
 
     public function contact(Request $request){
@@ -30,14 +32,15 @@ class ContactController extends Controller
             'name'=>'required',
             'email'=>'required|email',
             'body'=>'required|max:255',
+            'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
+
         Contact::create([
             'name'=>$validated['name'],
             'email'=>$validated['email'],
             'body'=>$validated['body'],
         ]);
-
-        return redirect()->route('home');
+        return redirect()->route('home')->with('toast_success', trans('Contact Made successfully'));
     }
 
     public function contactbus(Bus $bus){
@@ -59,8 +62,7 @@ class ContactController extends Controller
 
 
         Mail::to($user->email)->send(new NotifyUser($details));
-
-        return redirect()->back()->with('message_contact', 'You have contacted this service provider');
+        return redirect()->back()->with('toast_success', trans('You have contacted this service Provider'));
 
     }
 }
