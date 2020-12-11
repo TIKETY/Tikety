@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.standard_app')
 
 @section('content')
 <!-- reset password -->
@@ -21,7 +21,7 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
                                         <label for="loginverification_code" class="mb-3 pl-0">Please enter the Verification Code which was sent to {{ auth()->user()->phone_number }}</label>
-                                        <input id="verification_code" type="verification_code" class="form-control @error('verification_code') is-invalid @enderror" name="verification_code" required autocomplete="verification_code" autofocus>
+                                        <input id="verification_code" type="verification_code" class="form-control @error('verification_code', app()->getLocale()) is-invalid @enderror" name="verification_code" required autocomplete="verification_code" autofocus>
 
                                 @error('verification_code')
                                     <span class="invalid-feedback" role="alert">

@@ -41,7 +41,7 @@
                 </h2>
                    {{-- @can('create_bus', Role::class) --}}
                 <div class="col-md-8 offset-md-2">
-                    <p class="mb-n3"><a class="btn btn-primary" href="{{ route('CreateBus') }}">{{ __('Add A Bus') }}</a></p>
+                    <p class="mb-n3"><a class="btn btn-primary" href="{{ route('CreateBus', app()->getLocale()) }}">{{ __('Add A Bus') }}</a></p>
                 </div>
                 {{-- @endcan --}}
             </div>
@@ -56,18 +56,18 @@
                                 src="{{ asset('storage/'.$bus->image_url) }}"
                             @endif ></div>
                             <div class="overlay">
-                                <a href="{{ route('ShowBus', $bus->id) }}" class="overlay_center border_radius"><i class="fa fa-eye"></i></a>
+                                <a href="{{ route('ShowBus',['language' => app()->getLocale(), 'bus' => $bus->id]) }}" class="overlay_center border_radius"><i class="fa fa-eye"></i></a>
                             </div>
                         </div>
                         <div class="services-content brand text-center text-md-left">
-                            <h3 class="bottom10 darkcolor"><a href="{{ route('ShowBus', $bus->id) }}">{{ $bus->name }}</a></h3>
+                            <h3 class="bottom10 darkcolor"><a href="{{ route('ShowBus', ['language'=>app()->getLocale(), 'bus'=>$bus->id]) }}">{{ $bus->name }}</a></h3>
                             <p class="bottom15">{{ $bus->route }}
                             </p>
                             @auth
                             @can('isowner', $bus)
-                            <a href="{{ route('UpdateBus', $bus->id) }}" class="button-readmore">{{ __('Edit Bus') }}</a>
+                            <a href="{{ route('UpdateBus', ['language' => app()->getLocale(), 'bus' => $bus->id]) }}" class="button-readmore">{{ __('Edit Bus') }}</a>
                             @if (!$bus->checkfleet())
-                            <form action="{{ route('AddBusFleet', $bus) }}" method="POST">
+                            <form action="{{ route('AddBusFleet', ['language' => app()->getLocale(), 'bus' => $bus]) }}" method="POST">
                                 @csrf
                             <button type="submit" class="mt-3  btn btn-primary">{{ __('Add to Fleet') }}</button>
                             </form>

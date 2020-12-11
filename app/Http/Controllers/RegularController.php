@@ -41,7 +41,7 @@ class RegularController extends Controller
             auth()->user()->verify();
             return redirect()->route('role')->with('message_role', 'You have registered your number Successfully');
         } else{
-            return redirect()->route('phoneverified')->with('phone_message','Oops, something is wrong');
+            return redirect()->route('phoneverified', app()->getLocale())->with('phone_message','Oops, something is wrong');
         }
     }
 

@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.standard_app')
 
 @section('content')
 <!-- reset password -->
@@ -14,7 +14,7 @@
                             {{ session('status') }}
                         </div>
                         @endif
-                        <form class="getin_form border-form" id="ResetPassword" method="POST" action="{{ route('forgot_password') }}">
+                        <form class="getin_form border-form" id="ResetPassword" method="POST" action="{{ route('forgot_password', ['language'=>app()->getLocale()]) }}">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">

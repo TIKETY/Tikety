@@ -40,7 +40,7 @@ class ContactController extends Controller
             'email'=>$validated['email'],
             'body'=>$validated['body'],
         ]);
-        return redirect()->route('home')->with('toast_success', trans('Contact Made successfully'));
+        return redirect()->route('home', app()->getLocale())->with('toast_success', trans('Contact Made successfully'));
     }
 
     public function contactbus(Bus $bus){

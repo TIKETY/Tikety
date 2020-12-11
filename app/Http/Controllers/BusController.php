@@ -27,9 +27,8 @@ class BusController extends Controller
         return view('createbus', compact('states'));
     }
 
-    public function CreateBusForm(Request $request, User $user){
+    public function CreateBusForm($language, Request $request, User $user){
         $user = auth()->user();
-
         $validated = $request->validate([
             'name'=>'required|unique:buses',
             'image_url'=>'file|max:10240',
@@ -54,7 +53,10 @@ class BusController extends Controller
         if(!in_array($validated['from'], $states) || !in_array($validated['to'], $states)){
             return abort(422);
         } else{
-        $validated['image_url'] = request('image_url')->store('buses');
+
+        if(!is_null($validated['image_url'])){
+            $validated['image_url'] = request('image_url')->store('buses');
+        }
 
         $bus = Bus::create([
             'name'=>$validated['name'],
@@ -80,13 +82,13 @@ class BusController extends Controller
          $bus->addSeat($i);
         }
         $bus->addSeat(($validated['rows']*4) + 1);
-        return redirect()->route('buses')->with('success', trans('The bus has been created successfully'));
+        return redirect()->route('buses', app()->getLocale())->with('success', trans('The bus has been created successfully'));
         }
 
 
     }
 
-    public function show(Bus $bus){
+    public function show($language, Bus $bus){
         $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')));
 
         return view('busdetail', [
@@ -101,7 +103,7 @@ class BusController extends Controller
         return view('bus', compact('buses'));
     }
 
-    public function updatebus(Bus $bus){
+    public function updatebus($language, Bus $bus){
         $countries = new Countries;
         $states = $countries->whereNameCommon('Tanzania')->first()->hydrateStates()->states->pluck('name', 'postal')->toArray();
         return view('updatebus', [
@@ -147,29 +149,29 @@ class BusController extends Controller
         }
         $bus->update($validated);
         $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')));
-        return redirect()->route('ShowBus', $bus)->with('success', trans('The bus has been updated'));
+        return redirect()->route('ShowBus', ['bus'=>$bus, 'language'=>app()->getLocale()])->with('success', trans('The bus has been updated'));
     }
 
-    public function removeBus(Bus $bus){
+    public function removeBus($language, Bus $bus){
         Bus::where('id', $bus->id)->delete();
-        return redirect()->route('buses')->with('success', trans('The bus was removed'));
+        return redirect()->route('buses', app()->getLocale())->with('success', trans('The bus was removed'));
     }
 
-    public function takeseat(Request $request, Bus $bus){
+    public function takeseat($language, Request $request, Bus $bus){
         $string = $request->seats_id;
         $array = explode(',', $string);
         $bus->seats_to_user($array, $bus->user);
         return redirect()->back()->with('success', trans('You have taken a seat successfully'));
     }
 
-    public function payseat(Request $request, Bus $bus){
+    public function payseat($language, Request $request, Bus $bus){
         $array = explode(',', $request->seats_id);
         $seats = sizeof($array);
         $user = auth()->user()->name;
         $fare = ($seats*$bus->amount); //for later use of integrating with tigopesa and mpesa push
         if(!auth()->user()->PhoneIsVerified()){
             auth()->user()->verifyphone(auth()->user()->phone_number);
-            return redirect()->route('verification_code')->with('number_message', 'Verification code was sent to your number');
+            return redirect()->route('verification_code', app()->getLocale())->with('number_message', 'Verification code was sent to your number');
         } else{
             $bus->seats_to_user($array, auth()->user());
             $account_sid = getenv("TWILIO_SID");
@@ -192,7 +194,7 @@ class BusController extends Controller
         return view('travel-output', compact('buses'));
     }
 
-    public function revokeSeat(Request $request, Bus $bus){
+    public function revokeSeat($language, Request $request, Bus $bus){
         $bus1 = Bus::find($bus->id);
         $seatowner = $bus1->seatowner($request['seat']);
         $user_phone = User::find($seatowner)->pluck('phone_number')->flatten();
@@ -206,7 +208,7 @@ class BusController extends Controller
         return redirect()->back()->with('success', trans('You have successfully revoked seat ').$request['seat']);
     }
 
-    public function resetbus(Bus $bus){
+    public function resetbus($language, Bus $bus){
         $bus->resetbus();
         return redirect()->back()->with('success', trans('You have Successfully reseted this bus!'));
     }

@@ -19,12 +19,6 @@
     <link rel="stylesheet" href="{{ asset('css_style/style.css') }}">
     @yield('header_script')
 
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-     <script>
-       function onSubmit(connect) {
-         document.getElementById("stayconnected").submit();
-       }
-    </script>
 </head>
 
 <body>
@@ -131,59 +125,6 @@
     <!-- header -->
     @yield('content')
     @include('sweetalert::alert')
-    <!-- Contact US -->
-    <section id="stayconnect" class="whitebox position-relative">
-        <div class="container">
-            <div class="contactus-wrapp shadow-lg">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="heading-title wow fadeInUp text-center text-md-left" data-wow-delay="300ms">
-                            <h3 class="darkcolor bottom20">{{ __('Stay Connected') }}</h3>
-                        </div>
-                    </div>
-                    @if (session('message_connected'))
-                    <div class="alert alert-success ml-3" role="alert">
-                       {{ session('message_connected') }}
-                      </div>
-                    @endif
-                    <div class="col-md-12 col-sm-12">
-                        <form id="stayconnected" class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('connected', app()->getLocale()) }}">
-                            @csrf
-                            <div class="row">
-                                <div class="col-md-12 col-sm-12" id="result"></div>
-                                <div class="col-md-9 col-sm-9">
-                                    <div class="form-group">
-                                        <label for="userName" class="d-none"></label>
-                                        <input class="form-control" type="text" placeholder="{{ __('First Name:') }}" required id="name" name="name">
-                                        @error('name')
-                                        <p class="danger" style="color: red;">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                    {{ __('This site is protected by reCAPTCHA and the Google.')}}
-                                    <a style="color: #006dbf;" href="https://policies.google.com/privacy">{{__('Privacy Policy')}}</a> {{__('and')}}
-                                    <a style="color: #006dbf;" href="https://policies.google.com/terms">{{__('Terms of Service')}}</a> {{__('apply.')}}
-                                </div>
-                                <div class="col-md-3 col-sm-3">
-                                    <div class="form-group">
-                                        <label for="email" class="d-none"></label>
-                                        <input class="form-control" type="email" placeholder="{{ __('Email:') }}" required id="email" name="email">
-                                        @error('email')
-                                            <p class="danger" style="color: red;">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-
-                                </div>
-                                <div class="col-md-3 col-sm-6 mt-3">
-                                    <button type="submit" data-callback="connect" data-sitekey="{{ config('services.recaptcha.key') }}" class="button btn-primary w-100" id="submit_btn">{{ __('Subscribe') }}</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Contact US ends -->
     <!--Site Footer Here-->
     <footer id="site-footer" class=" bgdark padding_top">
         <div class="container">

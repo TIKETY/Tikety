@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.standard_app')
 
 @section('header_script')
     <x-recaptcha>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
-                            <form id="buscreate" class="getin_form wow fadeInUp" enctype="multipart/form-data" data-wow-delay="400ms" method="POST" action="{{ route('CreateBusForm', auth()->user()) }}">
+                            <form id="buscreate" class="getin_form wow fadeInUp" enctype="multipart/form-data" data-wow-delay="400ms" method="POST" action="{{ route('CreateBusForm', ['language'=>app()->getLocale(), 'user'=>auth()->user()]) }}">
                                 @csrf
                                 <div class="row px-2">
                                     <div class="col-md-6 col-sm-6">

@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.standard_app')
 
 @section('content')
    <!-- sign-in -->
@@ -8,7 +8,7 @@
             <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 whitebox">
                 <div class="widget logincontainer shadow-lg">
                     <h3 class="darkcolor bottom30 text-center text-lg-left">{{ __('Login') }}</h3>
-                    <form class="getin_form border-form" id="login" method="POST" action="{{ route('login') }}">
+                    <form class="getin_form border-form" id="login" method="POST" action="{{ route('login', app()->getLocale()) }}">
                         @csrf
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
@@ -47,13 +47,13 @@
                             </div>
                             <div class="col-sm-12">
                                 <button type="submit" class="button gradient-btn">{{ __('Login') }}</button>
-                                <a href="{{ route('loginfacebook') }}" class="button gradient-btn">{{ __('Login with Facebook') }}</a>
+                                <a href="{{ route('loginfacebook', app()->getLocale()) }}" class="button gradient-btn">{{ __('Login with Facebook') }}</a>
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('forgot') }}">
+                                    <a class="btn btn-link" href="{{ route('forgot', ['language'=>app()->getLocale()]) }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
-                                <p class="top30 mb-0"> {{ __('Don\'t have an account?') }} &nbsp;<a href="{{ route('register') }}" class="defaultcolor">{{ __('Sign Up Now') }}</a> </p>
+                                <p class="top30 mb-0"> {{ __('Don\'t have an account?') }} &nbsp;<a href="{{ route('register', app()->getLocale()) }}" class="defaultcolor">{{ __('Sign Up Now') }}</a> </p>
                             </div>
                         </div>
                     </form>

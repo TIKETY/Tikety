@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.standard_app')
 
 @section('header_script')
     <x-recaptcha>
@@ -19,7 +19,7 @@
                             <strong>{{ $message }}</strong>
                             </span>
                         @enderror
-                        <form class="getin_form border-form" id="reset" method="POST" action="{{ route('resetPassword') }}">
+                        <form class="getin_form border-form" id="reset" method="POST" action="{{ route('resetPassword', ['language'=>app()->getLocale()]) }}">
                             @csrf
                             @method('PUT')
                             <div class="row">

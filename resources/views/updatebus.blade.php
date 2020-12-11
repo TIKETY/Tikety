@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.standard_app')
 
 @section('header_script')
     <x-recaptcha>updatebus</x-recaptcha>
@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
-                            <form id="updatebus" class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('UpdateBusForm', $bus->id) }}">
+                            <form id="updatebus" class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('UpdateBusForm', ['language'=>app()->getLocale(), 'bus'=>$bus->id]) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="row px-2">

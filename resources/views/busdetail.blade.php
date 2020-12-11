@@ -81,7 +81,7 @@
                             {{ session('revoke_message') }}
                             </div>
                     @endif
-                        <form action="{{ route('revokeSeat', $bus) }}" method="POST">
+                        <form action="{{ route('revokeSeat', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="row">
@@ -127,13 +127,13 @@
                     {{-- @if (auth()->user()->id == $bus->user_id) --}}
                     @can('isowner', $bus)
                     <div class="row">
-                        <a href="{{ route('UpdateBus', $bus) }}" class="btn btn-primary mr-3">{{ __('Edit Bus') }}</a>
-                        <form action="{{ route('removebus', $bus) }}" method="POST">
+                        <a href="{{ route('UpdateBus', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" class="btn btn-primary mr-3">{{ __('Edit Bus') }}</a>
+                        <form action="{{ route('removebus', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="POST">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-primary mr-3" >{{ __('Remove Bus') }}</button>
                         </form>
-                        <form action="{{ route('resetbus', $bus) }}" method="POST">
+                        <form action="{{ route('resetbus', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-primary" >{{ __('Reset Bus') }}</button>
                         </form>
@@ -555,7 +555,7 @@
                             </div>
                             @endfor
                         @can('isowner', $bus)
-                        <form action="{{ route('takeseat', $bus) }}" method="post">
+                        <form action="{{ route('takeseat', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="post">
                             @csrf
                             <div class="col-md-12 col-sm-12">
                                 <input type="hidden" id="seats_id" name="seats_id">
@@ -563,7 +563,7 @@
                             </div>
                         </form>
                         @elsecan('use', $bus)
-                        <form action="{{ route('payseat', $bus) }}" method="post">
+                        <form action="{{ route('payseat', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="post">
                             @csrf
                             <div class="col-md-12 col-sm-12">
                                 <input type="hidden" id="seats_id" name="seats_id">

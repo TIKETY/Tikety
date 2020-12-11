@@ -37,7 +37,7 @@
             </div>
         </div>
         @can('Have_Multiple_Bus', Role::class)
-        <a href="{{ route('multiplebus') }}" class="btn btn-primary">Testing button for the Master</a>
+        <a href="{{ route('multiplebus', app()->getLocale()) }}" class="btn btn-primary">Testing button for the Master</a>
         @endcan
     </div>
 </section>

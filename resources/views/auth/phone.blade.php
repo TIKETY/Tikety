@@ -15,8 +15,8 @@
                         @endif
 
                         {{ __('Before proceeding, please check your sms for a verification link.') }}
-                        {{ __('If you did not receive the sms'.$phone) }},
-                        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                        {{ __('If you did not receive the sms') }},
+                        <form class="d-inline" method="POST" action="{{ route('resend', ['language'=>app()->getLocale(), 'phone'=>$phone]) }}">
                             @csrf
                             <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('Please Resend Link') }}</button>
                         </form>

@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.standard_app')
 
 @section('content')
 {{-- traveling query --}}
@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-sm-12">
-                    <form class="wow fadeInUp" method="POST" action="{{ route('TravelForm') }}">
+                    <form class="wow fadeInUp" method="POST" action="{{ route('TravelForm', app()->getLocale()) }}">
                         @csrf
                         <div class="row">
                             <div class="col-md-12 col-sm-12" id="result"></div>

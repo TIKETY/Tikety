@@ -31,14 +31,14 @@
     <header class="site-header" id="header">
         <nav class="navbar navbar-expand-lg transparent-bg static-nav">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('welcome') }}">
+                <a class="navbar-brand" href="{{ route('welcome', app()->getLocale()) }}">
                     <img src="{{ asset('image/logo.png') }}" alt="logo" class="logo-default">
                     <img src="{{ asset('image/logo.png') }}" alt="logo" class="logo-scrolled">
                 </a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('welcome') }}">
+                            <a class="nav-link text-black-50" href="{{ route('welcome', app()->getLocale()) }}">
                                 {{ __('Home') }}
                             </a>
                         </li>
@@ -46,33 +46,42 @@
                             <a class="nav-link text-black-50" href="{{ route('faq') }}">{{ __('FAQ') }}</a>
                         </li> --}}
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('about') }}">{{ __('About') }}</a>
+                            <a class="nav-link text-black-50" href="{{ route('about', app()->getLocale()) }}">{{ __('About') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('contact') }}">{{ __('Contact') }}</a>
+                            <a class="nav-link text-black-50" href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact') }}</a>
                         </li>
+                        @if (app()->getLocale() === 'sw')
+                        <li class="nav-item">
+                            <a class="nav-link text-black-50" href="{{ route(Route::currentRouteName(), 'en') }}"><img src="{{ asset('image/uk.png') }}" alt=""></a>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link text-black-50" href="{{ route(Route::currentRouteName(), 'sw') }}"><img src="{{ asset('image/tz.png') }}" alt=""></a>
+                        </li>
+                        @endif
                         @auth
                         {{-- @can('create_multiple_buses', Role::class) --}}
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('ShowFleet', auth()->user()) }}">{{ __('My Fleet') }}</a>
+                            <a class="nav-link text-black-50" href="{{ route('ShowFleet', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}">{{ __('My Fleet') }}</a>
                         </li>
                         {{-- @endcan --}}
                         {{-- @can('create_bus', Role::class) --}}
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('mybuses') }}">{{ __('My Bus') }}</a>
+                            <a class="nav-link text-black-50" href="{{ route('mybuses', app()->getLocale()) }}">{{ __('My Bus') }}</a>
                         </li>
                         {{-- @endcan --}}
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('buses') }}">{{ __('Buses') }}</a>
+                            <a class="nav-link text-black-50" href="{{ route('buses', app()->getLocale()) }}">{{ __('Buses') }}</a>
                         </li>
                         <li class="nav-item">
-                            <form action="{{ route('logout') }}" method="POST">
+                            <form action="{{ route('logout', app()->getLocale()) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn nav-link text-black-50">{{ __('Logout') }}</button>
                             </form>
                         </li>
                         <li class="nav-item">
-                        <a href="{{ route('profile', auth()->user()) }}"><img @if (is_null(auth()->user()->image_url))
+                        <a href="{{ route('profile', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}"><img @if (is_null(auth()->user()->image_url))
                             src="{{ asset('image/tikety_user.png') }}"
                         @else
                             src="{{ asset('storage/'.auth()->user()->image_url) }}"
@@ -81,13 +90,13 @@
                         @endauth
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('buses') }}">{{ __('Buses') }}</a>
+                            <a class="nav-link text-black-50" href="{{ route('buses', app()->getLocale()) }}">{{ __('Buses') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link text-black-50" href="{{ route('login', app()->getLocale()) }}">{{ __('Login') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
+                            <a class="nav-link text-black-50" href="{{ route('register', app()->getLocale()) }}">{{ __('Sign Up') }}</a>
                         </li>
                         @endguest
                     </ul>
@@ -106,7 +115,7 @@
                 <nav class="side-nav w-100">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('welcome') }}">
+                            <a class="nav-link" href="{{ route('welcome', app()->getLocale()) }}">
                                 {{ __('Home') }}
                             </a>
                         </li>
@@ -114,23 +123,23 @@
                             <a class="nav-link" href="{{ route('faq') }}">{{ __('FAQ') }}</a>
                         </li> --}}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('about') }}">{{ __('About') }}</a>
+                            <a class="nav-link" href="{{ route('about', app()->getLocale()) }}">{{ __('About') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">{{ __('Contact') }}</a>
+                            <a class="nav-link" href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact') }}</a>
                         </li>
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('ShowFleet', auth()->user()) }}">{{ __('Fleet') }}</a>
+                            <a class="nav-link" href="{{ route('ShowFleet', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}">{{ __('Fleet') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('mybuses') }}">{{ __('My Bus') }}</a>
+                            <a class="nav-link" href="{{ route('mybuses', app()->getLocale()) }}">{{ __('My Bus') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('buses') }}">{{ __('Buses') }}</a>
+                            <a class="nav-link" href="{{ route('buses', app()->getLocale()) }}">{{ __('Buses') }}</a>
                         </li>
                         <li class="nav-item">
-                            <form action="{{ route('logout') }}" method="POST">
+                            <form action="{{ route('logout', app()->getLocale()) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn nav-link text-black-50">{{ __('Logout') }}</button>
                             </form>
@@ -138,13 +147,13 @@
                         @endauth
                         @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('buses') }}">{{ __('Buses') }}</a>
+                            <a class="nav-link" href="{{ route('buses', app()->getLocale()) }}">{{ __('Buses') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login', app()->getLocale()) }}">{{ __('Login') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
+                            <a class="nav-link" href="{{ route('register', app()->getLocale()) }}">{{ __('Sign Up') }}</a>
                         </li>
                         @endguest
                     </ul>
@@ -193,7 +202,7 @@
                             data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="s:900;e:Power2.easeInOut;s:900;e:Power2.easeInOut;" data-start="1600" data-splitin="none" data-splitout="none"
                             data-responsive_offset="on">
                             <a class="transition-3 button btn-primary button-padding pagescroll font-13 mr-4" href="#our-feature">{{ __('Learn More') }}</a>
-                            <a class="button btn-primary button-paddingfont-13" href="{{ route('travel') }}">{{ __('Traveling Today?') }}</a>
+                            <a class="button btn-primary button-paddingfont-13" href="{{ route('travel', app()->getLocale()) }}">{{ __('Traveling Today?') }}</a>
                         </div>
                     </li>
                 </ul>
@@ -409,10 +418,10 @@
                     <div class="footer_panel padding_bottom_half bottom20 pl-0 pl-lg-5">
                         <h3 class="whitecolor bottom25">{{ __('Our Services') }}</h3>
                         <ul class="links">
-                            <li><a href="{{ route('welcome') }}">{{ __('Home') }}</a></li>
-                            <li><a href="{{ route('about') }}">{{ __('About') }}</a></li>
-                            <li><a href="{{ route('contact') }}">{{ __('Contact') }}</a></li>
-                            <li><a href="{{ route('faq') }}">{{ __('FAQ') }}'s</a></li>
+                            <li><a href="{{ route('welcome', app()->getLocale()) }}">{{ __('Home') }}</a></li>
+                            <li><a href="{{ route('about', app()->getLocale()) }}">{{ __('About') }}</a></li>
+                            <li><a href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact') }}</a></li>
+                            <li><a href="{{ route('faq', app()->getLocale()) }}">{{ __('FAQ') }}'s</a></li>
                         </ul>
                     </div>
                 </div>

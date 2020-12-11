@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.standard_app')
 
 @section('header_script')
     <x-recaptcha>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
-                            <form id="contact" class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactForm') }}">
+                            <form id="contact" class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactForm', app()->getLocale()) }}">
                                 @csrf
                                 <div class="row px-2">
                                     <div class="col-md-12 col-sm-12" id="result1"></div>
