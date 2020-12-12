@@ -18,13 +18,13 @@ class BusController extends Controller
     public function MyBus(){
         $buses = auth()->user()->bus;
 
-        return view('bus', compact('buses'));
+        return view('bus.mybus', compact('buses'));
     }
 
     public function CreateBus(){
         $countries = new Countries;
         $states = $countries->whereNameCommon('Tanzania')->first()->hydrateStates()->states->pluck('name', 'postal')->toArray();
-        return view('createbus', compact('states'));
+        return view('bus.createbus', compact('states'));
     }
 
     public function CreateBusForm($language, Request $request, User $user){
@@ -91,7 +91,7 @@ class BusController extends Controller
     public function show($language, Bus $bus){
         $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')));
 
-        return view('busdetail', [
+        return view('bus.busdetail', [
             'bus'=>$bus,
             'seats'=>$seats,
             'notifications'=>auth()->user()->unreadNotifications
@@ -100,13 +100,13 @@ class BusController extends Controller
 
     public function showbuses(){
         $buses = Bus::latest()->paginate(10);
-        return view('bus', compact('buses'));
+        return view('bus.bus', compact('buses'));
     }
 
     public function updatebus($language, Bus $bus){
         $countries = new Countries;
         $states = $countries->whereNameCommon('Tanzania')->first()->hydrateStates()->states->pluck('name', 'postal')->toArray();
-        return view('updatebus', [
+        return view('bus.updatebus', [
             'bus'=> $bus,
             'states'=>$states
         ]);
@@ -191,7 +191,7 @@ class BusController extends Controller
 
         $buses = Bus::where('from', $from)->where('to', $to)->get();
 
-        return view('travel-output', compact('buses'));
+        return view('travel.travel-output', compact('buses'));
     }
 
     public function revokeSeat($language, Request $request, Bus $bus){

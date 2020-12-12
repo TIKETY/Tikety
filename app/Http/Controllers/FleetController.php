@@ -11,7 +11,7 @@ class FleetController extends Controller
     public function ShowFleet($language, User $user){
     $fleet = Fleet::where('user_id', $user->id)->get()->pluck('bus_id');
     $buses = Bus::find($fleet);
-    return view('fleet', compact('buses'));
+    return view('fleet.fleet', compact('buses'));
     }
 
     public function AddBusFleet($language, Bus $bus){

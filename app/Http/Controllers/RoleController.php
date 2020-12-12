@@ -10,7 +10,7 @@ class RoleController extends Controller
 {
 
     public function role(){
-        return view('role');
+        return view('registration.role');
     }
 
     public function makeRole($role){
@@ -25,7 +25,7 @@ class RoleController extends Controller
             auth()->user()->addRole($role3);
         }
 
-        return redirect()->route('home');
+        return redirect()->route('home', app()->getLocale());
     }
 
 }

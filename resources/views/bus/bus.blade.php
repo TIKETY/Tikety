@@ -102,7 +102,7 @@
             let nodes = response.hits.map(bus=>{
                 let div= document.createElement('div');
                 // div.innerText= bus.name;
-                div.innerHTML = '<li class=\"mb-1\"><a href=\"showbus/'+bus.id+'\"><img class="mr-2" width=\"50px\" height=\"50px\" src=\"http://127.0.0.1/Tikety/public/storage/'+ bus.image_url +'\">'+bus.name+'</a></li>';
+                div.innerHTML = '<li class=\"mb-1\"><a href=\"en/showbus/'+bus.id+'\"><img class="mr-2" width=\"50px\" height=\"50px\" src=\"http://127.0.0.1/Tikety/public/storage/'+ bus.image_url +'\">'+bus.name+'</a></li>';
                 return div;
             });
 

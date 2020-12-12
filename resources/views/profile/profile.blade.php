@@ -12,7 +12,7 @@
                 @endif  >
                 <div class="row">
                 @if ($user->is(auth()->user()))
-                <a href="{{ route('editprofileview', auth()->user()) }}" class="btn mt-3 mr-3 btn-primary button">{{ __('Edit') }}</a>
+                <a href="{{ route('editprofileview', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}" class="btn mt-3 mr-3 btn-primary button">{{ __('Edit') }}</a>
                 @else
                  @auth
                  @if ($user->user_has_bus())
@@ -21,7 +21,7 @@
                  @endauth
                 @endif
                 @if (session('update_message'))
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success py-2 mt-3" role="alert">
                     {{ session('update_message') }}
                     </div>
                 @endif

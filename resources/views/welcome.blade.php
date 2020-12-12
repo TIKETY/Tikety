@@ -422,6 +422,8 @@
                             <li><a href="{{ route('about', app()->getLocale()) }}">{{ __('About') }}</a></li>
                             <li><a href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact') }}</a></li>
                             <li><a href="{{ route('faq', app()->getLocale()) }}">{{ __('FAQ') }}'s</a></li>
+                            <li><a href="{{ route('privacy', app()->getLocale()) }}">{{ __('Privacy and Policy') }}'s</a></li>
+                            <li><a href="{{ route('faq', app()->getLocale()) }}">{{ __('Terms and Conditions of Use') }}'s</a></li>
                         </ul>
                     </div>
                 </div>

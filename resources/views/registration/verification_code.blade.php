@@ -14,13 +14,13 @@
                             {{ session('number_message') }}
                         </div>
                         @endif
-                        <form class="getin_form border-form" id="ResetPassword" method="POST" action="{{ route('verification_code_put') }}">
+                        <form class="getin_form border-form" id="ResetPassword" method="POST" action="{{ route('verification_code_put', app()->getLocale()) }}">
                             @csrf
                             @method('PUT')
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
-                                        <label for="loginverification_code" class="mb-3 pl-0">Please enter the Verification Code which was sent to {{ auth()->user()->phone_number }}</label>
+                                        <label for="loginverification_code" class="mb-3 pl-0">{{ __('Please enter the Verification Code which was sent to') }} {{ auth()->user()->phone_number }}</label>
                                         <input id="verification_code" type="verification_code" class="form-control @error('verification_code', app()->getLocale()) is-invalid @enderror" name="verification_code" required autocomplete="verification_code" autofocus>
 
                                 @error('verification_code')
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-sm-12 forget-buttons">
                                     <button type="submit" class="button btn-primary mr-4">Verify</button>
-                                    <a href="{{ route('verification_resend') }}" class="mr-4">Resend</a>
+                                    <a href="{{ route('verification_resend', app()->getLocale()) }}" class="mr-4">Resend</a>
                                 </div>
                             </div>
                             <input type="hidden" name="phone_number" value="{{ auth()->user()->phone_number }}">

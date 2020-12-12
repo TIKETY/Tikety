@@ -9,9 +9,9 @@
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 whitebox">
                     <div class="widget logincontainer shadow text-center text-md-left">
                         <h3 class="darkcolor bottom35">Verification Code</h3>
-                        @if (session('number_message'))
+                        @if (session('message'))
                         <div class="alert alert-success" role="alert">
-                            {{ session('number_message') }}
+                            {{ session('message') }}
                         </div>
                         @endif
                         <form class="getin_form border-form" id="ResetPassword" method="POST" action="{{ route('verification_code_put') }}">

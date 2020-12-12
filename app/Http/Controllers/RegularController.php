@@ -9,29 +9,25 @@ class RegularController extends Controller
 {
 
     public function contact(){
-        return view('contact');
+        return view('misc.contact');
     }
 
     public function about(){
-        return view('about');
+        return view('misc.about');
     }
 
     public function faq(){
-        return view('faq');
+        return view('misc.faq');
     }
 
     public function travel(){
         $countries = new Countries;
         $states = $countries->whereNameCommon('Tanzania')->first()->hydrateStates()->states->pluck('name', 'postal')->toArray();
-        return view('travel', compact('states'));
-    }
-
-    public function phoneverified(){
-        return view('phoneverified');
+        return view('travel.travel', compact('states'));
     }
 
     public function verification_code(){
-        return view('verification_code');
+        return view('registration.verification_code');
     }
 
     public function verification_code_put(Request $request){
@@ -39,9 +35,9 @@ class RegularController extends Controller
         if($code === $request['verification_code']){
             auth()->user()->phone_register($request['phone_number']);
             auth()->user()->verify();
-            return redirect()->route('role')->with('message_role', 'You have registered your number Successfully');
+            return redirect()->route('role', app()->getLocale())->with('message_role', 'You have registered your number Successfully');
         } else{
-            return redirect()->route('phoneverified', app()->getLocale())->with('phone_message','Oops, something is wrong');
+            return redirect()->back()->with('error','Oops, something is wrong');
         }
     }
 
@@ -52,5 +48,9 @@ class RegularController extends Controller
 
     public function forgot_password(){
         return view('auth.passwords.phone');
+    }
+
+    public function privacy(){
+        return view('misc.privacy');
     }
 }

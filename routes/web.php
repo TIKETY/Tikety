@@ -63,7 +63,7 @@ Route::group(['prefix' => '{language}',
     Route::post('/payseat/{bus}',[BusController::class, 'payseat'])->name('payseat');
     Route::put('/revokeseat/{bus}',[BusController::class, 'revokeSeat'])->name('revokeSeat')->middleware('can:isowner,bus');
     Route::get('/verification_code', [RegularController::class, 'verification_code'])->name('verification_code');
-    Route::put('/verification_code_put', [RegularController::class, 'verification_code_put'])->name('verification_code_put')->middleware('throttle:10,1440');
+    Route::put('/verification_code_put', [RegularController::class, 'verification_code_put'])->name('verification_code_put')->middleware('throttle:3,1440');
     Route::get('/verification_code_resend', [RegularController::class, 'verification_code_resend'])->name('verification_resend')->middleware('throttle:3,1440');
     Route::post('/resetbus/{bus}', [BusController::class, 'resetbus'])->name('resetbus');
 
@@ -82,4 +82,5 @@ Route::group(['prefix' => '{language}',
     Route::get('verify/phone/reset/{user}', [ForgotPasswordController::class, 'resetview'])->name('reset')->middleware('auth');
     Route::put('verify/phone/reset/password', [ForgotPasswordController::class, 'resetpassword'])->name('resetPassword')->middleware('auth');
 
+    Route::get('/privacy', [RegularController::class, 'privacy'])->name('privacy');
 });

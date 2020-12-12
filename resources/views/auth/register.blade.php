@@ -8,7 +8,7 @@
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 whitebox">
                     <div class="widget logincontainer shadow-lg">
                         <h3 class="darkcolor bottom35 text-center text-md-left">{{ __('Create Your account') }}</h3>
-                        <form class="getin_form border-form" id="register" method="POST" action="{{ route('register', app()->getLocale()) }}">
+                        <form class="getin_form border-form" id="register" method="POST" action="{{ route('register', ['language'=>app()->getLocale()]) }}">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 col-sm-12">
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <button type="submit" class="button btn-primary w-100">{{ __('Register') }}</button>
-                                    <p class="top20 log-meta"> {{ __('Already have an account?') }} &nbsp;<a href="{{ route('login', app()->getLocale()) }}" class="defaultcolor">{{ __('Sign In') }}</a> </p>
+                                    <p class="top20 log-meta"> {{ __('Already have an account?') }} &nbsp;<a href="{{ route('login', ['language'=>app()->getLocale()]) }}" class="defaultcolor">{{ __('Sign In') }}</a> </p>
                                 </div>
                             </div>
                         </form>

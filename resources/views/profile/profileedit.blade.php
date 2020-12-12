@@ -1,4 +1,10 @@
-@extends('layout.app')
+@extends('layout.standard_app')
+
+@section('header_script')
+    <x-recaptcha>
+        editprofile
+    </x-recaptcha>
+@endsection
 
 @section('content')
 <!-- Services us -->
@@ -8,7 +14,7 @@
             <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 whitebox">
                 <div class="widget logincontainer shadow-lg">
                     <h4 class="text-capitalize darkcolor bottom20">Edit your profile</h4>
-                    <form action="{{ route('editprofile', auth()->user()) }}" method="POST" enctype="multipart/form-data">
+                    <form id="editprofile" action="{{ route('editprofile', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                             <div class="form-group mr-1">
@@ -38,7 +44,7 @@
                                             <p style="color: red;">{{ $message }}</p>
                                         @enderror
                             </div>
-                            <button class="btn btn-primary mb-4 ml-3" type="submit">Update</button>
+                            <button data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" class="g-recaptcha btn btn-primary mb-4 ml-3" type="submit">Update</button>
                     </form>
                 </div>
             </div>
