@@ -1,5 +1,11 @@
 @extends('layout.standard_app')
 
+@section('header_script')
+    <x-recaptcha>
+        login
+    </x-recaptcha>
+@endsection
+
 @section('content')
    <!-- sign-in -->
    <section id="sign-in" class="whitebox position-relative padding">
@@ -46,7 +52,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <button type="submit" class="button gradient-btn">{{ __('Login') }}</button>
+                                <button data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" type="submit" class="button gradient-btn">{{ __('Login') }}</button>
                                 <a href="{{ route('loginfacebook', app()->getLocale()) }}" class="button gradient-btn">{{ __('Login with Facebook') }}</a>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('forgot', ['language'=>app()->getLocale()]) }}">

@@ -23,10 +23,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'email',
         'phone_number',
         'image_url',
         'password',
-        'verification_code'
+        'verification_code',
+        'email_verified_at'
     ];
 
     /**
@@ -129,5 +131,8 @@ class User extends Authenticatable
 
     public function verify(){
         return User::where('id', $this->id)->update(['phone_verified_at'=>date("Y-m-d H:i:s")]);
+    }
+    public function email_verify(){
+        return User::where('id', $this->id)->update(['email_verified_at'=>date("Y-m-d H:i:s")]);
     }
 }

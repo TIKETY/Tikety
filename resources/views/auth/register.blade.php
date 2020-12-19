@@ -1,5 +1,11 @@
 @extends('layout.standard_app')
 
+@section('header-script')
+    <x-recaptcha>
+        register
+    </x-recaptcha>
+@endsection
+
 @section('content')
     <!-- Main sign-up section starts -->
     <section id="ourfaq" class="whitebox position-relative padding">
@@ -20,7 +26,7 @@
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
-                                         @enderror
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
@@ -54,7 +60,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <button type="submit" class="button btn-primary w-100">{{ __('Register') }}</button>
+                                    <button data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" type="submit" class="button btn-primary w-100">{{ __('Register') }}</button>
                                     <p class="top20 log-meta"> {{ __('Already have an account?') }} &nbsp;<a href="{{ route('login', ['language'=>app()->getLocale()]) }}" class="defaultcolor">{{ __('Sign In') }}</a> </p>
                                 </div>
                             </div>

@@ -18,31 +18,38 @@
                         @csrf
                         @method('PUT')
                             <div class="form-group mr-1">
-                                <input class="form-control ml-3" style="width: 280px;" type="text" placeholder="Name:" required id="name" name="name">
+                                <input class="form-control ml-3" style="width: 280px;" type="text" placeholder="{{ __('Name:') }}" required id="name" name="name">
                                 <label for="first_name1" class="d-none"></label>
                                 @error('name')
-                                            <p style="color: red;">{{ $message }}</p>
-                                        @enderror
-                            </div>
-                            <div class="form-group mr-1">
-                                <input class="form-control ml-3" style="width: 280px;" type="file" placeholder="Profile Image:" required id="image_url" name="image_url">
-                                @error('image_url')
-                                            <p style="color: red;">{{ $message }}</p>
+                                        <p style="color: red;">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="form-group mr-1">
-                                <input class="form-control ml-3" style="width: 280px;" type="password" placeholder="Password:" required id="password" name="password">
+                                <input class="form-control ml-3" style="width: 280px;" type="email" placeholder="{{ __('Email:') }}" required id="name" name="email">
                                 <label for="first_name1" class="d-none"></label>
-                                @error('password')
-                                            <p style="color: red;">{{ $message }}</p>
-                                        @enderror
+                                @error('name')
+                                        <p style="color: red;">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="form-group mr-1">
-                                <input class="form-control ml-3" style="width: 280px;" type="password" placeholder="Confirm Password:" required id="password_confirmation" name="password_confirmation">
+                                <input class="form-control ml-3" style="width: 280px;" type="file" placeholder="{{ __('Profile Image:') }}" required id="image_url" name="image_url">
+                                @error('image_url')
+                                        <p style="color: red;">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group mr-1">
+                                <input class="form-control ml-3" style="width: 280px;" type="password" placeholder="{{ __('Password:') }}" required id="password" name="password">
+                                <label for="first_name1" class="d-none"></label>
+                                @error('password')
+                                        <p style="color: red;">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group mr-1">
+                                <input class="form-control ml-3" style="width: 280px;" type="password" placeholder="{{ __('Confirm Password:') }}" required id="password_confirmation" name="password_confirmation">
                                 <label for="first_name1" class="d-none"></label>
                                 @error('password_confirmation')
-                                            <p style="color: red;">{{ $message }}</p>
-                                        @enderror
+                                        <p style="color: red;">{{ $message }}</p>
+                                @enderror
                             </div>
                             <button data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" class="g-recaptcha btn btn-primary mb-4 ml-3" type="submit">Update</button>
                     </form>

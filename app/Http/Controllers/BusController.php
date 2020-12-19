@@ -11,7 +11,6 @@ use App\Models\User;
 use App\Models\Bus;
 use App\Rules\RecaptchaRule;
 use PragmaRX\Countries\Package\Services\Countries;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class BusController extends Controller
 {
@@ -79,7 +78,7 @@ class BusController extends Controller
         $user->addBus($bus);
 
         for ($i=1; $i <= $validated['rows']*4; $i++) {
-         $bus->addSeat($i);
+        $bus->addSeat($i);
         }
         $bus->addSeat(($validated['rows']*4) + 1);
         return redirect()->route('buses', app()->getLocale())->with('success', trans('The bus has been created successfully'));
@@ -171,7 +170,7 @@ class BusController extends Controller
         $fare = ($seats*$bus->amount); //for later use of integrating with tigopesa and mpesa push
         if(!auth()->user()->PhoneIsVerified()){
             auth()->user()->verifyphone(auth()->user()->phone_number);
-            return redirect()->route('verification_code', app()->getLocale())->with('number_message', 'Verification code was sent to your number');
+            return redirect()->route('verification_code', app()->getLocale())->with('number_message', trans('Verification code was sent to your number'));
         } else{
             $bus->seats_to_user($array, auth()->user());
             $account_sid = getenv("TWILIO_SID");

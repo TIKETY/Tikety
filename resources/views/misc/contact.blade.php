@@ -120,4 +120,12 @@
     </section>
     <!-- Contact US ends -->
 
+    @section('header_script')
+        @livewireStyles
+    @endsection
+
+    @section('script')
+        @livewireScripts
+    @endsection
+
 @endsection

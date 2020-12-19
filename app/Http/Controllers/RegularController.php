@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Founders;
+use App\Models\User;
 use PragmaRX\Countries\Package\Services\Countries;
 
 class RegularController extends Controller
@@ -13,7 +15,9 @@ class RegularController extends Controller
     }
 
     public function about(){
-        return view('misc.about');
+        $founders = Founders::latest()->get();
+        // dd($founders);
+        return view('misc.about', compact('founders'));
     }
 
     public function faq(){
@@ -35,15 +39,15 @@ class RegularController extends Controller
         if($code === $request['verification_code']){
             auth()->user()->phone_register($request['phone_number']);
             auth()->user()->verify();
-            return redirect()->route('role', app()->getLocale())->with('message_role', 'You have registered your number Successfully');
+            return redirect()->route('role', app()->getLocale())->with('message_role', trans('You have registered your number Successfully'));
         } else{
-            return redirect()->back()->with('error','Oops, something is wrong');
+            return redirect()->back()->with('error',trans('Oops, something is wrong'));
         }
     }
 
     public function verification_code_resend(){
         auth()->user()->verifyphone(auth()->user()->phone_number);
-        return redirect()->back()->with('number_message', 'The verification Code was resent');
+        return redirect()->back()->with('number_message', trans('The verification Code was resent'));
     }
 
     public function forgot_password(){
@@ -52,5 +56,13 @@ class RegularController extends Controller
 
     public function privacy(){
         return view('misc.privacy');
+    }
+
+    public function verification($language, User $user){
+        return view('auth.verify', compact('user'));
+    }
+
+    public function test(){
+        return view('test');
     }
 }

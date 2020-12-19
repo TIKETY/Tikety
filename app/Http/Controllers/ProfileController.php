@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\VerifyEmail;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Rules\RecaptchaRule;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Mail;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileController extends Controller
 {
@@ -27,14 +31,19 @@ class ProfileController extends Controller
     }
 
     public function editprofile($language, Request $request, User $user){
+        $token = Str::random(60);
 
         $validated = $request->validate([
             'name'=>'required|string',
-            'image_url'=>'file',
+            'email'=>'email',
+            'image_url'=>'file|max:10240',
             'password'=>'string|max:255|confirmed|min:8',
+            'token'=>$token,
+            'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
 
         $validated['image_url'] = request('image_url')->store('profile_images');
+
         $validated['password'] = Hash::make($validated['password']);
 
         $user->update($validated);
@@ -43,7 +52,46 @@ class ProfileController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('profile', ['user'=>$user, 'language'=>app()->getLocale()])->with('update_message', 'Your Profile was updated successfully');
+        if(!is_null($validated['email'])){
+
+            Mail::to($validated['email'])->send(new VerifyEmail($user));
+
+            Alert::success('Updates', trans('You have successfully updated other details, except your email, please verify!'));
+
+            return redirect()->route('verification', ['language'=>app()->getLocale(), 'user'=>$user])->with('message', trans('Please Verify your Email'));
+        } else{
+        return redirect()->route('profile', ['user'=>$user, 'language'=>app()->getLocale()])->with('update_message', trans('Your Profile was updated successfully'));
+        }
+    }
+
+    public function verification_resend($language, User $user){
+        $token = Str::random(60);
+
+        User::find($user->id)->first()->forceFill([
+            'token' => $token
+        ])->save();
+
+        Mail::to($user->email)->send(new VerifyEmail($user));
+
+        return redirect()->route('verification', ['language'=>app()->getLocale()])->with('message', trans('Email was resent successfully'));
+    }
+
+    public function verify($language, $token){
+        $user = User::where('token', $token)->first();
+
+        if(!is_null($user)){
+            $user->email_verify();
+
+            $token = Str::random(60);
+
+            User::find($user->id)->first()->forceFill([
+            'token' => $token
+            ])->save();
+
+            return redirect()->route('home', ['language'=>app()->getLocale()])->with('success', trans('Email verified successfully'));
+        }
+
+        return abort(422);
     }
 
 }

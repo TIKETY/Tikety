@@ -20,10 +20,10 @@
     @yield('header_script')
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-     <script>
-       function onSubmit(connect) {
-         document.getElementById("stayconnected").submit();
-       }
+    <script>
+    function onSubmit(connect) {
+    document.getElementById("stayconnected").submit();
+    }
     </script>
 </head>
 
@@ -65,7 +65,7 @@
                             </form>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('profile', [auth()->user(), app()->getLocale()]) }}"><img @if (is_null(auth()->user()->image_url))
+                            <a href="{{ route('profile', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}"><img @if (is_null(auth()->user()->image_url))
                                 src="{{ asset('image/tikety_user.png') }}"
                             @else
                                 src="{{ asset('storage/'.auth()->user()->image_url) }}"
@@ -143,8 +143,8 @@
                     </div>
                     @if (session('message_connected'))
                     <div class="alert alert-success ml-3" role="alert">
-                       {{ session('message_connected') }}
-                      </div>
+                    {{ session('message_connected') }}
+                    </div>
                     @endif
                     <div class="col-md-12 col-sm-12">
                         <form id="stayconnected" class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('connected', app()->getLocale()) }}">

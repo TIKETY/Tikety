@@ -32,7 +32,7 @@ class ForgotPasswordController extends Controller
             $token = Str::random(60);
             User::find($user_id)->first()->forceFill([
                 'token' => $token
-              ])->save();
+            ])->save();
 
             $account_sid = getenv("TWILIO_SID");
             $auth_token = getenv("TWILIO_AUTH_TOKEN");
@@ -52,9 +52,15 @@ class ForgotPasswordController extends Controller
     }
 
     public function tokenVerify($language, $token){
+        $token_2 = Str::random(60);
         if(User::where('token', $token)->exists()){
             $user = User::where('token', $token)->first();
             Auth::login($user);
+
+            User::find($user->id)->first()->forceFill([
+                'token' => $token_2
+            ])->save();
+
             return redirect()->route('reset', ['language'=>app()->getLocale(), 'user'=>$user])->with('message', 'Change your Password');
         } else(
             abort(422)
@@ -85,7 +91,7 @@ class ForgotPasswordController extends Controller
         $token = Str::random(60);
         User::find($user_id)->first()->forceFill([
             'token' => $token
-          ])->save();
+        ])->save();
 
         $account_sid = getenv("TWILIO_SID");
         $auth_token = getenv("TWILIO_AUTH_TOKEN");

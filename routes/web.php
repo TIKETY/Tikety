@@ -83,4 +83,7 @@ Route::group(['prefix' => '{language}',
     Route::put('verify/phone/reset/password', [ForgotPasswordController::class, 'resetpassword'])->name('resetPassword')->middleware('auth');
 
     Route::get('/privacy', [RegularController::class, 'privacy'])->name('privacy');
+    Route::get('/verification/{user}', [RegularController::class, 'verification'])->name('verification');
+    Route::post('/verification/{user}/resend', [ProfileController::class, 'verification_resend'])->name('verification_email_resend');
+    Route::get('/email/verification/{token}', [ProfileController::class, 'verify'])->name('verify_email')->middleware('auth');
 });
