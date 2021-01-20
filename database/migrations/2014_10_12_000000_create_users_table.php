@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
@@ -13,6 +14,10 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        $requirePrimaryKey = DB::selectOne('SHOW SESSION VARIABLES LIKE "sql_require_primary_key";')->Value ?? 'OFF';
+        if ($requirePrimaryKey === 'ON') {
+            DB::statement('SET SESSION sql_require_primary_key=0');
+        }
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');

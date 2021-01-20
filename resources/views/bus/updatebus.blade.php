@@ -87,7 +87,7 @@
                                                 <option value="">{{ __('Select Region') }}</option>
                                                 @foreach ($states as $state)
 
-                                                 <option>{{$state}}</option>
+                                                <option>{{$state}}</option>
 
                                                 @endforeach
                                             </select>
@@ -110,7 +110,7 @@
                                                 <option value="">{{ __('Select Region') }}</option>
                                                 @foreach ($states as $state)
 
-                                                 <option>{{$state}}</option>
+                                                <option>{{$state}}</option>
 
                                                 @endforeach
                                             </select>

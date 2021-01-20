@@ -9,32 +9,37 @@ use App\Rules\RecaptchaRule;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
+
 class ContactForm extends Component
 {
 
     public $name;
     public $email;
     public $body;
-    public $g_recaptcha_response;
+    // public $g_recaptcha_response;
+
+    protected $rules = [
+        'name' => 'required|min:6',
+        'email' => 'required|email',
+        'body' => 'required|max:256',
+    ];
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
 
     public function contact_submit(){
 
         $cto = Founders::where('position', 'CTO')->first();
 
-        $user = $this->validate([
-            'name'=>'required',
-            'email'=>'required|email',
-            'body'=>'required|max:255',
-            'g_recaptcha_response'=>['required', new RecaptchaRule]
-        ]);
+        $validatedData = $this->validate();
 
-        Contact::create([
-            'name'=>$user['name'],
-            'email'=>$user['email'],
-            'body'=>$user['body'],
-        ]);
+        Contact::create($validatedData);
 
-        // Mail::to('kearajab@gmail.com')->send(new ContactMail($user));
+        sleep(2);
+
+        Mail::to('kearajab@gmail.com')->send(new ContactMail($validatedData));
 
         $this->resetForm();
 
@@ -50,6 +55,8 @@ class ContactForm extends Component
 
     public function render()
     {
+        $errors = $this->getErrorBag();
+
         return view('livewire.contact-form');
     }
 }

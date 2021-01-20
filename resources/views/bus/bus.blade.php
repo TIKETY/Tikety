@@ -39,7 +39,7 @@
                 @endif
                 <h2 class="heading bottom30 darkcolor font-light2"><span class="font-weight-light">{{ __('Buses') }}</span> {{ __('Details') }}
                 </h2>
-                   {{-- @can('create_bus', Role::class) --}}
+                {{-- @can('create_bus', Role::class) --}}
                 <div class="col-md-8 offset-md-2">
                     <p class="mb-n3"><a class="btn btn-primary" href="{{ route('CreateBus', app()->getLocale()) }}">{{ __('Add A Bus') }}</a></p>
                 </div>
@@ -97,7 +97,7 @@
     const input = document.querySelector('#searchbar')
 
     input.addEventListener('keyup', event=>{
-         index.search(event.target.value)
+    index.search(event.target.value)
         .then(response => {
             let nodes = response.hits.map(bus=>{
                 let div= document.createElement('div');
