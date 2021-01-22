@@ -18,7 +18,7 @@ class PhoneIsVerified
     {
         if (! $request->user()->PhoneIsVerified()) {
             $request->user()->verifyphone($request->user()->phone_number);
-            return redirect()->route('verification_code');
+            return redirect()->route('verification_code', app()->getLocale());
         }
 
         return $next($request);
