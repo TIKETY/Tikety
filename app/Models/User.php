@@ -107,10 +107,11 @@ class User extends Authenticatable
     }
 
     public function verifyphone($phone){
+        $this->middleware('throttle:3,1440');
         $code = mt_rand(100000, 999999);
 
         $this->forceFill([
-          'verification_code' => $code
+        'verification_code' => $code
         ])->save();
 
         $account_sid = getenv("TWILIO_SID");
