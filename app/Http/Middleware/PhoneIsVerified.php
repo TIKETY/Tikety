@@ -17,7 +17,7 @@ class PhoneIsVerified
     public function handle(Request $request, Closure $next)
     {
         if (! $request->user()->PhoneIsVerified()) {
-            $request->user()->verifyphone($request->user()->phone_number)->middleware('throttle:3,1440');
+            $request->user()->verifyphone($request->user()->phone_number);
             return redirect()->route('verification_code', ['language'=>app()->getLocale()]);
         }
 
