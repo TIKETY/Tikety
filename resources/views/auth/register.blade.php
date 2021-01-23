@@ -1,6 +1,6 @@
 @extends('layout.standard_app')
 
-@section('header-script')
+@section('header_script')
     <x-recaptcha>
         register
     </x-recaptcha>
