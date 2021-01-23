@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
-                                    <button data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" type="submit" class="button btn-primary w-100">{{ __('Register') }}</button>
+                                    <button data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" type="submit" class="g-recaptcha button btn-primary w-100">{{ __('Register') }}</button>
                                     <p class="top20 log-meta"> {{ __('Already have an account?') }} &nbsp;<a href="{{ route('login', ['language'=>app()->getLocale()]) }}" class="defaultcolor">{{ __('Sign In') }}</a> </p>
                                 </div>
                             </div>

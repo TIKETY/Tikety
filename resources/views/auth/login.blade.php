@@ -7,8 +7,8 @@
 @endsection
 
 @section('content')
-   <!-- sign-in -->
-   <section id="sign-in" class="whitebox position-relative padding">
+<!-- sign-in -->
+<section id="sign-in" class="whitebox position-relative padding">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 whitebox">
@@ -52,8 +52,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <button data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" type="submit" class="button gradient-btn">{{ __('Login') }}</button>
-                                <a href="{{ route('loginfacebook', app()->getLocale()) }}" class="button gradient-btn">{{ __('Login with Facebook') }}</a>
+                                <button data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" type="submit" class="g-recaptcha button gradient-btn">{{ __('Login') }}</button>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('forgot', ['language'=>app()->getLocale()]) }}">
                                         {{ __('Forgot Your Password?') }}
