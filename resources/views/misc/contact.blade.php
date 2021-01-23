@@ -1,10 +1,10 @@
 @extends('layout.standard_app')
 
-@section('header_script')
+{{-- @section('header_script')
     <x-recaptcha>
         contact
     </x-recaptcha>
-@endsection
+@endsection --}}
 
 @section('content')
 
