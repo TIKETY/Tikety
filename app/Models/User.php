@@ -107,7 +107,6 @@ class User extends Authenticatable
     }
 
     public function verifyphone($phone){
-        $this->middleware('throttle:3,1440');
         $code = mt_rand(100000, 999999);
 
         $this->forceFill([
