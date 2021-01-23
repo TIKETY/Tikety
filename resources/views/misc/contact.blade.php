@@ -1,10 +1,10 @@
 @extends('layout.standard_app')
 
-{{-- @section('header_script')
+@section('header_script')
     <x-recaptcha>
         contact
     </x-recaptcha>
-@endsection --}}
+@endsection
 
 @section('content')
 
@@ -39,7 +39,34 @@
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
-                            @livewire('contact-form')
+
+                            <form id="contact" class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactForm', app()->getLocale()) }}">
+                                <div class="row px-2">
+                                    <div class="col-md-12 col-sm-12" id="result1"></div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="name1" class="d-none"></label>
+                                            <input class="form-control" id="name1" type="text" placeholder="{{ __('Name:') }}" required  name="userName">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email1" class="d-none"></label>
+                                            <input class="form-control" type="email" id="email1" placeholder="{{ __('Email:') }}" name="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="message1" class="d-none"></label>
+                                            <textarea class="form-control" id="message1" placeholder="{{ __('Message:') }}" required  name="message"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <button data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" type="submit" id="submit_btn1" class="g-recaptcha button gradient-btn w-100">Send</button>
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -67,8 +94,8 @@
                     <div class="widget text-center top60 w-100">
                         <div class="contact-box">
                             <span class="icon-contact defaultcolor"><i class="far fa-envelope"></i></span>
-                            <p class="bottom0"><a href="mailto:kearajab@tikety.net">kearajab@tikety.net</a></p>
-                            <p class="d-block"><a href="mailto:ykapilimka@tikety.net">ykapilimka@tikety.net</a></p>
+                            <p class="bottom0"><a href="mailto:kea@tikety.co.tz">kea@tikety.co.tz</a></p>
+                            <p class="d-block"><a href="mailto:kapilimka@tikety.co.tz">kapilimka@tikety.co.tz</a></p>
                         </div>
                     </div>
                 </div>
@@ -84,13 +111,4 @@
         </div>
     </section>
     <!-- Contact US ends -->
-
-    @section('header_script')
-        @livewireStyles
-    @endsection
-
-    @section('script')
-        @livewireScripts
-    @endsection
-
 @endsection
