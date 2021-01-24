@@ -10,6 +10,7 @@ use App\Notifications\BusNotification;
 use App\Models\User;
 use App\Models\Bus;
 use App\Rules\RecaptchaRule;
+use Illuminate\Support\Facades\Storage;
 use PragmaRX\Countries\Package\Services\Countries;
 
 class BusController extends Controller
@@ -45,6 +46,8 @@ class BusController extends Controller
             'route'=>'required',
             'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
+
+        Storage::disk('spaces')->putFile('uploads', request()->file, 'public');
 
         $countries = new Countries;
         $states = $countries->whereNameCommon('Tanzania')->first()->hydrateStates()->states->pluck('name', 'postal')->toArray();
