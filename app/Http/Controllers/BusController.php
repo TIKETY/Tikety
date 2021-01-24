@@ -47,7 +47,7 @@ class BusController extends Controller
             'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
 
-        Storage::disk('do')->put('buses', $request->file('image_url'));
+        Storage::disk('do')->putFile('buses', $request->file('image_url'), 'public');
 
         $countries = new Countries;
         $states = $countries->whereNameCommon('Tanzania')->first()->hydrateStates()->states->pluck('name', 'postal')->toArray();
@@ -86,7 +86,6 @@ class BusController extends Controller
         $bus->addSeat(($validated['rows']*4) + 1);
         return redirect()->route('buses', app()->getLocale())->with('success', trans('The bus has been created successfully'));
         }
-
 
     }
 
