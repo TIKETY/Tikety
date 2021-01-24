@@ -47,7 +47,7 @@ class BusController extends Controller
             'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
 
-        Storage::disk('spaces')->putFile('uploads', request()->file, 'public');
+        Storage::disk('do')->putFile('uploads', request()->file, 'public');
 
         $countries = new Countries;
         $states = $countries->whereNameCommon('Tanzania')->first()->hydrateStates()->states->pluck('name', 'postal')->toArray();
