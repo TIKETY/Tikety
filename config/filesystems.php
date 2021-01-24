@@ -66,7 +66,7 @@ return [
         ],
 
         'do' => [
-            'driver' => 'do',
+            'driver' => 's3',
             'key' => env('DO_ACCESS_KEY_ID'),
             'secret' => env('DO_SECRET_ACCESS_KEY'),
             'region' => env('DO_DEFAULT_REGION'),
