@@ -113,7 +113,7 @@ class BusController extends Controller
         ]);
     }
 
-    public function update(Request $request, Bus $bus){
+    public function update($language, Request $request, Bus $bus){
 
         $validated = $request->validate([
             'name'=>['required', Rule::unique('buses')->ignore($bus)],
