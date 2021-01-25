@@ -133,7 +133,9 @@ class BusController extends Controller
             'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
 
-        $validated['image_url'] = request('image_url')->store('buses');
+        if(!is_null($validated['image_url'])){
+            Storage::disk('do')->putFile('buses', $request->file('image_url'), 'public');
+        }
 
         if($bus->rows > $validated['rows']){
             for ($i=1; $i < (($bus->rows - $validated['rows'])*4)+1; $i++) {

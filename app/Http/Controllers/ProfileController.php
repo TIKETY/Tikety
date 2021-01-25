@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileController extends Controller
@@ -42,7 +43,9 @@ class ProfileController extends Controller
             'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
 
-        $validated['image_url'] = request('image_url')->store('profile_images');
+        if(!is_null($validated['image_url'])){
+            Storage::disk('do')->putFile('profiles', $request->file('image_url'), 'public');
+        }
 
         $validated['password'] = Hash::make($validated['password']);
 

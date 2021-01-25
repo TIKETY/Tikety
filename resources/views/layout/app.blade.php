@@ -68,7 +68,7 @@
                             <a href="{{ route('profile', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}"><img @if (is_null(auth()->user()->image_url))
                                 src="{{ asset('image/tikety_user.png') }}"
                             @else
-                                src="{{ asset('storage/'.auth()->user()->image_url) }}"
+                                src="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.auth()->user()->image_url) }}"
                             @endif  class="rounded-circle" width="50px" height="50px" alt=""></a>
                         </li>
                         @endauth

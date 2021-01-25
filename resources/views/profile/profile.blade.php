@@ -8,17 +8,17 @@
             <div class="col-lg-4 col-md-5 ">
                 <div class="image widget bottom20 shadow"><img alt="SEO" @if (is_null($user->image_url))
                     src="{{ asset('image/tikety_user.png') }}" class="rounded"
-                    @else src="{{ asset('storage/'.$user->image_url) }}" class="rounded-circle"
+                    @else src="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.$user->image_url) }}" class="rounded-circle"
                 @endif  >
                 <div class="row">
                 @if ($user->is(auth()->user()))
                 <a href="{{ route('editprofileview', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}" class="btn mt-3 mr-3 btn-primary button">{{ __('Edit') }}</a>
                 @else
-                 @auth
-                 @if ($user->user_has_bus())
+                @auth
+                @if ($user->user_has_bus())
                     <a href="" class="btn mt-3 btn-primary button">{{ __('Message') }}</a>
-                 @endif
-                 @endauth
+                @endif
+                @endauth
                 @endif
                 @if (session('update_message'))
                     <div class="alert alert-success py-2 mt-3" role="alert">
