@@ -63,17 +63,6 @@
                     </div>
                     <div class="card shadow">
                         <div class="card-header">
-                            <a class="collapsed card-link darkcolor" data-toggle="collapse" href="#collapseFive">Privacy Policy </a>
-                        </div>
-                        <div id="collapseFive" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s randomised words which don't look even slightly believable. If
-                                    you are going to use a passage of Lorem Ipsum, </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card shadow">
-                        <div class="card-header">
                             <a class="collapsed card-link darkcolor" data-toggle="collapse" href="#collapseSix">{{ __('Log Files') }}</a>
                         </div>
                         <div id="collapseSix" class="collapse" data-parent="#accordion">
