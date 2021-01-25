@@ -37,7 +37,7 @@
                             <div class="image"><img alt="SEO" @if (is_null($bus->image_url))
                                 src="{{ asset('image/tikety_bus_image.png') }}"
                                 @else
-                                src="{{ asset('storage/'.$bus->image_url) }}"
+                                src="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.$bus->image_url) }}"
                             @endif ></div>
                             <div class="overlay">
                                 <a href="{{ route('ShowBus',['language' => app()->getLocale(), 'bus' => $bus->id]) }}" class="overlay_center border_radius"><i class="fa fa-eye"></i></a>
