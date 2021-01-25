@@ -43,9 +43,7 @@ class ProfileController extends Controller
             'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
 
-        if(!is_null($validated['image_url'])){
-            Storage::disk('do')->putFile('profiles', $request->file('image_url'), 'public');
-        }
+        Storage::disk('do')->putFile('profiles', $request->file('image_url'), 'public');
 
         $validated['password'] = Hash::make($validated['password']);
 

@@ -32,7 +32,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mr-1">
-                                <input class="form-control ml-3" style="width: 280px;" type="file" placeholder="{{ __('Profile Image:') }}" required id="image_url" name="image_url">
+                                <input class="form-control ml-3" style="width: 280px;" type="file" placeholder="{{ __('Profile Image:') }}" id="image_url" name="image_url">
                                 @error('image_url')
                                         <p style="color: red;">{{ $message }}</p>
                                 @enderror

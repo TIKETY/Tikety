@@ -59,7 +59,7 @@
                             </form>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('profile', [auth()->user(), app()->getLocale()]) }}"><img @if (is_null(auth()->user()->image_url))
+                            <a href="{{ route('profile', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}"><img @if (is_null(auth()->user()->image_url))
                                 src="{{ asset('image/tikety_user.png') }}"
                             @else
                                 src="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.auth()->user()->image_url) }}"
