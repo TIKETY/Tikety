@@ -32,14 +32,12 @@ class ProfileController extends Controller
     }
 
     public function editprofile($language, Request $request, User $user){
-        $token = Str::random(60);
 
         $validated = $request->validate([
             'name'=>'required|string',
             'email'=>'email',
             'image_url'=>'file|max:10240',
             'password'=>'string|max:255|confirmed|min:8',
-            'token'=>$token,
             'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
 
@@ -54,6 +52,7 @@ class ProfileController extends Controller
         Auth::login($user);
 
         if(!is_null($validated['email'])){
+            $user->tokenizer();
 
             Mail::to($validated['email'])->send(new VerifyEmail($user));
 

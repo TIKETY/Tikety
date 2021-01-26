@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
+use Illuminate\Support\Str;
 use App\Models\Role;
 use App\Models\Product;
 use Twilio\Rest\Client;
@@ -119,6 +120,14 @@ class User extends Authenticatable
         $client = new Client($account_sid, $auth_token);
         return $client->messages->create($phone,
                 ['from' => $twilio_number, 'body' => 'Your Verification code is: '.$code] );
+    }
+
+    public function tokenizer(){
+        $token = Str::random(60);
+
+        return $this->forceFill([
+            'token'=>$token
+        ])->save();
     }
 
     public function PhoneIsVerified(){
