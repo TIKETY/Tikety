@@ -34,7 +34,7 @@
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="name1" class="d-none"></label>
-                                            <input class="form-control" id="image_url" type="file" placeholder="{{ __('Image of the Bus:') }}" required name="image_url">
+                                            <input class="form-control" id="image_url" type="file" placeholder="{{ __('Image of the Bus:') }}" name="image_url">
                                         @error('image_url')
                                             <p style="color: red;">{{ $message }}</p>
                                         @enderror

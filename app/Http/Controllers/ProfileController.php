@@ -65,11 +65,7 @@ class ProfileController extends Controller
     }
 
     public function verification_resend($language, User $user){
-        $token = Str::random(60);
-
-        User::find($user->id)->first()->forceFill([
-            'token' => $token
-        ])->save();
+        $user->tokenizer();
 
         Mail::to($user->email)->send(new VerifyEmail($user));
 
@@ -82,11 +78,7 @@ class ProfileController extends Controller
         if(!is_null($user)){
             $user->email_verify();
 
-            $token = Str::random(60);
-
-            User::find($user->id)->first()->forceFill([
-            'token' => $token
-            ])->save();
+            $user->tokenizer();
 
             return redirect()->route('home', ['language'=>app()->getLocale()])->with('success', trans('Email verified successfully'));
         }
