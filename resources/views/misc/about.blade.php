@@ -80,7 +80,7 @@
                     <div class="item px-2">
                         <div class="team-box">
                             <div class="image">
-                                <img src="{{ asset('storage/'.$founder->image_url) }}" alt="">
+                                <img src="{{ ($founder->image_url) }}" alt="">
                             </div>
                             <div class="team-content">
                                 <h4 class="darkcolor">{{ $founder->name }}</h4>
