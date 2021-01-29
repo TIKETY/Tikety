@@ -21,9 +21,4 @@ class BusPolicy
     {
         return $bus->user()->is($user);
     }
-
-    public function use(User $user, Bus $bus){
-        return true;
-    }
-
 }

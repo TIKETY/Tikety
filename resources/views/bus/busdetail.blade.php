@@ -47,7 +47,7 @@
                             </div>
                     @endif
                     @if (auth()->user()->id!=$bus->user_id)
-                    <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactBus', $bus->id) }}">
+                    <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactBus', ['bus'=>$bus->id, 'language'=>app()->getLocale()]) }}">
                         @csrf
                         <div class="row">
                         <div class="col-md-12 col-sm-12 mt-4">

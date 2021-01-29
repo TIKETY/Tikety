@@ -43,6 +43,8 @@ class ProfileController extends Controller
 
         Storage::disk('do')->putFile('profiles', $request->file('image_url'), 'public');
 
+        $validated['image_url'] = request('image_url')->store('profiles');
+
         $validated['password'] = Hash::make($validated['password']);
 
         $user->update($validated);

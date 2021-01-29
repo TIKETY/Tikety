@@ -19,7 +19,7 @@ class CheckRole
 
 
         if(! $request->user()->roleChecker()){
-            return redirect()->route('role');
+            return redirect()->route('role', app()->getLocale());
         }
 
         return $next($request);

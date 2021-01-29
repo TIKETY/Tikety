@@ -6,39 +6,53 @@
     <div class="container aboutus">
         <div class="row align-items-center">
             <div class="col-lg-6 col-md-6 padding_bottom_half">
-                <div class="image"><img alt="SEO" src="{{ asset('image/bg-404-header.jpg') }}"></div>
+                <div class="image"><img alt="SEO" src="{{ ('https://tikety.fra1.digitaloceanspaces.com/logo_dp.png') }}"></div>
             </div>
             <div class="col-lg-5 offset-lg-1 col-md-6 padding_bottom_half text-center text-md-left">
-                <h2 class="darkcolor font-normal bottom30">Lets take your <span class="defaultcolor">Business</span> to Next Level</h2>
-                <p class="bottom35">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mauris arcu, lobortis id interdum vitae, interdum eget elit. Curabitur quis urna nulla. Suspendisse potenti. Duis suscipit ultrices maximus. </p>
-                <a href="#our-team" class="button btnsecondary gradient-btn pagescroll">Learn More</a>
+                <h2 class="darkcolor font-normal bottom30">About <span class="defaultcolor">Tikety</span></h2>
+                <p class="bottom35">Tikety is an all-in-one payment platform for all users.
+                We empower millions of customers all around Tanzania to make payments,
+                to send and deliver parcel with speed and convenience,
+                to book different tickets and more all in one single platform,
+                with our smart payment Technology and inspiring content. Founded in 2020 headquartered at Moshi Tanzania.
+                Tikety is 100% Founders owned.</p>
             </div>
         </div>
         <div class="row  align-items-center">
             <div class="col-lg-5  col-md-6 padding_top_half text-center text-md-left">
-                <h2 class="darkcolor font-normal bottom30">The Best Skillset Available in <span class="defaultcolor">Our Market</span> </h2>
-                <p class="bottom35">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mauris arcu, lobortis id interdum vitae, interdum eget elit. Curabitur quis urna nulla. Suspendisse potenti. Duis suscipit ultrices maximus. </p>
+                <h2 class="darkcolor font-normal bottom30">Founders Story</h2>
+                <p class="bottom35">About one year ago Yusuph Kapilimka was returning from holiday back to the academy,
+                    on booking his ticket he experienced a big disappointment where a bus dispatched one hour ahead,
+                    Fear was higher than the one set by authority, He decided to do some broader researches about that problem.
+                </p>
             </div>
             <div class="col-lg-6 offset-lg-1 col-md-6 padding_top_half">
                 <div class="progress-bars">
-                    <div class="progress">
-                        <p>Adobe Photoshop</p>
-                        <div class="progress-bar gradient-bg" data-value="94">
-                            <span class="gradient-bg whitecolor">94%</span>
-                        </div>
-                    </div>
-                    <div class="progress">
-                        <p>HTML / WordPress</p>
-                        <div class="progress-bar gradient-bg" data-value="92">
-                            <span class="gradient-bg whitecolor">92%</span>
-                        </div>
-                    </div>
-                    <div class="progress">
-                        <p>Development</p>
-                        <div class="progress-bar gradient-bg" data-value="86">
-                            <span class="gradient-bg whitecolor">86%</span>
-                        </div>
-                    </div>
+                <h2 class="darkcolor font-normal bottom30">Yusuph and First Potential Customer</h2>
+                <p class="bottom35">One day on his research he met one sister who was on the Bus Rapid Transit (BRT) morocco terminal
+                    Dar es salaam then he asked her sorry what is wrong with you then she replayed
+                    “watchmen rejected me to change bus because I have no paper ticket which I lost during exiting from another bus and I have no another fee”
+                    then he interviewed her, she was happy that she left her number so as to be the very first person to get first version of a product when it will be ready.
+                </p>
+                </div>
+            </div>
+        </div>
+        <div class="row  align-items-center">
+            <div class="col-lg-5  col-md-6 padding_top_half text-center text-md-left">
+                <h2 class="darkcolor font-normal bottom30">Yusuph and Kea</h2>
+                <p class="bottom35">They met first when they were joining the army, they did train together,
+                    Taking Bachelor of Military Science (BMS). On third year after coming back from short holiday
+                    Yusuph introduced a simple research he did during holiday because Kea was also interesting much
+                    on Technology, then they decided to team up and create a company which will address and solve all
+                    these problems. This is where Tikety was born.
+                </p>
+            </div>
+            <div class="col-lg-6 offset-lg-1 col-md-6 padding_top_half">
+                <div class="progress-bars">
+                <h2 class="darkcolor font-normal bottom30">Tikety</h2>
+                <p class="bottom35">Tikety is designed as alternative to all these problems. It gives customer a flexible
+                    option to high-end tools and resources to access technology that empowers them and help them to grow.
+                </p>
                 </div>
             </div>
         </div>

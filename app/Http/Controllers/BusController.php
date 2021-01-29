@@ -47,8 +47,6 @@ class BusController extends Controller
             'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
 
-        Storage::disk('do')->putFile('buses', $request->file('image_url'), 'public');
-
         $countries = new Countries;
         $states = $countries->whereNameCommon('Tanzania')->first()->hydrateStates()->states->pluck('name', 'postal')->toArray();
 
@@ -57,6 +55,8 @@ class BusController extends Controller
         } else{
 
         if(!is_null($validated['image_url'])){
+            Storage::disk('do')->putFile('buses', $request->file('image_url'), 'public');
+
             $validated['image_url'] = request('image_url')->store('buses');
         }
 
