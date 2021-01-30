@@ -18,13 +18,13 @@ class RoleController extends Controller
         $role1 = Role::find(1);
         $role2 = Role::find(2);
         $role3 = Role::find(3);
-        if($role==='master'){
+        if($role==1){
             auth()->user()->addRole($role1);
             dd('hello1');
-        } else if($role==='manager'){
+        } else if($role==2){
             auth()->user()->addRole($role2);
             dd('hello2');
-        } else if($role==='customer') {
+        } else if($role==3) {
             auth()->user()->addRole($role3);
             dd('hello3');
         }

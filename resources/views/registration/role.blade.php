@@ -14,7 +14,7 @@
             <div class="col-lg-4  col-md-6 padding_top_half text-center text-md-left">
                 <h2 class="darkcolor font-normal bottom30">{{ __('Here for tickets?') }}</h2>
                 <p class="bottom35">{{ __('Enjoy the services offered by different Companies within this ticketing platform') }}</p>
-                <form action="{{ route('makerole', ['role'=>'customer', 'language'=>app()->getLocale()]) }}" method="POST">
+                <form action="{{ route('makerole', ['role'=>1, 'language'=>app()->getLocale()]) }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-primary">{{ __('Use Tikety') }}</button>
                 </form>
@@ -22,7 +22,7 @@
             <div class="col-lg-4  col-md-6 padding_top_half text-center text-md-left">
                 <h2 class="darkcolor font-normal bottom30">{{ __('Are you a Manager?') }}</h2>
                 <p class="bottom35">{{ __('Become the Manager of your assets easier by being able to control your asset with ease on your fingertips') }}</p>
-                <form action="{{ route('makerole', ['role'=>'manager', 'language'=>app()->getLocale()]) }}" method="POST">
+                <form action="{{ route('makerole', ['role'=>2, 'language'=>app()->getLocale()]) }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-primary">{{ __('Become Manager') }}</button>
                 </form>
@@ -30,7 +30,7 @@
             <div class="col-lg-4  col-md-6 padding_top_half text-center text-md-left">
                 <h2 class="darkcolor font-normal bottom30">{{ __('Do You Own a Fleet?') }}</h2>
                 <p class="bottom35">{{ __('Manage, Supervise and do Much more than a manager to your assets from anywhere, with the role of a Master') }}</p>
-                <form action="{{ route('makerole', ['role'=>'master', 'language'=>app()->getLocale()]) }}" method="POST">
+                <form action="{{ route('makerole', ['role'=>3, 'language'=>app()->getLocale()]) }}" method="POST">
                 @csrf
                     <button type="submit" class="btn-primary btn">{{ __('Become Master') }}</button>
                 </form>
