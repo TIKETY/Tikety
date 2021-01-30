@@ -130,6 +130,12 @@ class User extends Authenticatable
         ])->save();
     }
 
+    public function email_nullify(){
+        return $this->forceFill([
+            'email_verified_at'=>null
+        ])->save();
+    }
+
     public function PhoneIsVerified(){
         return !is_null($this->phone_verified_at);
     }

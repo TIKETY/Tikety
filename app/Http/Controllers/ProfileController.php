@@ -56,6 +56,8 @@ class ProfileController extends Controller
         if(!is_null($validated['email'])){
             $user->tokenizer();
 
+            $user->email_nullify();
+
             Mail::to($validated['email'])->send(new VerifyEmail($user));
 
             Alert::success('Updates', trans('You have successfully updated other details, except your email, please verify!'));

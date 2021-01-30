@@ -191,11 +191,11 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer_panel padding_bottom_half bottom20">
                         <a href="index.html" class="footer_logo bottom25"><img src="{{ asset('image/logo-transparent.png')}}" alt="Tikety"></a>
-                        <p class="whitecolor bottom25">Keep away from people who try to belittle your ambitions Small people always do that but the really great Friendly.</p>
+                        <p class="whitecolor bottom25">{{ __('Easing your Ticketing Experience') }}</p>
                         <div class="d-table w-100 address-item whitecolor bottom25">
                             <span class="d-table-cell align-middle"><i class="fas fa-mobile-alt"></i></span>
                             <p class="d-table-cell align-middle bottom0">
-                                +01 - 123 - 4567 <a class="d-block" href="mailto:web@support.com">web@support.com</a>
+                                +255759777031 <a class="d-block" href="mailto:support@tikety.co.tz">support@tikety.co.tz</a>
                             </p>
                         </div>
                         <ul class="social-icons white wow fadeInUp" data-wow-delay="300ms">
@@ -213,17 +213,17 @@
                             <li><a href="{{ route('welcome', app()->getLocale()) }}">{{ __('Home') }}</a></li>
                             <li><a href="{{ route('about', app()->getLocale()) }}">{{ __('About Us') }}</a></li>
                             <li><a href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact Us') }}</a></li>
-                            <li><a href="">{{ __('Privacy Policy') }}</a></li>
+                            <li><a href="{{ route('privacy', app()->getLocale()) }}">{{ __('Privacy Policy') }}</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer_panel padding_bottom_half bottom20">
-                        <h3 class="whitecolor bottom25">Latest News</h3>
+                        {{-- <h3 class="whitecolor bottom25">Latest News</h3> --}}
                         <ul class="latest_news whitecolor">
-                            <li> <a href="#.">Aenean tristique justo et... </a> <span class="date defaultcolor">15 March 2019</span> </li>
+                            {{-- <li> <a href="#.">Aenean tristique justo et... </a> <span class="date defaultcolor">15 March 2019</span> </li>
                             <li> <a href="#.">Phasellus dapibus dictum augue... </a> <span class="date defaultcolor">15 March 2019</span> </li>
-                            <li> <a href="#.">Mauris blandit vitae. Praesent non... </a> <span class="date defaultcolor">15 March 2019</span> </li>
+                            <li> <a href="#.">Mauris blandit vitae. Praesent non... </a> <span class="date defaultcolor">15 March 2019</span> </li> --}}
                         </ul>
                     </div>
                 </div>
