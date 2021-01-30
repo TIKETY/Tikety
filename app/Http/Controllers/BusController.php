@@ -188,7 +188,7 @@ class BusController extends Controller
         }
     }
 
-    public function travel(Request $request){
+    public function travel($language, Request $request){
         $from = $request['from'];
         $to = $request['to'];
 

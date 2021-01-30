@@ -34,7 +34,7 @@ class RegularController extends Controller
         return view('registration.verification_code');
     }
 
-    public function verification_code_put(Request $request){
+    public function verification_code_put($language, Request $request){
         $code = auth()->user()->verification_code;
         if($code === $request['verification_code']){
             auth()->user()->phone_register($request['phone_number']);
