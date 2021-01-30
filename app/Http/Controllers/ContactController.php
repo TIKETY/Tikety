@@ -24,6 +24,7 @@ class ContactController extends Controller
             'name'=>$validated['name'],
             'email'=>$validated['email'],
         ]);
+
         return redirect()->back()->with('toast_success', trans('Contact Made successfully'));
     }
 
@@ -40,6 +41,9 @@ class ContactController extends Controller
             'email'=>$validated['email'],
             'body'=>$validated['body'],
         ]);
+
+        Mail::to('support@tikety.co.tz')->send(new NotifyUser($validated['body']));
+
         return redirect()->route('home', app()->getLocale())->with('toast_success', trans('Contact Made successfully'));
     }
 

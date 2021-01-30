@@ -18,11 +18,11 @@
             @endif
             <h2 class="heading bottom30 darkcolor font-light2"><span class="font-weight-light">My Buses</span> Details
             </h2>
-            {{-- @can('create_bus', Role::class) --}}
+            @can('create_bus', Role::class)
             <div class="col-md-8 offset-md-2">
                 <p class="mb-n3"><a class="btn btn-primary" href="{{ route('CreateBus', app()->getLocale()) }}">Add A Bus</a></p>
             </div>
-            {{-- @endcan --}}
+            @endcan
         </div>
 
 
