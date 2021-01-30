@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotifyUser;
@@ -42,9 +43,25 @@ class ContactController extends Controller
             'body'=>$validated['body'],
         ]);
 
-        Mail::to($validated['email'])->send(new NotifyUser('The Contact was made successfully'));
+        $details = [
+            'title' => 'Contact Made successful',
+            'user' => $validated['name'],
+            'user_email' => $validated['email'],
+            'body' =>'Your Message was Received successfully'
+        ];
 
-        Mail::to('support@tikety.co.tz')->send(new NotifyUser($validated['body']));
+
+        Mail::to($validated['email'])->send(new NotifyUser($details));
+
+        $details2 = [
+            'title' => 'Contact Made',
+            'user' => $validated['name'],
+            'user_email' => $validated['email'],
+            'body' =>$validated['body']
+        ];
+
+
+        Mail::to('support@tikety.co.tz')->send(new NotifyUser($details2));
 
         return redirect()->route('home', app()->getLocale())->with('toast_success', trans('Contact Made successfully'));
     }
