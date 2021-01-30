@@ -14,7 +14,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactController extends Controller
 {
-    public function store(Request $request){
+    public function store($language, Request $request){
         $validated = $request->validate([
             'name'=>'required',
             'email'=>'required|email|unique:contacts',
@@ -27,7 +27,7 @@ class ContactController extends Controller
         return redirect()->back()->with('toast_success', trans('Contact Made successfully'));
     }
 
-    public function contact(Request $request){
+    public function contact($language, Request $request){
         $validated = $request->validate([
             'name'=>'required',
             'email'=>'required|email',
@@ -43,7 +43,7 @@ class ContactController extends Controller
         return redirect()->route('home', app()->getLocale())->with('toast_success', trans('Contact Made successfully'));
     }
 
-    public function contactbus(Bus $bus){
+    public function contactbus($language, Bus $bus){
 
         $user = User::find($bus->user_id);
 

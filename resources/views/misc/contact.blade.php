@@ -27,7 +27,7 @@
                             </div>
                             <p class="bottom10">{{ __('Address:') }} 10290, Majengo, MOSHI</p>
                             <p class="bottom10">+2550759777031</p>
-                            <p class="bottom10"><a href="mailto:polpo@traxagency.co.au">support@tikety.co.tz</a></p>
+                            <p class="bottom10"><a href="mailto:support@tikety.co.tz">support@tikety.co.tz</a></p>
                             <p class="bottom10">{{ __('Mon-Fri') }}: 9am-5pm</p>
                             <ul class="social-icons mt-4 mb-4 mb-sm-0 wow fadeInUp" data-wow-delay="300ms">
                                 <li><a href="https://www.facebook.com/tiketyllc"><i class="fab fa-facebook-f"></i> </a> </li>
