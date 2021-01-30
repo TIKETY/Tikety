@@ -42,9 +42,9 @@
                                 {{ __('Home') }}
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('faq') }}">{{ __('FAQ') }}</a>
-                        </li> --}}
+                        <li class="nav-item">
+                            <a class="nav-link text-black-50" href="{{ route('faq', app()->getLocale()) }}">{{ __('FAQ') }}</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('about', app()->getLocale()) }}">{{ __('About') }}</a>
                         </li>
