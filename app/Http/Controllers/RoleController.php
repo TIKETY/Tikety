@@ -14,6 +14,7 @@ class RoleController extends Controller
     }
 
     public function makeRole($role){
+        dd('hello');
         $role1 = Role::find(1);
         $role2 = Role::find(2);
         $role3 = Role::find(3);
@@ -21,7 +22,7 @@ class RoleController extends Controller
             auth()->user()->addRole($role1);
         } else if($role==='manager'){
             auth()->user()->addRole($role2);
-        } else if($role==='user') {
+        } else if($role==='customer') {
             auth()->user()->addRole($role3);
         }
 

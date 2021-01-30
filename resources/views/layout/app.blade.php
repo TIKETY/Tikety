@@ -102,7 +102,7 @@
                 <nav class="side-nav w-100">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('welcome', app()->getLocale()) }}">{{ __('welcome') }}</a>
+                            <a class="nav-link" href="{{ route('welcome', app()->getLocale()) }}">{{ __('Home') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('faq', app()->getLocale()) }}">{{ __('FAQ') }}</a>
