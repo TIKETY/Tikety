@@ -123,8 +123,8 @@
                     <p class="bottom30">{{ $bus->date->diffForHumans() }} {{ __('departure time on') }} {{ $bus->time }}</p>
 
                     @auth
-                    {{-- @can('edit_bus', Role::class) --}}
-                    {{-- @if (auth()->user()->id == $bus->user_id) --}}
+                    @can('create_bus', Role::class)
+                    @if (auth()->user()->id == $bus->user_id)
                     @can('isowner', $bus)
                     <div class="row">
                         <a href="{{ route('UpdateBus', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" class="btn btn-primary mr-3">{{ __('Edit Bus') }}</a>
@@ -140,8 +140,8 @@
                     </div>
                     @endcan
 
-                    {{-- @endif --}}
-                    {{-- @endcan --}}
+                    @endif
+                    @endcan
                     @endauth
                 </div>
                 <div class="row">
@@ -554,6 +554,7 @@
                                 @endif
                             </div>
                             @endfor
+
                         @can('isowner', $bus)
                         <form action="{{ route('takeseat', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="post">
                             @csrf

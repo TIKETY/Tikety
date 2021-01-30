@@ -61,16 +61,16 @@
                         </li>
                         @endif
                         @auth
-                        {{-- @can('create_multiple_buses', Role::class) --}}
+                        @can('create_fleet', Role::class)
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('ShowFleet', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}">{{ __('My Fleet') }}</a>
                         </li>
-                        {{-- @endcan --}}
-                        {{-- @can('create_bus', Role::class) --}}
+                        @endcan
+                        @can('create_bus', Role::class)
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('mybuses', app()->getLocale()) }}">{{ __('My Bus') }}</a>
                         </li>
-                        {{-- @endcan --}}
+                        @endcan
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('buses', app()->getLocale()) }}">{{ __('Buses') }}</a>
                         </li>
@@ -119,9 +119,9 @@
                                 {{ __('Home') }}
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('faq') }}">{{ __('FAQ') }}</a>
-                        </li> --}}
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('about', app()->getLocale()) }}">{{ __('About') }}</a>
                         </li>
