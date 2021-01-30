@@ -26,8 +26,8 @@
                                 <h2 class="darkcolor font-normal mb-4"><span class="d-none d-md-inline-block">{{ __('Our Offices In Tanzania') }}</span></h2>
                             </div>
                             <p class="bottom10">{{ __('Address:') }} 10290, Majengo, MOSHI</p>
-                            <p class="bottom10">+255 654 660 654</p>
-                            <p class="bottom10"><a href="mailto:polpo@traxagency.co.au">tikety@tikety.net</a></p>
+                            <p class="bottom10">+2550759777031</p>
+                            <p class="bottom10"><a href="mailto:polpo@traxagency.co.au">support@tikety.co.tz</a></p>
                             <p class="bottom10">{{ __('Mon-Fri') }}: 9am-5pm</p>
                             <ul class="social-icons mt-4 mb-4 mb-sm-0 wow fadeInUp" data-wow-delay="300ms">
                                 <li><a href="https://www.facebook.com/tiketyllc"><i class="fab fa-facebook-f"></i> </a> </li>
@@ -77,7 +77,7 @@
                         <div class="contact-box">
                             <span class="icon-contact defaultcolor"><i class="fas fa-mobile-alt"></i></span>
                             <p class="bottom0"><a href="tel:+255654660654">+255654660654</a></p>
-                            <p class="d-block"><a href="tel:+255654660654">+255654660654</a></p>
+                            <p class="d-block"><a href="tel:+255759777031">+255759777031</a></p>
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,6 @@
                         <div class="contact-box">
                             <span class="icon-contact defaultcolor"><i class="fas fa-map-marker-alt"></i></span>
                             <p class="bottom0">10290 Moshi, Tanzania </p>
-                            <p class="d-block">123 Street New Yolo , Austria </p>
                         </div>
                     </div>
                 </div>
@@ -95,7 +94,7 @@
                         <div class="contact-box">
                             <span class="icon-contact defaultcolor"><i class="far fa-envelope"></i></span>
                             <p class="bottom0"><a href="mailto:kea@tikety.co.tz">kea@tikety.co.tz</a></p>
-                            <p class="d-block"><a href="mailto:kapilimka@tikety.co.tz">kapilimka@tikety.co.tz</a></p>
+                            <p class="d-block"><a href="mailto:yusuph@tikety.co.tz">yusuph@tikety.co.tz</a></p>
                         </div>
                     </div>
                 </div>
