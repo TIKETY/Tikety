@@ -66,12 +66,14 @@
                             @auth
                             @can('isowner', $bus)
                             <a href="{{ route('UpdateBus', ['language' => app()->getLocale(), 'bus' => $bus->id]) }}" class="button-readmore">{{ __('Edit Bus') }}</a>
+                            @can('create_fleet', Role::class)
                             @if (!$bus->checkfleet())
                             <form action="{{ route('AddBusFleet', ['language' => app()->getLocale(), 'bus' => $bus]) }}" method="POST">
                                 @csrf
                             <button type="submit" class="mt-3  btn btn-primary">{{ __('Add to Fleet') }}</button>
                             </form>
                             @endif
+                            @endcan
                             @endcan
                             @endauth
                         </div>
