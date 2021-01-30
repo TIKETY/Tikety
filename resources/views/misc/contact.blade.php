@@ -47,19 +47,28 @@
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="name1" class="d-none"></label>
-                                            <input class="form-control" id="name1" type="text" placeholder="{{ __('Name:') }}" required  name="userName">
+                                            <input class="form-control" id="name" type="text" placeholder="{{ __('Name:') }}" required  name="name">
+                                            @error('name')
+                                            <p style="color: red;">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="email1" class="d-none"></label>
-                                            <input class="form-control" type="email" id="email1" placeholder="{{ __('Email:') }}" name="email">
+                                            <input class="form-control" type="email" id="email" placeholder="{{ __('Email:') }}" name="email">
+                                            @error('email')
+                                            <p style="color: red;">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="message1" class="d-none"></label>
-                                            <textarea class="form-control" id="message1" placeholder="{{ __('Message:') }}" required  name="message"></textarea>
+                                            <textarea class="form-control" id="body" placeholder="{{ __('Message:') }}" required  name="body"></textarea>
+                                            @error('body')
+                                            <p style="color: red;">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
