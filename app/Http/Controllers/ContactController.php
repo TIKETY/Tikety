@@ -42,8 +42,6 @@ class ContactController extends Controller
             'body'=>$validated['body'],
         ]);
 
-        Mail::to($validated['email'])->send(new NotifyUser('Thanks for Contacting Tikety'));
-
         return redirect()->route('home', app()->getLocale())->with('toast_success', trans('Contact Made successfully'));
     }
 
