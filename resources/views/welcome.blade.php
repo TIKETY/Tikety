@@ -120,7 +120,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('faq') }}">{{ __('FAQ') }}</a>
+                            <a class="nav-link" href="{{ route('faq', app()->getLocale()) }}">{{ __('FAQ') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('about', app()->getLocale()) }}">{{ __('About') }}</a>
