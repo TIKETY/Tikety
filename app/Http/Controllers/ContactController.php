@@ -45,8 +45,8 @@ class ContactController extends Controller
 
         $details = [
             'title' => 'Contact Made successful',
-            'user' => $validated['name'],
-            'user_email' => $validated['email'],
+            'user' => 'Tikety',
+            'user_email' => 'support@tikety.co.tz',
             'body' =>'Your Message was Received successfully'
         ];
 
