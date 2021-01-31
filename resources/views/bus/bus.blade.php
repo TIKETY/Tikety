@@ -62,7 +62,7 @@
                         <div class="services-content brand text-center text-md-left">
                             <h3 class="bottom10 darkcolor"><a href="{{ route('ShowBus', ['language'=>app()->getLocale(), 'bus'=>$bus->id]) }}">{{ $bus->name }}</a></h3>
                             <div class="row">
-                                <p class="bottom15">{{ __($bus->from 'to' $bus->to) }}></p>
+                                <p class="bottom15">{{ $bus->from __('to') $bus->to }}></p>
                                 @if ($bus->SeatState())
                                     <p style="color: red;">{{ __('Full') }}</p>
                                 @else
