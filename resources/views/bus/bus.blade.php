@@ -97,7 +97,7 @@
     <script src="https://cdn.jsdelivr.net/npm/meilisearch@latest/dist/bundles/meilisearch.umd.js"></script>
     <script>
     const client = new MeiliSearch({
-    host: 'https://127.0.0.1:7700',
+    host: 'http://142.93.160.28:7700',
     });
 
     const index = client.getIndex('buses')
