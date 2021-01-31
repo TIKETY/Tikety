@@ -45,7 +45,7 @@ Route::group(['prefix' => '{language}',
     Route::post('/travel/form', [BusController::class, 'travel'])->name('TravelForm');
     Route::get('/mybuses', [BusController::class, 'MyBus'])->name('mybuses');
     Route::get('/createbus', [BusController::class, 'CreateBus'])->name('CreateBus')->middleware(['auth', 'verifiedphone', 'haverole']);
-    Route::get('/showbus/{bus}', [BusController::class, 'show'])->name('ShowBus');
+    Route::get('/showbus/{bus}', [BusController::class, 'show'])->name('ShowBus')->middleware('auth');
     Route::get('/buses', [BusController::class, 'showbuses'])->name('buses');
     Route::post('/createbus/{user}', [BusController::class, 'CreateBusForm'])->name('CreateBusForm')->middleware(['auth', 'verifiedphone', 'haverole']);
     Route::get('/updatebus/{bus}', [BusController::class, 'updatebus'])->name('UpdateBus')->middleware('can:isowner,bus')->middleware(['auth', 'verifiedphone', 'haverole']);
