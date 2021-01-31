@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use App\Models\Seat;
 use App\Models\User;
 use App\Models\Fleet;
@@ -70,7 +71,7 @@ class Bus extends Model
     }
 
     public function checkfleet(){
-       return Fleet::where('bus_id', $this->id)->exists();
+    return Fleet::where('bus_id', $this->id)->exists();
     }
 
     public function busstate(){
@@ -87,5 +88,15 @@ class Bus extends Model
 
     public function resetbus(){
         return $this->seats()->update(['user_id'=>NULL]);
+    }
+
+    public function SeatState(){
+        $seats = (Arr::flatten($this->seats()->where('bus_id', $this->id)->where('user_id', NULL)->pluck('seat')));
+
+        if(sizeof($seats) == 0){
+            return true;
+        } else{
+            return false;
+        }
     }
 }

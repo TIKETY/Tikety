@@ -61,8 +61,14 @@
                         </div>
                         <div class="services-content brand text-center text-md-left">
                             <h3 class="bottom10 darkcolor"><a href="{{ route('ShowBus', ['language'=>app()->getLocale(), 'bus'=>$bus->id]) }}">{{ $bus->name }}</a></h3>
-                            <p class="bottom15">{{ $bus->route }}
-                            </p>
+                            <div class="row">
+                                <p class="bottom15">{{ __($bus->from 'to' $bus->to) }}></p>
+                                @if ($bus->SeatState())
+                                    <p style="color: red;">{{ __('Full') }}</p>
+                                @else
+                                    <p style="color: green;">{{ __('Has Empty Seats') }}</p>
+                                @endif
+                            </div>
                             @auth
                             @can('isowner', $bus)
                             <a href="{{ route('UpdateBus', ['language' => app()->getLocale(), 'bus' => $bus->id]) }}" class="button-readmore">{{ __('Edit Bus') }}</a>
