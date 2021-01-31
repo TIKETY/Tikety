@@ -62,11 +62,11 @@
                         <div class="services-content brand text-center text-md-left">
                             <h3 class="bottom10 darkcolor"><a href="{{ route('ShowBus', ['language'=>app()->getLocale(), 'bus'=>$bus->id]) }}">{{ $bus->name }}</a></h3>
                             <div class="row flex">
-                                <p class="bottom15">{{ $bus->from }} {{ __('to') }} {{ $bus->to }}   </p>
+                                <p class="bottom15 ml-3">{{ $bus->from }} {{ __('to') }} {{ $bus->to }}   </p>
                                 @if ($bus->SeatState())
-                                    <p style="color: red;">{{ __('Full') }}</p>
+                                    <p class="mr-3" style="color: red;">{{ __('Full') }}</p>
                                 @else
-                                    <p style="color: green;">{{ __('Has Empty Seats') }}</p>
+                                    <p class="mr-1" style="color: green;">{{ __('Seats Present') }}</p>
                                 @endif
                             </div>
                             @auth
