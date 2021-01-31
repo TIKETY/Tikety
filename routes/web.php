@@ -38,38 +38,38 @@ Route::group(['prefix' => '{language}',
         Auth::routes(['verify'=>true]);
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/contact', [RegularController::class, 'contact'])->name('contact')->middleware(['auth', 'verifiedphone']);
+    Route::get('/contact', [RegularController::class, 'contact'])->name('contact');
     Route::get('/about', [RegularController::class, 'about'])->name('about');
-    Route::get('/faq', [RegularController::class, 'faq'])->name('faq')->middleware(['auth', 'haverole']);
+    Route::get('/faq', [RegularController::class, 'faq'])->name('faq');
     Route::get('/travel', [RegularController::class, 'travel'])->name('travel');
-    Route::post('/travel/form', [BusController::class, 'travel'])->name('TravelForm')->middleware('auth');
+    Route::post('/travel/form', [BusController::class, 'travel'])->name('TravelForm');
     Route::get('/mybuses', [BusController::class, 'MyBus'])->name('mybuses');
-    Route::get('/createbus', [BusController::class, 'CreateBus'])->name('CreateBus')->middleware('auth');
-    Route::get('/showbus/{bus}', [BusController::class, 'show'])->name('ShowBus')->middleware('auth');
+    Route::get('/createbus', [BusController::class, 'CreateBus'])->name('CreateBus')->middleware(['auth', 'verifiedphone', 'haverole']);
+    Route::get('/showbus/{bus}', [BusController::class, 'show'])->name('ShowBus');
     Route::get('/buses', [BusController::class, 'showbuses'])->name('buses');
-    Route::post('/createbus/{user}', [BusController::class, 'CreateBusForm'])->name('CreateBusForm');
-    Route::get('/updatebus/{bus}', [BusController::class, 'updatebus'])->name('UpdateBus')->middleware('can:isowner,bus');
-    Route::get('/role', [RoleController::class, 'role'])->name('role')->middleware('auth');
-    Route::post('/role/{role}', [RoleController::class, 'makeRole'])->name('makerole')->middleware('auth');
-    Route::put('/updatebus/{bus}', [BusController::class, 'update'])->name('UpdateBusForm')->middleware('can:isowner,bus');
+    Route::post('/createbus/{user}', [BusController::class, 'CreateBusForm'])->name('CreateBusForm')->middleware(['auth', 'verifiedphone', 'haverole']);
+    Route::get('/updatebus/{bus}', [BusController::class, 'updatebus'])->name('UpdateBus')->middleware('can:isowner,bus')->middleware(['auth', 'verifiedphone', 'haverole']);
+    Route::get('/role', [RoleController::class, 'role'])->name('role')->middleware(['auth', 'phoneverified']);
+    Route::post('/role/{role}', [RoleController::class, 'makeRole'])->name('makerole')->middleware(['auth', 'verifiedphone']);
+    Route::put('/updatebus/{bus}', [BusController::class, 'update'])->name('UpdateBusForm')->middleware('can:isowner,bus')->middleware(['auth', 'verifiedphone', 'haverole']);
     Route::post('/connected', [ContactController::class, 'store'])->name('connected');
     Route::post('/contactform', [ContactController::class, 'contact'])->name('ContactForm');
-    Route::post('/contactbus/{bus}', [ContactController::class, 'contactbus'])->name('ContactBus')->middleware('auth');
-    Route::post('/takeseat/{bus}', [BusController::class, 'takeseat'])->name('takeseat')->middleware(['auth', 'can:isowner,bus']);
-    Route::delete('/removebus/{bus}',[BusController::class, 'removebus'])->name('removebus')->middleware('can:isowner,bus');
+    Route::post('/contactbus/{bus}', [ContactController::class, 'contactbus'])->name('ContactBus')->middleware(['auth', 'verifiedphone', 'haverole']);
+    Route::post('/takeseat/{bus}', [BusController::class, 'takeseat'])->name('takeseat')->middleware(['auth', 'can:isowner,bus', 'verifiedphone', 'haverole']);
+    Route::delete('/removebus/{bus}',[BusController::class, 'removebus'])->name('removebus')->middleware(['can:isowner,bus', 'auth', 'verifiedphone', 'haverole']);
 
-    Route::get('/fleet/{user}', [FleetController::class, 'ShowFleet'])->name('ShowFleet')->middleware('can:view, fleet');
-    Route::post('/buses/{bus}',[FleetController::class, 'AddBusFleet'])->name('AddBusFleet');
-    Route::post('/payseat/{bus}',[BusController::class, 'payseat'])->name('payseat');
-    Route::put('/revokeseat/{bus}',[BusController::class, 'revokeSeat'])->name('revokeSeat')->middleware('can:isowner,bus');
-    Route::get('/verification_code', [RegularController::class, 'verification_code'])->name('verification_code');
-    Route::put('/verification_code_put', [RegularController::class, 'verification_code_put'])->name('verification_code_put')->middleware('throttle:3,1440');
-    Route::get('/verification_code_resend', [RegularController::class, 'verification_code_resend'])->name('verification_resend')->middleware('throttle:3,1440');
-    Route::post('/resetbus/{bus}', [BusController::class, 'resetbus'])->name('resetbus');
+    Route::get('/fleet/{user}', [FleetController::class, 'ShowFleet'])->name('ShowFleet')->middleware(['auth', 'verifiedphone', 'haverole']);
+    Route::post('/buses/{bus}',[FleetController::class, 'AddBusFleet'])->name('AddBusFleet')->middleware(['auth', 'verifiedphone', 'haverole']);
+    Route::post('/payseat/{bus}',[BusController::class, 'payseat'])->name('payseat')->middleware('auth');
+    Route::put('/revokeseat/{bus}',[BusController::class, 'revokeSeat'])->name('revokeSeat')->middleware(['can:isowner,bus', 'auth', 'verifiedphone', 'haverole']);
+    Route::get('/verification_code', [RegularController::class, 'verification_code'])->name('verification_code')->middleware('auth');
+    Route::put('/verification_code_put', [RegularController::class, 'verification_code_put'])->name('verification_code_put')->middleware(['auth', 'throttle:3,1440']);
+    Route::get('/verification_code_resend', [RegularController::class, 'verification_code_resend'])->name('verification_resend')->middleware('auth', 'throttle:3,1440');
+    Route::post('/resetbus/{bus}', [BusController::class, 'resetbus'])->name('resetbus')->middleware(['auth', 'verifiedphone', 'haverole']);
 
-    Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile');
-    Route::get('/profile/edit/{user}', [ProfileController::class, 'editprofileview'])->name('editprofileview');
-    Route::put('/profile/edit/{user}', [ProfileController::class, 'editprofile'])->name('editprofile');
+    Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile')->middleware('auth');
+    Route::get('/profile/edit/{user}', [ProfileController::class, 'editprofileview'])->name('editprofileview')->middleware(['auth', 'can:edit_profile, user', 'verifiedphone', 'haverole']);
+    Route::put('/profile/edit/{user}', [ProfileController::class, 'editprofile'])->name('editprofile')->middleware(['auth', 'can:edit_profile, user', 'verifiedphone', 'haverole']);
 
     Route::get('login/facebook', [LoginController::class, 'redirectToProvider'])->name('loginfacebook');
     Route::get('login/facebook/callback', [LoginController::class, 'handleProviderCallback'])->name('loginfacebook_callback');
@@ -83,7 +83,7 @@ Route::group(['prefix' => '{language}',
     Route::put('verify/phone/reset/password', [ForgotPasswordController::class, 'resetpassword'])->name('resetPassword')->middleware('auth');
 
     Route::get('/privacy', [RegularController::class, 'privacy'])->name('privacy');
-    Route::get('/verification/{user}', [RegularController::class, 'verification'])->name('verification');
-    Route::post('/verification/{user}/resend', [ProfileController::class, 'verification_resend'])->name('verification_email_resend');
+    Route::get('/verification/{user}', [RegularController::class, 'verification'])->name('verification')->middleware('auth');
+    Route::post('/verification/{user}/resend', [ProfileController::class, 'verification_resend'])->name('verification_email_resend')->middleware('auth');
     Route::get('/email/verification/{token}', [ProfileController::class, 'verify'])->name('verify_email')->middleware('auth');
 });
