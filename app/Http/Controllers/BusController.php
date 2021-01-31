@@ -90,7 +90,7 @@ class BusController extends Controller
     }
 
     public function show($language, Bus $bus){
-        $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')))->count();
+        $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')))->sizeof();
         dd($seats);
         return view('bus.busdetail', [
             'bus'=>$bus,
