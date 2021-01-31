@@ -34,7 +34,7 @@
                             <span class="icon-cell"><i class="fas fa-mobile-alt"></i></span>
                         </div>
                         <div class="d-table-cell cells">
-                            <p class="bottom0">+92-0900-10072 <span class="d-block">+92-0900-10072</span></p>
+                            <p class="bottom0">{{ $user->phone_number }}</p>
                         </div>
                     </div>
                     <div class="contact-table colorone d-table bottom15 text-left">
@@ -61,25 +61,6 @@
                 </div>
             </div>
             <div class="col-lg-8 col-md-7">
-                <div class="widget heading_space shadow text-center text-md-left">
-                    <h3 class="darkcolor font-normal bottom30">Finacial Planning</h3>
-                    <p class="bottom30">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mauris arcu, lobortis id interdum vitae, interdum eget elit. Curabitur quis urna nulla. Suspendisse potenti. Duis suscipit ultrices maximus. </p>
-                    <p class="bottom30">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                    <div class="owl-carousel" id="service-detail">
-                        <div class="item">
-                            <div class="image"><img alt="SEO" src="images/blog-measonry2.jpg"></div>
-                        </div>
-                        <div class="item">
-                            <div class="image"><img alt="SEO" src="images/blog-measonry2.jpg"></div>
-                        </div>
-                        <div class="item">
-                            <div class="image"><img alt="SEO" src="images/blog-measonry2.jpg"></div>
-                        </div>
-                        <div class="item">
-                            <div class="image"><img alt="SEO" src="images/blog-measonry2.jpg"></div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div id="accordion">
