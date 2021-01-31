@@ -186,7 +186,7 @@
     <!--slider-->
     <section id="home" class="p-0 dark-slider single-slide">
         <h2 class="d-none">hidden</h2>
-        <div id="rev_single_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="trax_slider_01">
+        <div id="rev_single_wrapper" class="rev_slider_wrapper fullwidthbanner-container col-md-12 col-sm-12" data-alias="trax_slider_01">
             <!-- START REVOLUTION SLIDER 5.4.8.1 fullscreen mode -->
             <div id="rev_single" class="col-md-12 col-sm-12 rev_slider fullwidthbanner" data-version="5.4.8.1">
                 <ul>
