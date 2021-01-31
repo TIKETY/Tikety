@@ -138,12 +138,16 @@
                         </li>
                         @endif
                         @auth
+                        @can('create_fleet', Role::class)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('ShowFleet', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}">{{ __('Fleet') }}</a>
                         </li>
+                        @endcan
+                        @can('create_bus', Role::class)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('mybuses', app()->getLocale()) }}">{{ __('My Bus') }}</a>
                         </li>
+                        @endcan
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('buses', app()->getLocale()) }}">{{ __('Buses') }}</a>
                         </li>
