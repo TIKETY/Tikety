@@ -194,9 +194,6 @@ class BusController extends Controller
         $from = $request['from'];
         $to = $request['to'];
 
-
-        SitemapGenerator::create('https://example.com')->writeToFile($path);
-
         $buses = Bus::where('from', $from)->where('to', $to)->get();
 
         return view('travel.travel-output', compact('buses'));
