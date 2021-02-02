@@ -21,7 +21,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="row px-2">
-                                    <div class="col-md-12 col-sm-12">
+                                    <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for="name1" class="d-none"></label>
                                             <input class="form-control" id="name" type="text" placeholder="{{ __('Name Of the Bus:') }}" value="{{ $bus->name }}" required name="name">
@@ -39,7 +39,7 @@
                                         @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-12 col-sm-12">
+                                    <div class="col-md-4 col-sm-4">
                                         <div class="form-group">
                                             <label for="name1" class="d-none"></label>
                                             <input class="form-control" id="name" type="text" placeholder="{{ __('Plate Number:') }}" value="{{ $bus->platenumber }}" required name="platenumber">
@@ -49,7 +49,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12 col-sm-12">
+                                    <div class="col-md-4 col-sm-4">
                                         <div class="form-group">
                                             <input class="form-control" type="number" id="rows" placeholder="{{ __('Rows:') }}" value="{{ $bus->rows }}" name="rows">
                                         @error('rows')
@@ -57,7 +57,7 @@
                                         @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-12 col-sm-12">
+                                    <div class="col-md-4 col-sm-4">
                                         <div class="form-group">
                                             <input class="form-control" type="number" id="amount" placeholder="{{ __('Amount:') }}" value="{{ $bus->amount }}" name="amount">
                                         @error('amount')

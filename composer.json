@@ -25,6 +25,7 @@
         "meilisearch/meilisearch-laravel-scout": "^0.12.0",
         "pragmarx/countries": "^0.7.2",
         "realrashid/sweet-alert": "^3.2",
+        "spatie/laravel-sitemap": "^5.9",
         "tumainimosha/laravel-tigopesa-push": "^0.4.0",
         "twilio/sdk": "^6.15"
     },

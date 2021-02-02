@@ -135,6 +135,8 @@ class BusController extends Controller
 
         if(!is_null($validated['image_url'])){
             Storage::disk('do')->putFile('buses', $request->file('image_url'), 'public');
+
+            $validated['image_url'] = request('image_url')->store('buses');
         }
 
         if($bus->rows > $validated['rows']){
@@ -191,6 +193,9 @@ class BusController extends Controller
     public function travel($language, Request $request){
         $from = $request['from'];
         $to = $request['to'];
+
+
+        SitemapGenerator::create('https://example.com')->writeToFile($path);
 
         $buses = Bus::where('from', $from)->where('to', $to)->get();
 
