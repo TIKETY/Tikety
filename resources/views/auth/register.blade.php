@@ -4,6 +4,7 @@
     <x-recaptcha>
         register
     </x-recaptcha>
+    <x-analytics></x-analytics>
 @endsection
 
 @section('content')

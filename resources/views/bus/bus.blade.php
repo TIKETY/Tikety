@@ -1,5 +1,9 @@
 @extends('layout.app')
 
+@section('header_script')
+<x-analytics></x-analytics>
+@endsection
+
 @section('content')
 
     <!-- Services us -->
@@ -97,7 +101,7 @@
     <script src="https://cdn.jsdelivr.net/npm/meilisearch@latest/dist/bundles/meilisearch.umd.js"></script>
     <script>
     const client = new MeiliSearch({
-    host: 'http://142.93.160.28:7700',
+    host: 'http://127.0.0.1:7700',
     });
 
     const index = client.getIndex('buses')

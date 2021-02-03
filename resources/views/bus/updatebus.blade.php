@@ -2,6 +2,7 @@
 
 @section('header_script')
     <x-recaptcha>updatebus</x-recaptcha>
+    <x-analytics></x-analytics>
 @endsection
 
 @section('content')

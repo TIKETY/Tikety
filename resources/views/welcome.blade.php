@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css_style/revolution/navigation.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/revolution/settings.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/style.css') }}">
+    <x-analytics></x-analytics>
 </head>
 
 <body>

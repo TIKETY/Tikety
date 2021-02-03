@@ -1,5 +1,9 @@
 @extends('layout.app')
 
+@section('header_script')
+<x-analytics></x-analytics>
+@endsection
+
 @section('content')
 <section id="sign-in" class="whitebox position-relative padding">
     <div class="container">

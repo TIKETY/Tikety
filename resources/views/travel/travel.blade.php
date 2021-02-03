@@ -4,6 +4,7 @@
     <x-recaptcha>
         travel
     </x-recaptcha>
+    <x-analytics></x-analytics>
 @endsection
 
 @section('content')

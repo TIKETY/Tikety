@@ -4,6 +4,7 @@
     <x-recaptcha>
         buscreate
     </x-recaptcha>
+    <x-analytics></x-analytics>
 @endsection
 
 @section('content')

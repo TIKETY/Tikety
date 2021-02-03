@@ -4,6 +4,8 @@
     <x-recaptcha>
         contact
     </x-recaptcha>
+    <x-analytics>
+    </x-analytics>
 @endsection
 
 @section('content')

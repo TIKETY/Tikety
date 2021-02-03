@@ -1,5 +1,9 @@
 @extends('layout.standard_app')
 
+@section('header_script')
+<x-analytics></x-analytics>
+@endsection
+
 @section('content')
 <!-- Services us -->
 <section id="our-services" class="padding whitebox">
