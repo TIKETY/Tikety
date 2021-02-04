@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Tikety</title>
+    <meta description="The Platform to simplify your ticketing experience and Ease your Jouneys">
     <link href="{{ ('https://tikety.fra1.digitaloceanspaces.com/favicon.ico')}}" rel="icon">
     <link rel="stylesheet" href="{{ asset('css_style/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/all.min.css') }}">
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css_style/revolution/navigation.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/revolution/settings.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/style.css') }}">
+    <link rel="canonical" href="https://tikety.co.tz" />
     <x-analytics></x-analytics>
 </head>
 
