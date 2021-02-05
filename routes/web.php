@@ -49,7 +49,7 @@ Route::group(['prefix' => '{language}',
     Route::get('/buses', [BusController::class, 'showbuses'])->name('buses');
     Route::post('/createbus/{user}', [BusController::class, 'CreateBusForm'])->name('CreateBusForm')->middleware(['auth', 'verifiedphone', 'haverole']);
     Route::get('/updatebus/{bus}', [BusController::class, 'updatebus'])->name('UpdateBus')->middleware('can:isowner,bus')->middleware(['auth', 'verifiedphone', 'haverole']);
-    Route::get('/role', [RoleController::class, 'role'])->name('role')->middleware(['auth', 'phoneverified']);
+    Route::get('/role', [RoleController::class, 'role'])->name('role')->middleware(['auth', 'verifiedphone']);
     Route::post('/role/{role}', [RoleController::class, 'makeRole'])->name('makerole')->middleware(['auth', 'verifiedphone']);
     Route::put('/updatebus/{bus}', [BusController::class, 'update'])->name('UpdateBusForm')->middleware('can:isowner,bus')->middleware(['auth', 'verifiedphone', 'haverole']);
     Route::post('/connected', [ContactController::class, 'store'])->name('connected');
