@@ -11,7 +11,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6 col-md-6 padding_bottom_half">
                 <div class="image">
-                    <video width="320" height="240" autoplay>
+                    <video width="640" height="480" autoplay loop>
                         <source src="https://tikety.fra1.digitaloceanspaces.com/Tikety%20logo%20reveal.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
