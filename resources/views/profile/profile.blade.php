@@ -17,7 +17,9 @@
                 <div class="row">
                 @if ($user->is(auth()->user()))
                 <a href="{{ route('editprofileview', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}" class="btn mt-3 mr-3 btn-primary button">{{ __('Edit') }}</a>
-                <a href="{{ route('delete', ['language'=>app()->getLocale()]) }}" class="btn mt-3 mr-3 btn-primary button">{{ __('Delete') }}</a>
+                <form action="{{ route('delete', ['language'=>app()->getLocale()]) }}" method="post">
+                <button class="btn mt-3 mr-3 btn-primary button" type="submit">{{ __('Delete') }}</button>
+                </form>
                 @else
                 @auth
                 @if ($user->user_has_bus())
