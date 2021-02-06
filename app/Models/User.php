@@ -150,4 +150,8 @@ class User extends Authenticatable
     public function email_verify(){
         return User::where('id', $this->id)->update(['email_verified_at'=>date("Y-m-d H:i:s")]);
     }
+
+    public function delete(){
+        return $this->delete();
+    }
 }
