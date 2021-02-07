@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\VerifyEmail;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Jobs\DeleteUser;
+use App\Jobs\InformUser;
 use App\Rules\RecaptchaRule;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -94,7 +94,7 @@ class ProfileController extends Controller
     public function delete($language, $id){
         $user = User::where(['id'=>$id])->first();
 
-        dispatch(new DeleteUser($user));
+        dispatch(new InformUser($user));
 
         return redirect()->route('home', ['language'=>app()->getLocale()])->with('success', trans('Your Account will be deleted in 7 days'));
     }
