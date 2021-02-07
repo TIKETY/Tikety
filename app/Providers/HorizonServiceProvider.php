@@ -37,7 +37,6 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
         Gate::define('viewHorizon', function ($user) {
             return in_array($user->phone_number, [
                 '+255654660654'
-            return in_array($user->email, [
             ]);
         });
     }
