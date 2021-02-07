@@ -18,9 +18,9 @@ class DeleteUser; implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -30,6 +30,6 @@ class DeleteUser; implements ShouldQueue
      */
     public function handle()
     {
-        return auth()->user()->delete();
+        return User::find($this->user->id)->delete();
     }
 }

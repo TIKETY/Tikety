@@ -91,8 +91,8 @@ class ProfileController extends Controller
         return abort(422);
     }
 
-    public function delete(){
-        dispatch(new DeleteUser);
+    public function delete($language, $id){
+        dispatch(new DeleteUser($id));
 
         return redirect()->route('home', ['language'=>app()->getLocale()])->with('success', trans('Your Account will be deleted in 7 days'));
     }
