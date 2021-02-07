@@ -87,5 +87,5 @@ Route::group(['prefix' => '{language}',
     Route::post('/verification/{user}/resend', [ProfileController::class, 'verification_resend'])->name('verification_email_resend')->middleware('auth');
     Route::get('/email/verification/{token}', [ProfileController::class, 'verify'])->name('verify_email')->middleware('auth');
 
-    Route::post('/profile/delete', [ProfileController::class, 'delete'])->name('delete');
+    Route::post('/profile/{id}/delete', [ProfileController::class, 'delete'])->name('delete');
 });

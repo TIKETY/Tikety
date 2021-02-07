@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -18,9 +19,9 @@ class DeleteUser implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -30,6 +31,6 @@ class DeleteUser implements ShouldQueue
      */
     public function handle()
     {
-        return auth()->user()->delete();
+        return User::find($this->user->id)->delete();
     }
 }
