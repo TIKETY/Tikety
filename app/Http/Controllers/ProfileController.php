@@ -92,7 +92,9 @@ class ProfileController extends Controller
     }
 
     public function delete($language, $id){
-        dispatch(new DeleteUser($id));
+        $user = User::where(['id'=>$id])->first();
+
+        dispatch(new DeleteUser($user));
 
         return redirect()->route('home', ['language'=>app()->getLocale()])->with('success', trans('Your Account will be deleted in 7 days'));
     }
