@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-
+use Illuminate\Support\Facades\Log;
 
 class DeleteUser implements ShouldQueue
 
@@ -34,6 +34,7 @@ class DeleteUser implements ShouldQueue
      */
     public function handle()
     {
-        $this->user->delete();
+        // $this->user->delete();
+        Log::info('testing this');
     }
 }
