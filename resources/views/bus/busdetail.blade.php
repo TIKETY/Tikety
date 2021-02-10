@@ -599,20 +599,20 @@ function remove(array, id){
 
 
 function change(id) {
-   var img1 = "{{ asset('image/empty_seat.png') }}",
-       img2 = "{{ asset('image/selected_seat.png') }}",
-       img3 = "{{ asset('image/reserved_seat.png') }}";
-   var imgElement = document.getElementById(id);
+    var img1 = "{{ asset('image/empty_seat.png') }}",
+        img2 = "{{ asset('image/selected_seat.png') }}",
+        img3 = "{{ asset('image/reserved_seat.png') }}";
+    var imgElement = document.getElementById(id);
 
 
-   if(imgElement.src === img1){
+    if(imgElement.src === img1){
     imgElement.src = img2;
     document.getElementById("seats_id").innerHTML = seats.push(id);
-   } else{
+    } else{
         imgElement.src = img1;
         remove(seats, id);
-   }
-   document.getElementById("seats_id").value = seats;
+    }
+    document.getElementById("seats_id").value = seats;
 }
 
 
