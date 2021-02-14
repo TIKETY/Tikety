@@ -9,6 +9,7 @@ use Illuminate\Support\Arr;
 use App\Notifications\BusNotification;
 use App\Models\User;
 use App\Models\Bus;
+use App\Models\History;
 use App\Rules\RecaptchaRule;
 use Illuminate\Support\Facades\Storage;
 use PragmaRX\Countries\Package\Services\Countries;
@@ -44,6 +45,8 @@ class BusController extends Controller
             'date'=>'required|date',
             'time'=>'required|date_format:H:i',
             'route'=>'required',
+            'Terms'=>'accepted',
+            'Privacy'=>'accepted',
             'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
 
@@ -91,10 +94,13 @@ class BusController extends Controller
 
     public function show($language, Bus $bus){
         $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')));
+        $users_t = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->whereNotNull('user_id')->pluck('user_id')));
+        $users = User::whereIn('id', $users_t)->get();
 
         return view('bus.busdetail', [
             'bus'=>$bus,
             'seats'=>$seats,
+            'users'=>$users,
             'notifications'=>auth()->user()->unreadNotifications
         ]);
     }
@@ -179,6 +185,7 @@ class BusController extends Controller
             return redirect()->route('verification_code', app()->getLocale())->with('number_message', trans('Verification code was sent to your number'));
         } else{
             $bus->seats_to_user($array, auth()->user());
+            History::create(['user_id'=>auth()->user()->id,'bus_name'=>$bus->name, 'bus_id'=>$bus->id, 'amount_paid'=>$fare, 'seat'=>$request->seats_id, 'depature_date'=>$bus->date]);
             $account_sid = getenv("TWILIO_SID");
             $auth_token = getenv("TWILIO_AUTH_TOKEN");
             $twilio_number = getenv("TWILIO_NUMBER");
@@ -217,6 +224,7 @@ class BusController extends Controller
         $bus->resetbus();
         return redirect()->back()->with('success', trans('You have Successfully reseted this bus!'));
     }
+
 }
 
 

@@ -4,19 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role;
+use App\Models\General;
 use App\Models\User;
 
 class RoleController extends Controller
 {
 
     public function role(){
-        return view('registration.role');
+        $customer = General::where(['role'=>'customer'])->first();
+        $manager = General::where(['role'=>'manager'])->first();
+        $master = General::where(['role'=>'master'])->first();
+        return view('registration.price', ['customer'=>$customer, 'manager'=>$manager, 'master'=>$master]);
     }
 
     public function makeRole($language, $role){
-        $role1 = Role::find(1);
-        $role2 = Role::find(2);
-        $role3 = Role::find(3);
+        $role1 = Role::where(['name'=>'master'])->first();
+        $role2 = Role::where(['name'=>'manager'])->first();
+        $role3 = Role::where(['name'=>'customer'])->first();
         if($role==='master'){
             auth()->user()->addRole($role1);
         } else if($role==='manager'){

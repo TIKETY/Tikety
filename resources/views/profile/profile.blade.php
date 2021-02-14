@@ -19,7 +19,7 @@
                 <a href="{{ route('editprofileview', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}" class="btn mt-3 mr-3 btn-primary button">{{ __('Edit') }}</a>
                 <form action="{{ route('delete', ['id'=>$user->id, 'language'=>app()->getLocale()]) }}" method="post">
                     @csrf
-                <button class="btn mt-3 mr-3 btn-primary button" type="submit">{{ __('Delete') }}</button>
+                <button class="mt-3 mr-3 btn btn-danger button"  type="submit">{{ __('Delete') }}</button>
                 </form>
                 @else
                 @auth
@@ -69,52 +69,33 @@
                 </div>
             </div>
             <div class="col-lg-8 col-md-7">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div id="accordion">
-                            <div class="card shadow">
-                                <div class="card-header">
-                                    <a class="card-link darkcolor" data-toggle="collapse" href="#collapseOne">Our Mission</a>
-                                </div>
-                                <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow">
-                                <div class="card-header">
-                                    <a class="collapsed card-link darkcolor" data-toggle="collapse" href="#collapseTwo">Our Goals</a>
-                                </div>
-                                <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow">
-                                <div class="card-header">
-                                    <a class="collapsed card-link darkcolor" data-toggle="collapse" href="#collapseThree">Inspections & Occupancy </a>
-                                </div>
-                                <div id="collapseThree" class="collapse" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow">
-                                <div class="card-header">
-                                    <a class="collapsed card-link darkcolor" data-toggle="collapse" href="#collapseFour">Top Achievements </a>
-                                </div>
-                                <div id="collapseFour" class="collapse" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                                    </div>
-                                </div>
+                <div class="col-md-12 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="tab-to-accordion heading_space">
+                        <ul class="tabset-list">
+                            <li class="active"><a href="#tab2">{{ __('Users Reservations') }}</a></li>
+                        </ul>
+                        <div class="tab-container">
+                            <div id="tab2">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ __('Bus') }}</th>
+                                            <th>{{ __('Amount Paid') }}</th>
+                                            <th>{{ __('Seats Taken') }}</th>
+                                            <th>{{ __('Depature Date') }}</th>
+                                        </tr>
+                                    @foreach ($histories as $history)
+                                    <tr>
+                                        <td>{{ $history->bus_name }}</td>
+                                        <td>{{ $history->amount_paid }}</td>
+                                        <td>{{ $history->seat}}</td>
+                                        <td>{{ $history->depature_date}}</td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 mt-5 mt-md-0">
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@
                         </div>
                         <div id="collapseOne" class="collapse show" data-parent="#accordion">
                             <div class="card-body">
-                                <p class="bottom20">{{ __('At tikety, accessible from www.tikety.net, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by tikety and how we use it. If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us. This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in tikety. This policy is not applicable to any information collected offline or via channels other than this website. Our Privacy Policy was created with the help of the Privacy Policy Generator and the Free Privacy Policy Generator.') }}</p>
+                                <p class="bottom20">{{ __('At Tikety, accessible from www.Tikety.co.tz, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Tikety and how we use it. If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us. This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Tikety. This policy is not applicable to any information collected offline or via channels other than this website. Our Privacy Policy was created with the help of the Privacy Policy Generator and the Free Privacy Policy Generator.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                         </div>
                         <div id="collapseSix" class="collapse" data-parent="#accordion">
                             <div class="card-body">
-                                <p>{{ __('tikety follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services\' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users\' movement on the website, and gathering demographic information.') }}</p>
+                                <p>{{ __('Tikety follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services\' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users\' movement on the website, and gathering demographic information.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                         </div>
                         <div id="collapseSeven" class="collapse" data-parent="#accordion">
                             <div class="card-body">
-                                <p>{{ __('Like any other website, tikety uses \'cookies\'. These cookies are used to store information including visitors\' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users\' experience by customizing our web page content based on visitors\' browser type and/or other information.') }}</p>
+                                <p>{{ __('Like any other website, Tikety uses \'cookies\'. These cookies are used to store information including visitors\' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users\' experience by customizing our web page content based on visitors\' browser type and/or other information.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                         </div>
                         <div id="collapseeight" class="collapse" data-parent="#accordion">
                             <div class="card-body">
-                                <p>{{ __('Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on tikety, which are sent directly to users\' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit. Note that tikety has no access to or control over these cookies that are used by third-party advertisers.') }}</p>
+                                <p>{{ __('Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on Tikety, which are sent directly to users\' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit. Note that Tikety has no access to or control over these cookies that are used by third-party advertisers.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,7 @@
                         </div>
                         <div id="collapsenine" class="collapse" data-parent="#accordion">
                             <div class="card-body">
-                                <p>{{ __('Sera ya faragha ya tikety haitumiki kwa watangazaji wengine au tovuti. Kwa hivyo, tunakushauri uwasiliane na Sera za faragha za seva hizi za matangazo ya tatu kwa habari zaidi. Inaweza kujumuisha mazoea na maagizo yao kuhusu jinsi ya kuchagua kutoka kwa chaguzi fulani. You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers\' respective websites.') }}</p>
+                                <p>{{ __('Sera ya faragha ya Tikety haitumiki kwa watangazaji wengine au tovuti. Kwa hivyo, tunakushauri uwasiliane na Sera za faragha za seva hizi za matangazo ya tatu kwa habari zaidi. Inaweza kujumuisha mazoea na maagizo yao kuhusu jinsi ya kuchagua kutoka kwa chaguzi fulani. You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers\' respective websites.') }}</p>
                             </div>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                         </div>
                         <div id="collapsetwelvew" class="collapse" data-parent="#accordion">
                             <div class="card-body">
-                                <p>{{ __('Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity. tikety does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.') }}</p>
+                                <p>{{ __('Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity. Tikety does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.') }}</p>
                             </div>
                         </div>
                     </div>

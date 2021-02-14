@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Jobs\InformUser;
 use App\Rules\RecaptchaRule;
-use Illuminate\Support\Str;
+use App\Models\History;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -21,7 +21,12 @@ class ProfileController extends Controller
     }
 
     public function show($language, User $user){
-        return view('profile.profile', compact('user'));
+        $histories = History::where('user_id', auth()->user()->id)->get();
+
+        return view('profile.profile', [
+            'user'=>$user,
+            'histories'=>$histories
+        ]);
     }
 
     public function edit(){

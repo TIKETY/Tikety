@@ -148,6 +148,100 @@
                     @endcan
                     @endauth
                 </div>
+                <div class="col-md-12 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="tab-to-accordion heading_space">
+                        <ul class="tabset-list">
+                            @can('isowner', $bus)
+                            <li class="active"><a href="#tab2">{{ __('Users Reservations') }}</a></li>
+                            @endcan
+                            <li class="active"><a href="#tab3">{{ __('Review') }}</a>
+                            </li>
+                        </ul>
+                        <div class="tab-container">
+                            @can('isowner', $bus)
+                            <div id="tab2">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ __('Name') }}</th>
+                                            <th>{{ __('Phone Number') }}</th>
+                                            <th>{{ __('Seats Taken') }}</th>
+                                        </tr>
+                                    @foreach ($users as $user)
+                                    <tr>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->phone_number }}</td>
+                                        <td>{{ $user->users_seat_bus($bus->id)->pluck('seat') }}</td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            @endcan
+                            <div id="tab3">
+                                <div class="bottom30">
+                                    <div class="profile">
+                                        <div class="p_pic"><img src="images/profile4.jpg" alt="instructure"></div>
+                                        <div class="profile_text">
+                                            <h5><strong style="color: #006dbf">JOHN PARKER</strong></h5>
+                                            <ul class="comment">
+                                                <li><a href="javascript:void(0)" class="text-warning-hvr">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-alt"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <p>Vivamus bibendum nibh in dolor pharetra, a euismod nulla dignissim. Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="add-review">
+                                    <h3 class="heading darkcolor font-light2 bottom25">{{ __('Add Your Review') }}</h3>
+                                    <h5 class="pb-1">{{ __('Your Rating : ') }}<span id="ratingText" class="text-warning">{{ __('Please Select') }}</span></h5>
+                                    <ul class="comment bottom15 top10">
+                                        <li><a href="javascript:void(0)" id="rattingIcon">
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </a>
+                                        </li>
+                                    </ul>
+                                    <form class="findus" id="contact-form" onSubmit="return false">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="result1"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="name" class="d-none"></label>
+                                                    <input type="text" class="form-control" placeholder="{{ __('Name') }}" name="name" id="name" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="email1" class="d-none"></label>
+                                                    <input type="email" class="form-control" placeholder="{{ __('Phone Number') }}" name="phone_number" id="phone_number" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 mb-4">
+                                                <label for="message" class="d-none"></label>
+                                                <textarea placeholder="{{ __('Comment') }}" name="message" id="message"></textarea>
+                                            </div>
+                                            <button class=" ml-3 mb-3 button gradient-btn" id="btn_submit">{{ __('Add Review') }}</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div id="accordion">

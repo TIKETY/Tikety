@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Scout\Searchable;
 use Illuminate\Support\Str;
 use App\Models\Role;
+use App\Models\History;
 use App\Models\Product;
 use Twilio\Rest\Client;
 use App\Models\Bus;
@@ -75,6 +76,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Bus::class);
     }
 
+    public function history(){
+        return $this->belongsToMany(History::class);
+    }
+
     public function fleet(){
         return $this->hasOne(Fleet::class);
     }
@@ -85,6 +90,10 @@ class User extends Authenticatable
 
     public function roles(){
         return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+
+    public function users_seat_bus($bus){
+        return Bus::find($bus)->seats()->where('user_id', $this->id)->get();
     }
 
     public function addRole($role){

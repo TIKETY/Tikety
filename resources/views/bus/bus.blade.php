@@ -21,7 +21,7 @@
                         style="width: 250px;">
                     <div class="dropdown-menu live-search-list" aria-labelledby="dropdownMenuButton" id="results">
                         <li>
-                            <a class="dropdown-item" href="">{{  }}</a>
+                            <a class="dropdown-item" href=""></a>
                         </li>
                     </div>
                 </div>

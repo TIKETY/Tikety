@@ -1,5 +1,11 @@
 @extends('layout.standard_app')
 
+@section('header_script')
+<x-recaptcha>
+    ResetPassword
+</x-recaptcha>
+@endsection
+
 @section('content')
 <!-- reset password -->
     <section id="sign-in" class="whitebox position-relative padding">
@@ -31,7 +37,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12 forget-buttons">
-                                    <button type="submit" class="button btn-primary mr-4">Verify</button>
+                                    <button type="submit" data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" class="g-recaptcha button btn-primary mr-4">Verify</button>
                                     <a href="{{ route('verification_resend', app()->getLocale()) }}" class="mr-4">Resend</a>
                                 </div>
                             </div>

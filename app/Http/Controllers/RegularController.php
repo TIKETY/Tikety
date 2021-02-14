@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Founders;
+use App\Rules\RecaptchaRule;
 use App\Models\User;
 use PragmaRX\Countries\Package\Services\Countries;
 
@@ -36,7 +37,12 @@ class RegularController extends Controller
 
     public function verification_code_put($language, Request $request){
         $code = auth()->user()->verification_code;
-        if($code === $request['verification_code']){
+        $validated = $request->validate([
+            'verification_code'=>'max:30',
+            'g-recaptcha-response'=>['required', new RecaptchaRule]
+        ]);
+
+        if($code === $validated['verification_code']){
             auth()->user()->phone_register($request['phone_number']);
             auth()->user()->verify();
             return redirect()->route('role', app()->getLocale())->with('message_role', trans('You have registered your number Successfully'));
@@ -62,7 +68,7 @@ class RegularController extends Controller
         return view('auth.verify', compact('user'));
     }
 
-    public function test(){
-        return view('test');
+    public function pricing(){
+        return view('registration.price');
     }
 }
