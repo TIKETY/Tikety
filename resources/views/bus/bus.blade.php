@@ -96,4 +96,28 @@
         </div>
     </section>
     <!-- Services us ends -->
+    @section('script')
+    <script src="https://cdn.jsdelivr.net/npm/meilisearch@latest/dist/bundles/meilisearch.umd.js"></script>
+    <script>
+    const client = new MeiliSearch({
+    host: 'http://127.0.0.1:7700',
+    });
+    const index = client.getIndex('buses')
+    const input = document.querySelector('#searchbar')
+    input.addEventListener('keyup', event=>{
+        index.search(event.target.value)
+        .then(response => {
+            let nodes = response.hits.map(bus=>{
+                let div= document.createElement('div');
+                // div.innerText= bus.name;
+                div.innerHTML = '<li class=\"mb-1\"><a href=\"en/showbus/'+bus.id+'\"><img class="mr-2" width=\"50px\" height=\"50px\" src=\"http://127.0.0.1/Tikety/public/storage/'+ bus.image_url +'\">'+bus.name+'</a></li>';
+                return div;
+            });
+            let results = document.querySelector('#results');
+            results.innerHTML = '';
+            results.append(...nodes);
+        });
+    })
+    </script>
+    @endsection
 @endsection

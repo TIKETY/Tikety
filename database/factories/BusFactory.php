@@ -28,7 +28,7 @@ class BusFactory extends Factory
             'platenumber'=> $this->faker->unique()->swiftBicNumber,
             'route'=> $this->faker->name,
             'rows'=> $this->faker->numberBetween($min = 4, $max = 14),
-            'body'=> $this->faker->paragraph,
+            'body'=> $this->faker->sentence,
             'from'=> $this->faker->city,
             'image_url'=>'profile_images/3Rh3KnwOmPG9zdVM0DqTSomstAcMWNeNm1AgN5xg.jpeg',
             'amount'=>25000,

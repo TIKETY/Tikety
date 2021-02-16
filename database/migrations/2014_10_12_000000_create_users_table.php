@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('phone_number')->unique();
             $table->string('verification_code')->nullable();
             $table->string('phone_verified_at')->nullable();
+            $table->string('blocked_at')->nullable();
+            $table->string('deleted_at')->nullable();
             $table->string('token')->nullable()->default(null);
             $table->string('password');
             $table->string('image_url')->nullable();

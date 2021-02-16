@@ -88,4 +88,5 @@ Route::group(['prefix' => '{language}',
     Route::get('/email/verification/{token}', [ProfileController::class, 'verify'])->name('verify_email')->middleware('auth');
 
     Route::post('/profile/{id}/delete', [ProfileController::class, 'delete'])->name('delete');
+    Route::get('/soon', [RegularController::class, 'soon'])->name('soon');
 });

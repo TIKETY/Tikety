@@ -1,5 +1,9 @@
 @extends('layout.app')
 
+@section('header_script')
+<x-analytics></x-analytics>
+@endsection
+
 @section('content')
 
     <!--Error 413 SECTION-->

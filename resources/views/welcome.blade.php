@@ -254,8 +254,8 @@
                     </div>
                     <p class="bottom35">{{ __('Different Services utilizing the ticketing systems are now able to utilize this platform to reach their customers from their phone with convenient ease. These services can be accessed from the customer\'s mobile phone app which can be found in the app stores, for iPhone and Android') }}</p>
                     <div class="mb-4">
-                        <a href=""><img src="{{ asset('image/istore_link.jpg')}}" widht="124px" height="43px" class="rounded-lg mr-2" alt=""></a>
-                        <a href=""><img src="{{ asset('image/gstore_link.jpg')}}" width="140px" height="43px" class="rounded-lg" alt=""></a>
+                        <a href="{{ route('soon', ['language'=>app()->getLocale()]) }}"><img src="{{ asset('image/gstore_link.jpg')}}" width="140px" height="43px" class="rounded-lg" alt=""></a>
+                        <a href="{{ route('soon', ['language'=>app()->getLocale()]) }}"><img src="{{ asset('image/istore_link.jpg')}}" widht="124px" height="43px" class="rounded-lg mr-2" alt=""></a>
 
                     </div>
                 </div>

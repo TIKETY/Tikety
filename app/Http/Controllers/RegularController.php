@@ -10,6 +10,9 @@ use PragmaRX\Countries\Package\Services\Countries;
 
 class RegularController extends Controller
 {
+    public function soon(){
+        return view('misc.soon');
+    }
 
     public function contact(){
         return view('misc.contact');
