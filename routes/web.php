@@ -10,6 +10,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\FleetController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -55,8 +56,8 @@ Route::group(['prefix' => '{language}',
     Route::post('/connected', [ContactController::class, 'store'])->name('connected');
     Route::post('/contactform', [ContactController::class, 'contact'])->name('ContactForm');
     Route::post('/contactbus/{bus}', [ContactController::class, 'contactbus'])->name('ContactBus')->middleware(['auth', 'verifiedphone', 'haverole']);
-    Route::post('/takeseat/{bus}', [BusController::class, 'takeseat'])->name('takeseat')->middleware(['auth', 'can:isowner,bus', 'verifiedphone', 'haverole']);
-    Route::delete('/removebus/{bus}',[BusController::class, 'removebus'])->name('removebus')->middleware(['can:isowner,bus', 'auth', 'verifiedphone', 'haverole']);
+    Route::post('/takeseat/{bus}', [BusController::class, 'takeseat'])->name('takeseat')->middleware(['auth', 'can:isowner,bus', 'verifiedphone']);
+    Route::delete('/removebus/{bus}',[BusController::class, 'removebus'])->name('removebus')->middleware(['can:isowner,bus', 'auth', 'verifiedphone']);
 
     Route::get('/fleet/{user}', [FleetController::class, 'ShowFleet'])->name('ShowFleet')->middleware(['auth', 'verifiedphone', 'haverole']);
     Route::post('/buses/{bus}',[FleetController::class, 'AddBusFleet'])->name('AddBusFleet')->middleware(['auth', 'verifiedphone', 'haverole']);
@@ -89,4 +90,7 @@ Route::group(['prefix' => '{language}',
 
     Route::post('/profile/{id}/delete', [ProfileController::class, 'delete'])->name('delete');
     Route::get('/soon', [RegularController::class, 'soon'])->name('soon');
+
+    Route::post('/review/{bus}', [ReviewController::class, 'store'])->name('review')->middleware(['auth', 'verifiedphone']);
+    Route::post('/approve_review/{bus}/{review_user_id}', [ReviewController::class, 'approve'])->name('approve_review')->middleware(['auth', 'verifiedphone']);
 });

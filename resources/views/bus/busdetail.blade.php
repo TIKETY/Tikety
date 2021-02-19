@@ -1,7 +1,10 @@
-@extends('layout.app')
+@extends('layout.standard_app')
 
 @section('header_script')
 <x-analytics></x-analytics>
+<x-recaptcha>
+    review
+</x-recaptcha>
 @endsection
 
 @section('content')
@@ -18,6 +21,44 @@
                 @endif ></div>
                 <div class="widget shadow heading_space text-center text-md-left">
                     <h4 class="text-capitalize darkcolor bottom35">{{ __('Need Help?') }}</h4>
+                    <div class="contact-table colorone d-table bottom15">
+                        <div class="d-table-cell cells">
+                            <span class="icon-cell"><i class="fas fa-star-alt"></i></span>
+                        </div>
+                        <div class="d-table-cell cells">
+                            <ul class="comment mb-2">
+                                <li><a href="javascript:void(0)" class="text-warning-hvr">
+                                    <i @if (($bus->bus_avg_rating() > 0) && ($bus->bus_avg_rating() < 1))
+                                        class="fa fa-star-half-alt"
+                                    @endif @if ($bus->bus_avg_rating() >= 1)
+                                    class="fa fa-star"
+                                @endif></i>
+                                    <i @if (($bus->bus_avg_rating() > 1) && ($bus->bus_avg_rating() < 2))
+                                        class="fa fa-star-half-alt"
+                                    @endif @if ($bus->bus_avg_rating() >= 2)
+                                    class="fa fa-star"
+                                @endif></i>
+                                    <i @if (($bus->bus_avg_rating() > 2) && ($bus->bus_avg_rating() < 3))
+                                        class="fa fa-star-half-alt"
+                                    @endif @if ($bus->bus_avg_rating() >= 3)
+                                        class="fa fa-star"
+                                    @endif></i>
+                                    <i @if (($bus->bus_avg_rating() > 3) && ($bus->bus_avg_rating() < 4))
+                                        class="fa fa-star-half-alt"
+                                    @endif @if ($bus->bus_avg_rating() >= 4)
+                                        class="fa fa-star"
+                                    @endif></i>
+                                    <i @if (($bus->bus_avg_rating() > 4) && ($bus->bus_avg_rating() < 5))
+                                        class="fa fa-star-half-alt"
+                                    @endif @if ($bus->bus_avg_rating() >= 5)
+                                        class="fa fa-star"
+                                    @endif></i>
+                                    {{-- <i class="fa fa-star-half-alt"></i> --}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <div class="contact-table colorone d-table bottom15">
                         <div class="d-table-cell cells">
                             <span class="icon-cell"><i class="fas fa-mobile-alt"></i></span>
@@ -179,39 +220,77 @@
                             </div>
                             @endcan
                             <div id="tab3">
+                                @foreach ($reviews as $review)
                                 <div class="bottom30">
                                     <div class="profile">
-                                        <div class="p_pic"><img src="images/profile4.jpg" alt="instructure"></div>
+                                        <div><img @if (is_null($review->user_image))
+                                            src="{{ asset('image/tikety_user.png') }}"
+                                        @else
+                                            src="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.$review->user_image) }}"
+                                        @endif class="rounded-circle mr-3" width="50px" height="50px" alt="instructure"></div>
                                         <div class="profile_text">
-                                            <h5><strong style="color: #006dbf">JOHN PARKER</strong></h5>
-                                            <ul class="comment">
+                                            <h5><strong style="color: #006dbf">{{ $review->user_name }}</strong></h5>
+                                            <ul class="comment mb-2">
                                                 <li><a href="javascript:void(0)" class="text-warning-hvr">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-alt"></i>
+                                                    <i @if ($review->rating >= 1)
+                                                        class="fa fa-star"
+                                                    @endif></i>
+                                                    <i @if ($review->rating >= 2)
+                                                        class="fa fa-star"
+                                                    @endif></i>
+                                                    <i @if ($review->rating >= 3)
+                                                        class="fa fa-star"
+                                                    @endif></i>
+                                                    <i @if ($review->rating >= 4)
+                                                        class="fa fa-star"
+                                                    @endif></i>
+                                                    <i @if ($review->rating >= 5)
+                                                        class="fa fa-star"
+                                                    @endif></i>
+                                                    {{-- <i class="fa fa-star-half-alt"></i> --}}
                                                     </a>
                                                 </li>
                                             </ul>
-                                            <p>Vivamus bibendum nibh in dolor pharetra, a euismod nulla dignissim. Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium.</p>
+                                            <h6><strong style="color: #000c16">{{ $review->title }}</strong></h6>
+                                            <p>{{ $review->body }}</p>
+                                            @can('isowner', $bus)
+                                            <form action="{{ route('approve_review',['language'=>app()->getLocale(), 'bus'=>$bus, 'review_user_id'=>$review->user_id]) }}" method="POST">
+                                            @csrf
+                                            <button class="button btn-primary" type="submit">
+                                            @if (!$review->approved)
+                                                {{ __('Approve') }}
+                                            @else
+                                                {{ __('Disapprove') }}
+                                            @endif
+                                            </button>
+                                            </form>
+                                            @endcan
                                         </div>
                                     </div>
                                 </div>
+                                @endforeach
+                                <div class="row align-items-center justify-content-center mt-3">
+                                    {{ $reviews->links('pagination.pagination') }}
+                                </div>
+                                @cannot('isowner', $bus)
                                 <div class="add-review">
                                     <h3 class="heading darkcolor font-light2 bottom25">{{ __('Add Your Review') }}</h3>
                                     <h5 class="pb-1">{{ __('Your Rating : ') }}<span id="ratingText" class="text-warning">{{ __('Please Select') }}</span></h5>
                                     <ul class="comment bottom15 top10">
                                         <li><a href="javascript:void(0)" id="rattingIcon">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
+                                            <i id="rate" onclick="take(1)" class="far fa-star"></i>
+                                            <i id="rate" onclick="take(2)" class="far fa-star"></i>
+                                            <i id="rate" onclick="take(3)" class="far fa-star"></i>
+                                            <i id="rate" onclick="take(4)" class="far fa-star"></i>
+                                            <i id="rate" onclick="take(5)" class="far fa-star"></i>
                                         </a>
                                         </li>
                                     </ul>
-                                    <form class="findus" id="contact-form" onSubmit="return false">
+                                    @error('rating')
+                                    <p style="color: red;">{{ $message }}</p>
+                                    @enderror
+                                    <form class="findus" id="review" action="{{ route('review', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="POST">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div id="result1"></div>
@@ -221,23 +300,26 @@
                                             <div class="col-md-6 col-sm-6">
                                                 <div class="form-group">
                                                     <label for="name" class="d-none"></label>
-                                                    <input type="text" class="form-control" placeholder="{{ __('Name') }}" name="name" id="name" required>
+                                                    <input type="text" class="form-control" placeholder="{{ __('Title') }}" name="title" id="title" required>
+                                                    @error('title')
+                                                    <p style="color: red;">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="email1" class="d-none"></label>
-                                                    <input type="email" class="form-control" placeholder="{{ __('Phone Number') }}" name="phone_number" id="phone_number" required>
-                                                </div>
-                                            </div>
+                                            <input type="hidden" id="phone_number" name="phone_number" value="{{ auth()->user()->phone_number }}">
                                             <div class="col-md-12 col-sm-12 mb-4">
                                                 <label for="message" class="d-none"></label>
-                                                <textarea placeholder="{{ __('Comment') }}" name="message" id="message"></textarea>
+                                                <textarea placeholder="{{ __('Comment') }}" name="body" id="body"></textarea>
+                                                @error('body')
+                                                <p style="color: red;">{{ $message }}</p>
+                                                @enderror
                                             </div>
-                                            <button class=" ml-3 mb-3 button gradient-btn" id="btn_submit">{{ __('Add Review') }}</button>
+                                            <input type="hidden" id="rate_star" name="rating">
                                         </div>
+                                        <button data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" class="g-recaptcha ml-3 mb-3 button gradient-btn" id="btn_submit">{{ __('Add Review') }}</button>
                                     </form>
                                 </div>
+                                @endcannot
                             </div>
                         </div>
                     </div>
@@ -681,10 +763,7 @@
 
 <script>
 var seats = new Array;
-function loadImage() {
-        alert("Image is loaded");
-}
-
+var rate_array = new Array;
 
 function remove(array, id){
     const index = array.indexOf(id);
@@ -709,6 +788,10 @@ function change(id) {
     document.getElementById("seats_id").value = seats;
 }
 
+function take(rate){
+    rate_array.push(rate);
+    document.getElementById("rate_star").value = rate_array[rate_array.length-1];
+}
 
 </script>
 

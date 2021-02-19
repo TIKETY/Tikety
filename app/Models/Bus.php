@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use App\Models\Seat;
+use App\Models\Review;
 use App\Models\User;
 use App\Models\Fleet;
 use Laravel\Scout\Searchable;
@@ -98,5 +99,9 @@ class Bus extends Model
         } else{
             return false;
         }
+    }
+
+    public function bus_avg_rating(){
+        return Review::where('bus_id', $this->id)->avg('rating');
     }
 }

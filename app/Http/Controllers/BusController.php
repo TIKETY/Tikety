@@ -7,7 +7,9 @@ use Twilio\Rest\Client;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Arr;
 use App\Notifications\BusNotification;
+use Illuminate\Support\Facades\Gate;
 use App\Models\User;
+use App\Models\Review;
 use App\Models\Bus;
 use App\Models\History;
 use App\Rules\RecaptchaRule;
@@ -97,10 +99,17 @@ class BusController extends Controller
         $users_t = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->whereNotNull('user_id')->pluck('user_id')));
         $users = User::whereIn('id', $users_t)->get();
 
+        if(Gate::allows('isowner', $bus)){
+            $reviews = Review::where('bus_id', $bus->id)->paginate(1);
+        } else{
+            $reviews = Review::where('bus_id', $bus->id)->where('approved', 1)->paginate(1);
+        }
+
         return view('bus.busdetail', [
             'bus'=>$bus,
             'seats'=>$seats,
             'users'=>$users,
+            'reviews'=>$reviews,
             'notifications'=>auth()->user()->unreadNotifications
         ]);
     }
