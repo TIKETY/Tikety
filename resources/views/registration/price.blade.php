@@ -10,8 +10,7 @@
         @endif
         <div class="row">
             <div class="col-md-12 text-center wow fadeIn" data-wow-delay="300ms">
-                <h2 class="heading darkcolor font-light2"><span class="font-weight-light">Best</span> Pricing
-                    <span class="divider-center"></span>
+                <h2 class="heading darkcolor font-light2"><span class="font-weight-light">{{ __('Welcome') }}</span>
                 </h2>
             </div>
             <div class="col-12 text-center">

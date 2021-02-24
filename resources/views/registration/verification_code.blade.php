@@ -14,7 +14,7 @@
 
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 whitebox">
                     <div class="widget logincontainer shadow text-center text-md-left">
-                        <h3 class="darkcolor bottom35">Verification Code</h3>
+                        <h3 class="darkcolor bottom35">{{ __('Verification Code') }}</h3>
                         @if (session('number_message'))
                         <div class="alert alert-success" role="alert">
                             {{ session('number_message') }}
@@ -37,8 +37,8 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12 forget-buttons">
-                                    <button type="submit" data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" class="g-recaptcha button btn-primary mr-4">Verify</button>
-                                    <a href="{{ route('verification_resend', app()->getLocale()) }}" class="mr-4">Resend</a>
+                                    <button type="submit" data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" class="g-recaptcha button btn-primary mr-4">{{ __('Verify') }}</button>
+                                    <a href="{{ route('verification_resend', app()->getLocale()) }}" class="mr-4">{{ __('Resend') }}</a>
                                 </div>
                             </div>
                             <input type="hidden" name="phone_number" value="{{ auth()->user()->phone_number }}">

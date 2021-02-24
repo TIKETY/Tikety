@@ -6,12 +6,36 @@ use Illuminate\Http\Request;
 use App\Models\Founders;
 use App\Rules\RecaptchaRule;
 use App\Models\User;
+use App\Models\Contact;
+use App\Models\Events;
 use PragmaRX\Countries\Package\Services\Countries;
 
 class RegularController extends Controller
 {
     public function soon(){
-        return view('misc.soon');
+        $date = Events::where('title', 'app')->first()->time;
+        return view('misc.soon', [
+            'date'=>$date
+        ]);
+    }
+
+    public function soon_create($language, Request $request){
+        $validated = $request->validate([
+            'title'=>'required',
+            'email'=>'email',
+            'g-recaptcha-response'=>['required', new RecaptchaRule]
+        ]);
+
+        Contact::create([
+            'name'=>$validated['title'],
+            'email'=>$validated['email'],
+        ]);
+
+        return redirect()->back()->with('success', trans('You have successfully Subscribed'));
+    }
+
+    public function terms(){
+        return view('misc.terms');
     }
 
     public function contact(){

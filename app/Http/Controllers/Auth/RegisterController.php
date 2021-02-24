@@ -72,7 +72,7 @@ class RegisterController extends Controller
         $twilio_number = getenv("TWILIO_NUMBER");
         $client = new Client($account_sid, $auth_token);
         $client->messages->create($data['phone_number'],
-                ['from' => $twilio_number, 'body' => 'Your Verification code is: '.$code] );
+                ['from' => $twilio_number, 'body' => trans('Your Verification code is: ').$code] );
 
         return User::create([
             'name' => $data['name'],

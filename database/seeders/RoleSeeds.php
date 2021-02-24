@@ -97,6 +97,36 @@ class RoleSeeds extends Seeder
             'ability_id'=>2
         ]);
 
+        DB::table('founders')->insert([
+            'name'=>'Yusuph Kapilimka',
+            'position'=>'CEO',
+            'email'=>'yusuph@tikety.co.tz',
+            'phone_number'=>'+255759777031',
+            'story'=>'Enterpreneur, Problem Solver and Innovator',
+            'image_url'=>'https://tikety.fra1.digitaloceanspaces.com/founders/kp.PNG',
+            'twitter'=>'https://twitter.com/YusuphKapilimka',
+            'facebook'=>'https://www.facebook.com/yusuphg.kapilimka',
+            'linkedin'=>'https://www.linkedin.com/in/kptechnologiez/',
+            'instagram'=>'https://www.instagram.com/yusuph_kapilimka/'
+        ]);
+
+        DB::table('founders')->insert([
+            'name'=>'Kea Rajabu',
+            'position'=>'CTO',
+            'email'=>'kea@tikety.co.tz',
+            'phone_number'=>'+255654660654',
+            'story'=>'Enterpreneur, Innovator and Leadership Enthusiast',
+            'image_url'=>'https://tikety.fra1.digitaloceanspaces.com/founders/kea.jpg',
+            'twitter'=>'https://twitter.com/kearajab137',
+            'facebook'=>'https://www.facebook.com/Kea.Rajab.Kea',
+            'linkedin'=>'https://www.linkedin.com/in/kea-rajab/',
+            'instagram'=>'https://www.instagram.com/kea_rajab/'
+        ]);
+
+        DB::table('events')->insert([
+            'title'=>'app',
+            'time'=>'May 26, 2021 12:00:00'
+        ]);
 
     }
 }

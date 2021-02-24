@@ -54,6 +54,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact') }}</a>
                         </li>
+                        @guest
+                        <li class="nav-item">
+                            <a class="nav-link text-black-50" href="{{ route('role', app()->getLocale()) }}">{{ __('Pricing') }}</a>
+                        </li>
+                        @endguest
                         @if (app()->getLocale() === 'sw')
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route(Route::currentRouteName(), 'en') }}"><img src="{{ asset('image/uk.png') }}" alt=""></a>

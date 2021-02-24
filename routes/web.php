@@ -50,7 +50,7 @@ Route::group(['prefix' => '{language}',
     Route::get('/buses', [BusController::class, 'showbuses'])->name('buses');
     Route::post('/createbus/{user}', [BusController::class, 'CreateBusForm'])->name('CreateBusForm')->middleware(['auth', 'verifiedphone', 'haverole']);
     Route::get('/updatebus/{bus}', [BusController::class, 'updatebus'])->name('UpdateBus')->middleware('can:isowner,bus')->middleware(['auth', 'verifiedphone', 'haverole']);
-    Route::get('/role', [RoleController::class, 'role'])->name('role')->middleware(['auth', 'verifiedphone']);
+    Route::get('/role', [RoleController::class, 'role'])->name('role');
     Route::post('/role/{role}', [RoleController::class, 'makeRole'])->name('makerole')->middleware(['auth', 'verifiedphone']);
     Route::put('/updatebus/{bus}', [BusController::class, 'update'])->name('UpdateBusForm')->middleware('can:isowner,bus')->middleware(['auth', 'verifiedphone', 'haverole']);
     Route::post('/connected', [ContactController::class, 'store'])->name('connected');
@@ -75,8 +75,8 @@ Route::group(['prefix' => '{language}',
     Route::get('login/facebook', [LoginController::class, 'redirectToProvider'])->name('loginfacebook');
     Route::get('login/facebook/callback', [LoginController::class, 'handleProviderCallback'])->name('loginfacebook_callback');
 
-    Route::get('login/forgot', [RegularController::class, 'forgot_password'])->name('forgot');
-    Route::post('login/forgot', [ForgotPasswordController::class, 'forgot_password'])->name('forgot_password')->middleware('throttle:3,1440');
+    Route::get('login/forgot', [RegularController::class, 'forgot_password'])->name('forgot')->middleware('active_user');
+    Route::post('login/forgot', [ForgotPasswordController::class, 'forgot_password'])->name('forgot_password')->middleware('throttle:3,1440', 'active_user');
     Route::get('verify/{phone}', [ForgotPasswordController::class, 'verify'])->name('verify');
     Route::post('verify/{phone}', [ForgotPasswordController::class, 'resend'])->name('resend')->middleware('throttle:3,1440');
     Route::get('verify/phone/{token}', [ForgotPasswordController::class, 'tokenVerify'])->name('tokenVerify');
@@ -84,6 +84,7 @@ Route::group(['prefix' => '{language}',
     Route::put('verify/phone/reset/password', [ForgotPasswordController::class, 'resetpassword'])->name('resetPassword')->middleware('auth');
 
     Route::get('/privacy', [RegularController::class, 'privacy'])->name('privacy');
+    Route::get('/terms', [RegularController::class, 'terms'])->name('terms');
     Route::get('/verification/{user}', [RegularController::class, 'verification'])->name('verification')->middleware('auth');
     Route::post('/verification/{user}/resend', [ProfileController::class, 'verification_resend'])->name('verification_email_resend')->middleware('auth');
     Route::get('/email/verification/{token}', [ProfileController::class, 'verify'])->name('verify_email')->middleware('auth');
@@ -93,4 +94,5 @@ Route::group(['prefix' => '{language}',
 
     Route::post('/review/{bus}', [ReviewController::class, 'store'])->name('review')->middleware(['auth', 'verifiedphone']);
     Route::post('/approve_review/{bus}/{review_user_id}', [ReviewController::class, 'approve'])->name('approve_review')->middleware(['auth', 'verifiedphone']);
+
 });

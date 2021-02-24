@@ -146,6 +146,19 @@ class User extends Authenticatable
         ])->save();
     }
 
+    public function block(){
+        return $this->forceFill([
+            'blocked_at'=>NOW()
+        ])->save();
+    }
+
+    public function delete(){
+        return $this->forceFill([
+            'deleted_at'=>NOW()
+        ])->save();
+    }
+
+
     public function PhoneIsVerified(){
         return !is_null($this->phone_verified_at);
     }
@@ -159,9 +172,5 @@ class User extends Authenticatable
     }
     public function email_verify(){
         return User::where('id', $this->id)->update(['email_verified_at'=>date("Y-m-d H:i:s")]);
-    }
-
-    public function delete(){
-        return $this->delete();
     }
 }
