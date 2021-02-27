@@ -60,6 +60,19 @@
                                         <input id="password-confirm" placeholder="{{ __('Confirm Password:') }}" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                     </div>
                                 </div>
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="form-group bottom30 ml-1">
+                                        <div class="form-check text-left">
+                                            <input class="form-check-input" name="Terms" type="checkbox" {{ old('Terms') ? '1' : '0' }} id="TermsOfUse">
+                                        <label class="form-check-label" for="TermsOfUse">
+                                            {{ __('I accept ') }}<a target="_blank" style="color: #006dbf" href="{{ __('terms', ['language'=>app()->getLocale()]) }}">{{ __('Terms of Use') }}</a>{{ __(' and ') }}<a target="_blank" style="color: #006dbf" href="{{ route('privacy',['language'=>app()->getLocale()]) }}">{{ __('Privacy Policy') }}</a>
+                                        </label>
+                                        </div>
+                                        @error('Terms')
+                                        <p style="color: red;">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="col-sm-12">
                                     <button data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" type="submit" class="g-recaptcha button gradient-btn">{{ __('Register') }}</button>
                                     <p class="top20 log-meta"> {{ __('Already have an account?') }} &nbsp;<a href="{{ route('login', ['language'=>app()->getLocale()]) }}" class="defaultcolor">{{ __('Sign In') }}</a> </p>

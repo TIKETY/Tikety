@@ -36,7 +36,7 @@ Route::group(['prefix' => '{language}',
         return view('welcome');
     })->name('welcome');
 
-        Auth::routes(['verify'=>true]);
+    Auth::routes(['verify'=>true]);
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/contact', [RegularController::class, 'contact'])->name('contact');
@@ -75,7 +75,7 @@ Route::group(['prefix' => '{language}',
     Route::get('login/facebook', [LoginController::class, 'redirectToProvider'])->name('loginfacebook');
     Route::get('login/facebook/callback', [LoginController::class, 'handleProviderCallback'])->name('loginfacebook_callback');
 
-    Route::get('login/forgot', [RegularController::class, 'forgot_password'])->name('forgot')->middleware('active_user');
+    Route::get('login/forgot', [RegularController::class, 'forgot_password'])->name('forgot');
     Route::post('login/forgot', [ForgotPasswordController::class, 'forgot_password'])->name('forgot_password')->middleware('throttle:3,1440', 'active_user');
     Route::get('verify/{phone}', [ForgotPasswordController::class, 'verify'])->name('verify');
     Route::post('verify/{phone}', [ForgotPasswordController::class, 'resend'])->name('resend')->middleware('throttle:3,1440');
@@ -95,4 +95,5 @@ Route::group(['prefix' => '{language}',
     Route::post('/review/{bus}', [ReviewController::class, 'store'])->name('review')->middleware(['auth', 'verifiedphone']);
     Route::post('/approve_review/{bus}/{review_user_id}', [ReviewController::class, 'approve'])->name('approve_review')->middleware(['auth', 'verifiedphone']);
 
+    Route::get('/invoice', [BusController::class, 'invoicer'])->name('invoicer');
 });

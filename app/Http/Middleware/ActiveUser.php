@@ -21,7 +21,7 @@ class ActiveUser
             $user = auth()->user();
             Auth::logout($user);
             return redirect()->route('login', ['language'=>app()->getLocale()])
-                ->with('errors','Your account was blocked at ' . $user->blocked_at);
+                ->withError(trans('Your account was blocked at ') . $user->blocked_at);
         }
 
         return $next($request);

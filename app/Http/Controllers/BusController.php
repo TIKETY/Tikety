@@ -193,17 +193,27 @@ class BusController extends Controller
             auth()->user()->verifyphone(auth()->user()->phone_number);
             return redirect()->route('verification_code', app()->getLocale())->with('number_message', trans('Verification code was sent to your number'));
         } else{
-            $bus->seats_to_user($array, auth()->user());
-            History::create(['user_id'=>auth()->user()->id,'bus_name'=>$bus->name, 'bus_id'=>$bus->id, 'amount_paid'=>$fare, 'seat'=>$request->seats_id, 'depature_date'=>$bus->date]);
-            $account_sid = getenv("TWILIO_SID");
-            $auth_token = getenv("TWILIO_AUTH_TOKEN");
-            $twilio_number = getenv("TWILIO_NUMBER");
-            $client = new Client($account_sid, $auth_token);
-            $client->messages->create($request->user()->phone_number,
-            ['from' => $twilio_number, 'body' => 'You have taken the seat '.$request->seats_id.' with the price of '.$fare] );
-            $bus->user->notify(new BusNotification($request->seats_id, $user));
-            return redirect()->back()->with('toast_success', trans('Seat(s) has been reserved'));
+
+            return view('bus.invoice', ([
+                'seats'=>$array,
+                'bus'=>$bus
+            ]));
+            // $bus->seats_to_user($array, auth()->user());
+            // History::create(['user_id'=>auth()->user()->id,'bus_name'=>$bus->name, 'bus_id'=>$bus->id, 'amount_paid'=>$fare, 'seat'=>$request->seats_id, 'depature_date'=>$bus->date]);
+            // $account_sid = getenv("TWILIO_SID");
+            // $auth_token = getenv("TWILIO_AUTH_TOKEN");
+            // $twilio_number = getenv("TWILIO_NUMBER");
+            // $client = new Client($account_sid, $auth_token);
+            // $client->messages->create($request->user()->phone_number,
+            // ['from' => $twilio_number, 'body' => 'You have taken the seat '.$request->seats_id.' with the price of '.$fare] );
+            // $bus->user->notify(new BusNotification($request->seats_id, $user));
+
+            // return redirect()->back()->with('toast_success', trans('Seat(s) has been reserved'));
         }
+    }
+
+    public function invoicer(){
+        return view('bus.invoice');
     }
 
     public function travel($language, Request $request){

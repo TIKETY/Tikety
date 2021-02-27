@@ -15,6 +15,11 @@
             <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 whitebox">
                 <div class="widget logincontainer shadow-lg">
                     <h3 class="darkcolor bottom30 text-center text-lg-left">{{ __('Login') }}</h3>
+                    @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                    @endif
                     <form class="getin_form border-form" id="login" method="POST" action="{{ route('login', app()->getLocale()) }}">
                         @csrf
                         <div class="row">

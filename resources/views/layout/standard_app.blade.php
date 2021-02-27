@@ -155,6 +155,7 @@
                             <li><a href="{{ route('about', app()->getLocale()) }}">{{ __('About Us') }}</a></li>
                             <li><a href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact Us') }}</a></li>
                             <li><a href="{{ route('privacy', app()->getLocale()) }}">{{ __('Privacy Policy') }}</a></li>
+                            <li><a href="{{ route('terms', app()->getLocale()) }}">{{ __('Terms of Use') }}</a></li>
                         </ul>
                     </div>
                 </div>
