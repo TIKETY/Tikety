@@ -9,6 +9,7 @@ use Illuminate\Support\Arr;
 use App\Notifications\BusNotification;
 use Illuminate\Support\Facades\Gate;
 use App\Models\User;
+use App\Models\Temp;
 use App\Models\Review;
 use App\Models\Bus;
 use App\Models\History;
@@ -193,6 +194,15 @@ class BusController extends Controller
             auth()->user()->verifyphone(auth()->user()->phone_number);
             return redirect()->route('verification_code', app()->getLocale())->with('number_message', trans('Verification code was sent to your number'));
         } else{
+            for ($i=0; $i < $seats; $i++){
+                    if(!Temp::where('bus_id', $bus->id)->where('variable3', $array[$i])->exists()){
+                        Temp::create([
+                            'user_id'=>auth()->user()->id,
+                            'bus_id'=>$bus->id,
+                            'variable3'=>$array[$i]
+                        ]);
+                    }
+        }
 
             return view('bus.invoice', ([
                 'seats'=>$array,

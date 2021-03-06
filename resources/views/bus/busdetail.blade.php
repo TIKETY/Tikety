@@ -87,9 +87,9 @@
                     </div>
                     @auth
                     @if (session('message_contact'))
-                            <div class="alert alert-success mt-3" role="alert">
-                            {{ session('message_contact') }}
-                            </div>
+                        <div class="alert alert-success mt-3" role="alert">
+                        {{ session('message_contact') }}
+                        </div>
                     @endif
                     @if (auth()->user()->id!=$bus->user_id)
                     <form class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactBus', ['bus'=>$bus->id, 'language'=>app()->getLocale()]) }}">

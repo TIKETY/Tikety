@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css_style/revolution/navigation.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/revolution/settings.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/style.css') }}">
+    @livewireStyles
     @yield('header_script')
 
 </head>
@@ -155,7 +156,7 @@
                             <li><a href="{{ route('about', app()->getLocale()) }}">{{ __('About Us') }}</a></li>
                             <li><a href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact Us') }}</a></li>
                             <li><a href="{{ route('privacy', app()->getLocale()) }}">{{ __('Privacy Policy') }}</a></li>
-                            <li><a href="{{ route('terms', app()->getLocale()) }}">{{ __('Terms of Use') }}</a></li>
+                            <li><a href="{{ route('terms', app()->getLocale()) }}">{{ __('Terms of Service') }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -190,7 +191,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center wow fadeIn animated" data-wow-delay="300ms">
-                    <p class="m-0 py-3 text-white">{{ __('Copyright') }} © <span id="year1"></span> <a href="javascript:void(0)" class="hover-default">Tikety</a>. {{ __('All Rights Reserved.') }}</p>
+                    <p class="m-0 py-3 text-white">{{ __('Copyright') }} © <span id="year1"></span> <a href="https://www.tikety.co.tz" class="hover-default">Tikety</a>. {{ __('All Rights Reserved.') }}</p>
                 </div>
             </div>
         </div>
@@ -231,6 +232,7 @@
     <script src="{{ asset('javascript/revolution/extensions/revolution.extension.video.min.js')}}"></script>
     <!--custom functions and script-->
     <script src="{{ asset('javascript/functions.js')}}"></script>
+    @livewireScripts
     @yield('script')
 </body>
 

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('css_style/revolution/settings.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/style.css') }}">
     <link rel="canonical" href="https://tikety.co.tz" />
+    @livewireStyles
     <x-analytics></x-analytics>
 </head>
 
@@ -457,9 +458,9 @@
                             <li><a href="{{ route('welcome', app()->getLocale()) }}">{{ __('Home') }}</a></li>
                             <li><a href="{{ route('about', app()->getLocale()) }}">{{ __('About') }}</a></li>
                             <li><a href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact') }}</a></li>
-                            <li><a href="{{ route('faq', app()->getLocale()) }}">{{ __('FAQ') }}'s</a></li>
-                            <li><a href="{{ route('privacy', app()->getLocale()) }}">{{ __('Privacy and Policy') }}'s</a></li>
-                            <li><a href="{{ route('terms', app()->getLocale()) }}">{{ __('Terms of Use') }}'s</a></li>
+                            <li><a href="{{ route('faq', app()->getLocale()) }}">{{ __('FAQ') }}</a></li>
+                            <li><a href="{{ route('privacy', app()->getLocale()) }}">{{ __('Privacy Policy') }}</a></li>
+                            <li><a href="{{ route('terms', app()->getLocale()) }}">{{ __('Terms of Service') }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -525,6 +526,7 @@
     <script src="{{ asset('javascript/revolution/extensions/revolution.extension.video.min.js')}}"></script>
     <!--custom functions and script-->
     <script src="{{ asset('javascript/functions.js')}}"></script>
+    @livewireScripts
 </body>
 
 </html>

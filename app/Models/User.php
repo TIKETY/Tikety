@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use Illuminate\Support\Str;
 use App\Models\Role;
+use App\Models\Temp;
 use App\Models\History;
 use App\Models\Product;
 use Twilio\Rest\Client;
@@ -75,6 +76,10 @@ class User extends Authenticatable
 
     public function bus(){
         return $this->belongsToMany(Bus::class);
+    }
+
+    public function temp(){
+        return $this->belongsToMany(Temp::class);
     }
 
     public function history(){

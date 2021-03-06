@@ -91,9 +91,11 @@ Route::group(['prefix' => '{language}',
 
     Route::post('/profile/{id}/delete', [ProfileController::class, 'delete'])->name('delete');
     Route::get('/soon', [RegularController::class, 'soon'])->name('soon');
+    Route::post('/soon_create', [RegularController::class, 'soon_create'])->name('soon_create');
 
     Route::post('/review/{bus}', [ReviewController::class, 'store'])->name('review')->middleware(['auth', 'verifiedphone']);
     Route::post('/approve_review/{bus}/{review_user_id}', [ReviewController::class, 'approve'])->name('approve_review')->middleware(['auth', 'verifiedphone']);
 
     Route::get('/invoice', [BusController::class, 'invoicer'])->name('invoicer');
+
 });
