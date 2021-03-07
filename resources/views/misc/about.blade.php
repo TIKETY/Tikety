@@ -4,6 +4,10 @@
 <x-analytics></x-analytics>
 @endsection
 
+@section('seo')
+    <x-seo description="Know us more" content="Reach this page to know us more" title="About Us"></x-seo>
+@endsection
+
 @section('content')
 
 <section id="aboutus" class="padding_top padding_bottom">

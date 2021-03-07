@@ -1,5 +1,9 @@
 @extends('layout.app')
 
+@section('seo')
+    <x-seo description="Choose a subscription" content="That fit your needs" title="Pricing"
+@endsection
+
 @section('content')
 <section id="pricing-page" class="padding">
     <div class="container">

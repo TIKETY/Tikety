@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Tikety</title>
-    <meta description="The Platform to simplify your ticketing experience and Ease your Jouneys">
+    <meta description="The Platform to simplify your ticketing experience and Ease your Jouneys" content="In this platform will help you solve your ticketing problems from anywhere around the country(currently in Tanzania)">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ ('https://tikety.fra1.digitaloceanspaces.com/favicon.ico')}}" rel="icon">
     <link rel="stylesheet" href="{{ asset('css_style/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/all.min.css') }}">

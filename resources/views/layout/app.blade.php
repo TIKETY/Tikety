@@ -3,9 +3,11 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    @yield('seo')
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Tikety</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ ('https://tikety.fra1.digitaloceanspaces.com/favicon.ico')}}" rel="icon">
     <link rel="stylesheet" href="{{ asset('css_style/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/all.min.css') }}">
@@ -19,7 +21,6 @@
     <link rel="stylesheet" href="{{ asset('css_style/style.css') }}">
     @livewireStyles
     @yield('header_script')
-
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
     function onSubmit(connect) {

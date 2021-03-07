@@ -4,6 +4,10 @@
 <x-analytics></x-analytics>
 @endsection
 
+@section('seo')
+    <x-seo description="For any question" content="Reach out an know us more" title="FAQ"
+@endsection
+
 @section('content')
 
 <section id="ourfaq" class="whitebox position-relative padding">

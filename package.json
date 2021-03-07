@@ -24,6 +24,10 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "meilisearch": "^0.16.1"
+        "@tailwindcss/postcss7-compat": "^2.0.3",
+        "autoprefixer": "^9.8.6",
+        "meilisearch": "^0.16.1",
+        "postcss": "^7.0.35",
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
     }
 }
