@@ -9,7 +9,7 @@
 @endsection
 
 @section('seo')
-    <x-seo description="Need to Contact us? Feel free to reach out: support@tikety.co.tz" content="This is where we stay in touch with you in case you need any assistance" title="Contact"
+    <x-seo description="Need to Contact us? Feel free to reach out: support@tikety.co.tz" content="This is where we stay in touch with you in case you need any assistance" title="Contact"></x-seo>
 @endsection
 
 @section('content')

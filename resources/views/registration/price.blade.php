@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('seo')
-    <x-seo description="Choose a subscription" content="That fit your needs" title="Pricing"
+    <x-seo description="Choose a subscription" content="That fit your needs" title="Pricing"></x-seo>
 @endsection
 
 @section('content')
