@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\UserEvent;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -98,4 +99,8 @@ Route::group(['prefix' => '{language}',
 
     Route::get('/invoice', [BusController::class, 'invoicer'])->name('invoicer');
 
+    Route::get('/test', function(){
+        UserEvent::dispatch();
+        return 'kearajabu tses';
+    })->name('test');
 });

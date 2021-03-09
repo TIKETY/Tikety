@@ -43854,7 +43854,11 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: 'eba69f3573e3b45c6931',
   cluster: 'mt1',
-  forceTLS: true
+  encrypted: true
+});
+window.Echo.channel('events').listen('UserEvent', function (e) {
+  console.log('Events has been received');
+  console.log(e);
 });
 
 /***/ }),

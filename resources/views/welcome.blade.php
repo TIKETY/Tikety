@@ -504,6 +504,8 @@
     <script src="{{ asset('javascript/jquery-countTo.js')}}"></script>
     <!--Parallax Background-->
     <script src="{{ asset('javascript/parallaxie.js')}}"></script>
+    <!--Echo implementation-->
+    <script src="{{ asset('js/app.js')}}"></script>
     <!--Cubefolio Gallery-->
     <script src="{{ asset('javascript/jquery.cubeportfolio.min.js')}}"></script>
     <!--Fancybox js-->

@@ -277,6 +277,8 @@
     <script src="{{ asset('javascript/tooltipster.min.js')}}"></script>
     <!--wow js-->
     <script src="{{ asset('javascript/wow.js')}}"></script>
+    <!--Echo implementation-->
+    <script src="{{ asset('js/app.js')}}"></script>
     <!--Revolution SLider-->
     <script src="{{ asset('javascript/revolution/jquery.themepunch.tools.min.js')}}"></script>
     <script src="{{ asset('javascript/revolution/jquery.themepunch.revolution.min.js')}}"></script>

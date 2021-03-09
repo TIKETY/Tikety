@@ -216,6 +216,8 @@
     <script src="{{ asset('javascript/jquery.fancybox.min.js')}}"></script>
     <!--tooltip js-->
     <script src="{{ asset('javascript/tooltipster.min.js')}}"></script>
+    <!--Echo implementation-->
+    <script src="{{ asset('js/app.js')}}"></script>
     <!--wow js-->
     <script src="{{ asset('javascript/wow.js')}}"></script>
     <!--Revolution SLider-->

@@ -39,5 +39,10 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: 'eba69f3573e3b45c6931',
     cluster: 'mt1',
-    forceTLS: true
+    encrypted: true
+});
+
+window.Echo.channel('events').listen('UserEvent', e => {
+    console.log('Events has been received');
+    console.log(e);
 });
