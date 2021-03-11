@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Tikety</title>
     <meta description="The Platform to simplify your ticketing experience and Ease your Jouneys" content="In this platform will help you solve your ticketing problems from anywhere around the country(currently in Tanzania)">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ ('https://tikety.fra1.digitaloceanspaces.com/favicon.ico')}}" rel="icon">
     <link rel="stylesheet" href="{{ asset('css_style/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/all.min.css') }}">
@@ -486,11 +485,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center wow fadeIn animated" data-wow-delay="300ms">
-                        <p class="m-0 py-3 text-white">{{ __('Copyright') }} © <span id="year1"></span> <a href="javascript:void(0)" class="hover-default">Tikety</a>. {{ __('All Rights Reserved.') }}.</p>
+                        <p class="m-0 py-3 text-white">{{ __('Copyright') }} © <span id="year1"></span> <a href="https://www.tikety.co.tz" class="hover-default">Tikety</a>. {{ __('All Rights Reserved.') }}.</p>
                     </div>
                 </div>
             </div>
         </div>
+    {{-- vue implementation --}}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ asset('javascript/jquery-3.4.1.min.js')}}"></script>
     <!--Bootstrap Core-->
@@ -504,8 +505,6 @@
     <script src="{{ asset('javascript/jquery-countTo.js')}}"></script>
     <!--Parallax Background-->
     <script src="{{ asset('javascript/parallaxie.js')}}"></script>
-    <!--Echo implementation-->
-    <script src="{{ asset('js/app.js')}}"></script>
     <!--Cubefolio Gallery-->
     <script src="{{ asset('javascript/jquery.cubeportfolio.min.js')}}"></script>
     <!--Fancybox js-->

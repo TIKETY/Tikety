@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     @yield('seo')
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('tailwindcss')
     <link href="{{ ('https://tikety.fra1.digitaloceanspaces.com/favicon.ico')}}" rel="icon">
     <link rel="stylesheet" href="{{ asset('css_style/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css_style/all.min.css') }}">
@@ -197,6 +197,7 @@
             </div>
         </div>
     </div>
+    @yield('vue')
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ asset('javascript/jquery-3.4.1.min.js')}}"></script>
     <!--Bootstrap Core-->
@@ -216,8 +217,7 @@
     <script src="{{ asset('javascript/jquery.fancybox.min.js')}}"></script>
     <!--tooltip js-->
     <script src="{{ asset('javascript/tooltipster.min.js')}}"></script>
-    <!--Echo implementation-->
-    <script src="{{ asset('js/app.js')}}"></script>
+    @yield('tailwindjs')
     <!--wow js-->
     <script src="{{ asset('javascript/wow.js')}}"></script>
     <!--Revolution SLider-->
