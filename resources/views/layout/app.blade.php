@@ -256,7 +256,6 @@
             </div>
         </div>
     </div>
-    @yield('vue')
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ asset('javascript/jquery-3.4.1.min.js')}}"></script>
     <!--Bootstrap Core-->
@@ -278,7 +277,6 @@
     <script src="{{ asset('javascript/tooltipster.min.js')}}"></script>
     <!--wow js-->
     <script src="{{ asset('javascript/wow.js')}}"></script>
-    @yield('tailwindjs')
     <!--Revolution SLider-->
     <script src="{{ asset('javascript/revolution/jquery.themepunch.tools.min.js')}}"></script>
     <script src="{{ asset('javascript/revolution/jquery.themepunch.revolution.min.js')}}"></script>
