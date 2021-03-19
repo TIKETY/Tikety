@@ -104,4 +104,12 @@ class Bus extends Model
     public function bus_avg_rating(){
         return Review::where('bus_id', $this->id)->avg('rating');
     }
+
+    public function block(){
+        return $this->where('blocked_at', NULL)->update(['blocked_at'=>NOW()]);
+    }
+
+    public function remove(){
+        return $this->where('deleted_at', NULL)->update(['deleted_at'=>NOW()]);
+    }
 }

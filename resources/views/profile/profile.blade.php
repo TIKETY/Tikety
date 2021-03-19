@@ -17,10 +17,7 @@
                 <div class="row">
                 @if ($user->is(auth()->user()))
                 <a href="{{ route('editprofileview', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}" class="btn mt-3 mr-3 btn-primary button">{{ __('Edit') }}</a>
-                <form action="{{ route('delete', ['id'=>$user->id, 'language'=>app()->getLocale()]) }}" method="post">
-                    @csrf
-                <button class="mt-3 mr-3 btn btn-danger button"  type="submit">{{ __('Delete') }}</button>
-                </form>
+                <button class="btn btn-danger mt-4 mr-3 button" data-toggle="modal" data-target="#delete">{{ __('Delete Account') }}</button>
                 @else
                 @auth
                 @if ($user->user_has_bus())
@@ -34,38 +31,6 @@
                     </div>
                 @endif
                 </div>
-                </div>
-                <div class="widget shadow heading_space text-center text-md-left">
-                    <h4 class="text-capitalize darkcolor bottom20">{{ __('Need Help?') }}</h4>
-                    <div class="contact-table colorone d-table bottom15">
-                        <div class="d-table-cell cells">
-                            <span class="icon-cell"><i class="fas fa-mobile-alt"></i></span>
-                        </div>
-                        <div class="d-table-cell cells">
-                            <p class="bottom0">{{ $user->phone_number }}</p>
-                        </div>
-                    </div>
-                    <div class="contact-table colorone d-table bottom15 text-left">
-                        <div class="d-table-cell cells">
-                            <span class="icon-cell"><i class="fas fa-map-marker-alt"></i></span>
-                        </div>
-                        <div class="d-table-cell cells">
-                            <p class="bottom0">130 Queens St.Tottenham Road,
-                                <span class="d-block">Tokio Japan</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="contact-table colorone d-table text-left">
-                        <div class="d-table-cell cells">
-                            <span class="icon-cell"><i class="far fa-clock"></i></span>
-                        </div>
-                        <div class="d-table-cell cells">
-                            <p class="bottom0">Mon to Sat - 9:00am to 6:00pm
-                                <span class="d-block">Sunday: Closed</span>
-                            </p>
-                        </div>
-                    </div>
-                    <a href="#." class="button btnsecondary gradient-btn top30"> Download Brochure</a>
                 </div>
             </div>
             <div class="col-lg-8 col-md-7">
@@ -98,6 +63,29 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ __('Delete Account') }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ __('Are you Sure you want to delete this account?') }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel') }}</button>
+                <form action="{{ route('delete', ['id'=>$user->id, 'language'=>app()->getLocale()]) }}" method="post">
+                    @csrf
+                <button class="btn btn-danger"  type="submit">{{ __('Delete') }}</button>
+                </form>
+            </div>
             </div>
         </div>
     </div>

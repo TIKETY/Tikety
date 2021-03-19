@@ -86,6 +86,26 @@
                 {{ $buses->links('pagination.pagination') }}
             </div>
         </div>
-        <livewire:search/>
     </section>
+    <!-- Services us ends -->
+    @section('script')
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-instantsearch@3.4.2/dist/vue-instantsearch.js" integrity="sha256-n2IafdANKRLjFjtPQVSQZ6QlxBrYqPDZfi3IkZjDT84=" crossorigin="anonymous"></script>
+    <script>
+    new Vue({
+        data: function() {
+        return {
+        searchClient: algoliasearch(
+        '{{ config('scout.algolia.id') }}',
+        '{{ Algolia\ScoutExtended\Facades\Algolia::searchKey(App\Models\Bus::class) }}',
+            ),
+            };
+
+        },
+            el: '#app',
+        });
+    </script>
+
+    @endsection
 @endsection

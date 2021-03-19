@@ -6,13 +6,11 @@ use Illuminate\Http\Request;
 use Twilio\Rest\Client;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Arr;
-use App\Notifications\BusNotification;
 use Illuminate\Support\Facades\Gate;
 use App\Models\User;
 use App\Models\Temp;
 use App\Models\Review;
 use App\Models\Bus;
-use App\Models\History;
 use App\Rules\RecaptchaRule;
 use Illuminate\Support\Facades\Storage;
 use PragmaRX\Countries\Package\Services\Countries;
@@ -49,7 +47,6 @@ class BusController extends Controller
             'time'=>'required|date_format:H:i',
             'route'=>'required',
             'Terms'=>'accepted',
-            'Privacy'=>'accepted',
             'g-recaptcha-response'=>['required', new RecaptchaRule]
         ]);
 
@@ -174,7 +171,7 @@ class BusController extends Controller
     }
 
     public function removeBus($language, Bus $bus){
-        Bus::where('id', $bus->id)->delete();
+        $bus->delete();
         return redirect()->route('buses', app()->getLocale())->with('success', trans('The bus was removed'));
     }
 
@@ -182,7 +179,7 @@ class BusController extends Controller
         $string = $request->seats_id;
         $array = explode(',', $string);
         $bus->seats_to_user($array, $bus->user);
-        return redirect()->back()->with('success', trans('You have taken a seat successfully'));
+        return redirect()->back()->with('success', trans('You have taken seat(s) successfully'));
     }
 
     public function payseat($language, Request $request, Bus $bus){

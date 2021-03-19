@@ -53,20 +53,31 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <button class="btn mr-3" data-toggle="modal" data-target="#search"><i class="fas fa-search"></i></button>
+                        </li>
                         @auth
                         <li class="nav-item">
-                            <form action="{{ route('logout', app()->getLocale()) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn nav-link text-black-50">{{ __('Logout') }}</button>
-                            </form>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('profile', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}"><img @if (is_null(auth()->user()->image_url))
-                                src="{{ asset('image/tikety_user.png') }}"
-                            @else
-                                src="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.auth()->user()->image_url) }}"
-                            @endif  class="rounded-circle" width="50px" height="50px" alt=""></a>
-                        </li>
+                            <div class="dropdown">
+                                <a role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img @if (is_null(auth()->user()->image_url))
+                                    src="{{ asset('image/tikety_user.png') }}"
+                                @else
+                                    src="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.auth()->user()->image_url) }}"
+                                @endif  class="rounded-circle" width="50px" height="50px" alt="">
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{{ route('profile', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}">{{ __('My Profile') }}</a></li>
+                                    <li><a class="dropdown-item" href="#">{{ __('My Messages') }}</a></li>
+                                    <li>
+                                        <form id="logout" action="{{ route('logout', app()->getLocale()) }}" method="POST">
+                                            @csrf
+                                            <a onclick="document.getElementById('logout').submit();" type="submit" role="button" class="dropdown-item">{{ __('Logout') }}</a>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                            </li>
                         @endauth
                         @guest
                         <li class="nav-item">
@@ -164,28 +175,12 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer_panel padding_bottom_half bottom20">
                         {{-- <h3 class="whitecolor bottom25">Latest News</h3> --}}
-                        <ul class="latest_news whitecolor">
-                            {{-- <li> <a href="#.">Aenean tristique justo et... </a> <span class="date defaultcolor">15 March 2019</span> </li>
-                            <li> <a href="#.">Phasellus dapibus dictum augue... </a> <span class="date defaultcolor">15 March 2019</span> </li>
-                            <li> <a href="#.">Mauris blandit vitae. Praesent non... </a> <span class="date defaultcolor">15 March 2019</span> </li> --}}
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer_panel padding_bottom_half bottom20">
-                        <h3 class="whitecolor bottom25">{{ __('Business hours') }}</h3>
-                        <p class="whitecolor bottom25">{{ __('Our support available to help you 24 hours a day, seven days week') }}</p>
-                        <ul class="hours_links whitecolor">
-                            <li><span>Monday-Saturday:</span> <span>8.00-18.00</span></li>
-                            <li><span>Friday:</span> <span>09:00-21:00</span></li>
-                            <li><span>Sunday:</span> <span>09:00-20:00</span></li>
-                            <li><span>Calendar Events:</span> <span>24-Hour Shift</span></li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+    <livewire:search/>
     <!--Footer ends-->
     <!--copyright-->
     <div class="copyright bgdark">

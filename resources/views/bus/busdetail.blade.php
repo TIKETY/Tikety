@@ -173,15 +173,8 @@
                     @can('isowner', $bus)
                     <div class="row">
                         <a href="{{ route('UpdateBus', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" class="btn btn-primary mr-3">{{ __('Edit Bus') }}</a>
-                        <form action="{{ route('removebus', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="POST">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="btn btn-primary mr-3" >{{ __('Remove Bus') }}</button>
-                        </form>
-                        <form action="{{ route('resetbus', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-primary" >{{ __('Reset Bus') }}</button>
-                        </form>
+                        <button class="btn btn-danger mr-3" data-toggle="modal" data-target="#delete">{{ __('Remove Bus') }}</button>
+                        <button class="btn btn-primary mr-3" data-toggle="modal" data-target="#reset">{{ __('Reset Bus') }}</button>
                     </div>
                     @endcan
 
@@ -211,7 +204,7 @@
                                     @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $user->name }}</td>
-                                        <td>{{ $user->phone_number }}</td>
+                                        <td>{{ substr($user->phone_number, 0, -3) . "***" }}</td>
                                         <td>{{ $user->users_seat_bus($bus->id)->pluck('seat') }}</td>
                                     </tr>
                                     @endforeach
@@ -756,6 +749,53 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ __('Remove Bus') }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ __('Are you Sure you want to delete this bus?') }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel') }}</button>
+                <form action="{{ route('removebus', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="POST">
+                    @csrf
+                    @method('delete')
+            <button type="submit" class="btn btn-danger">{{ __('Remove Bus') }}</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="reset" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ __('Reset Bus') }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ __('Are you Sure you want to reset this bus?') }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancel') }}</button>
+                <form action="{{ route('resetbus', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-danger" >{{ __('Reset Bus') }}</button>
+                </form>
+            </div>
             </div>
         </div>
     </div>

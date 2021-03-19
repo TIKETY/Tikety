@@ -30,6 +30,8 @@ class CreateSeatsTable extends Migration
             $table->time('time');
             $table->string('route');
             $table->string('body');
+            $table->timestamp('blocked_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

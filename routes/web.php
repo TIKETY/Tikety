@@ -1,6 +1,5 @@
 <?php
 
-use App\Events\UserEvent;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -12,6 +11,7 @@ use App\Http\Controllers\FleetController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
+use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -70,8 +70,8 @@ Route::group(['prefix' => '{language}',
     Route::post('/resetbus/{bus}', [BusController::class, 'resetbus'])->name('resetbus')->middleware(['auth', 'verifiedphone', 'haverole']);
 
     Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile')->middleware('auth');
-    Route::get('/profile/edit/{user}', [ProfileController::class, 'editprofileview'])->name('editprofileview')->middleware(['auth', 'can:edit_profile, user', 'verifiedphone', 'haverole']);
-    Route::put('/profile/edit/{user}', [ProfileController::class, 'editprofile'])->name('editprofile')->middleware(['auth', 'can:edit_profile, user', 'verifiedphone', 'haverole']);
+    Route::get('/profile/edit/{user}', [ProfileController::class, 'editprofileview'])->name('editprofileview')->middleware(['auth', 'verifiedphone', 'haverole']);
+    Route::put('/profile/edit/{user}', [ProfileController::class, 'editprofile'])->name('editprofile')->middleware(['auth', 'verifiedphone', 'haverole']);
 
     Route::get('login/facebook', [LoginController::class, 'redirectToProvider'])->name('loginfacebook');
     Route::get('login/facebook/callback', [LoginController::class, 'handleProviderCallback'])->name('loginfacebook_callback');
@@ -99,8 +99,11 @@ Route::group(['prefix' => '{language}',
 
     Route::get('/invoice', [BusController::class, 'invoicer'])->name('invoicer');
 
-    Route::get('/test', function(){
-        UserEvent::dispatch();
-        return 'kearajabu tses';
-    })->name('test');
+    Route::get('/broadcast', [RegularController::class, 'broadcast'])->name('broadcast');
+    Route::post('/broadcast', [RegularController::class, 'broadcast_event'])->name('broadcast_event');
+
+    Route::get('/search', [RegularController::class, 'search'])->name('search');
+
+    Route::get('/event/{event_id}', [RegularController::class, 'event'])->name('event');
+    Route::get('/events', [RegularController::class, 'events'])->name('events');
 });

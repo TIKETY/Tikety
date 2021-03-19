@@ -9,7 +9,6 @@ class InvoiceItem extends Component
 {
     public $bus;
     public $seat;
-    public $test = 0;
 
     public function remove($seat_rm)
     {

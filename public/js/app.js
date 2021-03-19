@@ -43817,6 +43817,18 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
@@ -43860,6 +43872,76 @@ window.Echo.channel('events').listen('UserEvent', function (e) {
   console.log('Events has been received');
   console.log(e);
 });
+var searchClient = algoliasearch('7MQG8RFYJL', 'a884d1fc98522d19099d44bbc0b7ce91');
+var autocomplete = instantsearch.connectors.connectAutocomplete(function (_ref, isFirstRendering) {
+  var indices = _ref.indices,
+      refine = _ref.refine,
+      widgetParams = _ref.widgetParams;
+  var container = widgetParams.container,
+      onSelectChange = widgetParams.onSelectChange;
+
+  if (isFirstRendering) {
+    container.html('<select id="ais-autocomplete"></select>');
+    container.find('select').selectize({
+      options: [],
+      valueField: 'name',
+      labelField: 'name',
+      highlight: false,
+      onType: refine,
+      onBlur: function onBlur() {
+        refine(this.getValue());
+      },
+      score: function score() {
+        return function () {
+          return 1;
+        };
+      },
+      onChange: function onChange(value) {
+        onSelectChange(value);
+        refine(value);
+      }
+    });
+    return;
+  }
+
+  var _container$find = container.find('select'),
+      _container$find2 = _slicedToArray(_container$find, 1),
+      select = _container$find2[0];
+
+  indices.forEach(function (index) {
+    select.selectize.clearOptions();
+    index.results.hits.forEach(function (h) {
+      return select.selectize.addOption(h);
+    });
+    select.selectize.refreshOptions(select.selectize.isOpen);
+  });
+});
+var search = instantsearch({
+  indexName: 'demo_ecommerce',
+  searchClient: searchClient
+});
+search.addWidgets([instantsearch.widgets.configure({
+  hitsPerPage: 10
+}), instantsearch.widgets.hits({
+  container: '#hits',
+  templates: {
+    item: "\n            <div>\n                <header class=\"hit-name\">\n                {{#helpers.highlight}}{ \"attribute\": \"name\" }{{/helpers.highlight}}\n                </header>\n                <p class=\"hit-description\">\n                {{#helpers.highlight}}{ \"attribute\": \"description\" }{{/helpers.highlight}}\n                </p>\n            </div>\n            "
+  }
+})]);
+var suggestions = instantsearch({
+  indexName: 'demo_ecommerce',
+  searchClient: searchClient
+});
+suggestions.addWidgets([instantsearch.widgets.configure({
+  hitsPerPage: 5
+}), autocomplete({
+  container: $('#autocomplete'),
+  onSelectChange: function onSelectChange(value) {
+    search.helper.setQuery(value).search();
+  }
+})]);
+suggestions.start();
+search.start();
 
 /***/ }),
 

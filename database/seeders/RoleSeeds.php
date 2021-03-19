@@ -124,8 +124,9 @@ class RoleSeeds extends Seeder
         ]);
 
         DB::table('events')->insert([
-            'title'=>'app',
-            'time'=>'May 26, 2021 12:00:00'
+            'title'=>'Applications',
+            'time'=>'May 26, 2021 12:00:00',
+            'link'=>'about'
         ]);
 
     }

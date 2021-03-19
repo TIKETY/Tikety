@@ -159,23 +159,10 @@
                                             <div class="form-check text-left">
                                                 <input class="form-check-input" name="Terms" type="checkbox" {{ old('Terms') ? '1' : '0' }} id="TermsOfUse">
                                             <label class="form-check-label" for="TermsOfUse">
-                                                {{ __('I accept ') }}<a target="_blank" style="color: #006dbf" href="">{{ __('Terms of Use') }}</a>
+                                                {{ __('I accept ') }}<a target="_blank" style="color: #006dbf" href="">{{ __('Terms of Use') }}</a>{{ __(' and ') }}<a target="_blank" style="color: #006dbf" href="{{ route('privacy',['language'=>app()->getLocale()]) }}">{{ __('Privacy Policy') }}</a>
                                             </label>
                                             </div>
                                             @error('Terms')
-                                            <p style="color: red;">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group bottom30 ml-1">
-                                            <div class="form-check text-left">
-                                                <input class="form-check-input" name="Privacy" type="checkbox" {{ old('Privacy') ? '1' : '0' }} id="privacy">
-                                                <label class="form-check-label" for="privacy">
-                                                {{ __('I accept ') }}<a target="_blank" style="color: #006dbf" href="{{ route('privacy',['language'=>app()->getLocale()]) }}">{{ __('Privacy Policy') }}</a>
-                                                </label>
-                                            </div>
-                                            @error('Privacy')
                                             <p style="color: red;">{{ $message }}</p>
                                             @enderror
                                         </div>

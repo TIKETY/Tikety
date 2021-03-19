@@ -42,18 +42,10 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('welcome', app()->getLocale()) }}">
-                                {{ __('Home') }}
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('faq', app()->getLocale()) }}">{{ __('FAQ') }}</a>
+                            <a class="nav-link text-black-50" href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('about', app()->getLocale()) }}">{{ __('About') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-black-50" href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact') }}</a>
                         </li>
                         @guest
                         <li class="nav-item">
@@ -83,18 +75,43 @@
                         <li class="nav-item">
                             <a class="nav-link text-black-50" href="{{ route('buses', app()->getLocale()) }}">{{ __('Buses') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <form action="{{ route('logout', app()->getLocale()) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn nav-link text-black-50">{{ __('Logout') }}</button>
-                            </form>
+                        <li class="nav-item mr-4 ml-4">
+                        <div class="dropdown dropend" id="app">
+                            <a role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-bell"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <div class="container dropdown-item mt-2" v-for="event in events">
+                                    <a @click="goto_route(event.id)">
+                                        <h4>@{{ event.title }}</h4>
+                                        <h6>@{{ event.body }}</h6>
+                                    </a>
+                                </div>
+                            </ul>
+                        </div>
                         </li>
                         <li class="nav-item">
-                        <a href="{{ route('profile', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}"><img @if (is_null(auth()->user()->image_url))
-                            src="{{ asset('image/tikety_user.png') }}"
-                        @else
-                            src="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.auth()->user()->image_url) }}"
-                        @endif  class="rounded-circle" width="50px" height="50px" alt=""></a>
+                            <button class="btn mr-3" data-toggle="modal" data-target="#search"><i class="fas fa-search"></i></button>
+                        </li>
+                        <li class="nav-item">
+                        <div class="dropdown">
+                            <a role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img @if (is_null(auth()->user()->image_url))
+                                src="{{ asset('image/tikety_user.png') }}"
+                            @else
+                                src="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.auth()->user()->image_url) }}"
+                            @endif  class="rounded-circle" width="50px" height="50px" alt="">
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="{{ route('profile', ['user'=>auth()->user(), 'language'=>app()->getLocale()]) }}">{{ __('My Profile') }}</a></li>
+                                <li>
+                                    <form id="logout" action="{{ route('logout', app()->getLocale()) }}" method="POST">
+                                        @csrf
+                                        <a onclick="document.getElementById('logout').submit();" type="submit" role="button" class="dropdown-item">{{ __('Logout') }}</a>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                         </li>
                         @endauth
                         @guest
@@ -198,7 +215,6 @@
     <!--Main Slider-->
     <!--slider-->
     <section id="home" class="p-0 dark-slider single-slide">
-        <h2 class="d-none">hidden</h2>
         <div id="rev_single_wrapper" class="rev_slider_wrapper fullwidthbanner-container col-md-12 col-sm-12" data-alias="trax_slider_01">
             <!-- START REVOLUTION SLIDER 5.4.8.1 fullscreen mode -->
             <div id="rev_single" class="col-md-12 col-sm-12 rev_slider fullwidthbanner" data-version="5.4.8.1">
@@ -247,7 +263,7 @@
             <!-- END REVOLUTION SLIDER -->
         </div>
         <!--    &lt;!&ndash;scroll down&ndash;&gt;-->
-        <!--    <a href="#our-feature" class="scroll-down pagescroll hover-default">Scroll Down <i class="fas fa-long-arrow-alt-down"></i></a>-->
+        <a href="#our-process" class="scroll-down pagescroll btn hover-default">Scroll Down <i class="fas fa-long-arrow-alt-down"></i></a>
     </section>
     <!--slider end-->
     <!--Some Feature -->
@@ -464,24 +480,13 @@
                         </ul>
                     </div>
                 </div>
-                {{-- <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer_panel padding_bottom_half bottom20">
-                        <h3 class="whitecolor bottom25">{{ __('Business hours') }}</h3>
-                        <p class="whitecolor bottom25">{{ __('Our support available to help you 24 hours a day, seven days week') }}</p>
-                        <ul class="hours_links whitecolor">
-                            <li><span>Monday-Saturday:</span> <span>8.00-18.00</span></li>
-                            <li><span>Friday:</span> <span>09:00-21:00</span></li>
-                            <li><span>Sunday:</span> <span>09:00-20:00</span></li>
-                            <li><span>Calendar Events:</span> <span>24-Hour Shift</span></li>
-                        </ul>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </footer>
+    <livewire:search/>
     <!--Footer ends-->
         <!--copyright-->
-        <div class="copyright bgdark">
+        <div class="copyright bgdark" id="copyright">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center wow fadeIn animated" data-wow-delay="300ms">
@@ -491,7 +496,34 @@
             </div>
         </div>
     {{-- vue implementation --}}
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+        var app = new Vue({
+                el: '#app',
+                data: {
+                    events: [],
+                    message: '',
+                },
+
+                methods: {
+                    goto_route: function (param1) {
+                                route = '{{ route("event", ["event_id" => "?event_id?", "language"=>app()->getLocale()]) }}'
+                                location.href = route.replace('?event_id?', param1)
+                    },
+                },
+
+                mounted() {
+                    axios.get('/sw/events').then(response=>this.events = response.data)
+
+                    window.Echo.channel('events').listen('UserEvent', e=>{
+                        this.events.push(e.event.body);
+                    })
+                },
+
+            });
+    </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ asset('javascript/jquery-3.4.1.min.js')}}"></script>
     <!--Bootstrap Core-->

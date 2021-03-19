@@ -14,6 +14,7 @@ use App\Models\History;
 use App\Models\Product;
 use Twilio\Rest\Client;
 use App\Models\Bus;
+use App\Models\Event;
 use App\Models\Fleet;
 
 class User extends Authenticatable
@@ -32,6 +33,8 @@ class User extends Authenticatable
         'image_url',
         'password',
         'verification_code',
+        'deleted_at',
+        'blocked_at',
         'email_verified_at'
     ];
 
@@ -69,6 +72,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function events(){
+        return $this->belongsToMany(Event::class);
+    }
 
     public function product(){
         return $this->belongsToMany(Product::class);

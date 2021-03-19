@@ -3,20 +3,58 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Events\UserEvent;
 use App\Models\Founders;
 use App\Rules\RecaptchaRule;
 use App\Models\User;
 use App\Models\Contact;
-use App\Models\Events;
+use App\Models\Bus;
+use App\Models\Event;
 use PragmaRX\Countries\Package\Services\Countries;
 
 class RegularController extends Controller
 {
+    public function search($language, Request $request){
+        $buses = Bus::query()
+                ->where('name', 'LIKE', "%{$request->input('name')}%")->latest()->paginate(10);
+        return view('bus.search', compact('buses'));
+    }
+
     public function soon(){
-        $date = Events::where('title', 'app')->first()->time;
+        $date = Event::where('title', 'app')->first()->time;
         return view('misc.soon', [
             'date'=>$date
         ]);
+    }
+
+    public function broadcast(){
+        return view('misc.broadcaster');
+    }
+
+    public function broadcast_event($language, Request $request){
+        $validated = $request->validate([
+            'title'=>'required',
+            'body'=>'required',
+            'link'=>'required',
+            'g-recaptcha-response'=>['required', new RecaptchaRule]
+        ]);
+
+        $event = Event::create([
+            'title'=>$validated['title'],
+            'body'=>$validated['body'],
+            'link'=>$validated['link'],
+            'time'=>NOW(),
+        ]);
+
+        event(new UserEvent($event));
+
+        return redirect()->back()->with('success', 'Message Broadcasted successfully');
+    }
+
+    public function event($language, $event_id){
+        $event = Event::where('id', $event_id)->first();
+        $event->seen(auth()->user());
+        return redirect()->route($event->link, ['language'=>app()->getLocale()]);
     }
 
     public function soon_create($language, Request $request){
@@ -97,5 +135,19 @@ class RegularController extends Controller
 
     public function pricing(){
         return view('registration.price');
+    }
+
+    public function events(){
+        $event= Event::all()->pluck('id');
+        $event_t=[];
+
+        for($i = 1; $i < count($event)+1; $i++){
+            $events=Event::where('id', $i)->first();
+            if($events->user()->where('user_id', auth()->user()->id)->where('event_id', $i)->exists()){
+            array_push($event_t, $i);
+            }
+        }
+
+        return Event::whereNotIn('id', $event_t)->get();
     }
 }
