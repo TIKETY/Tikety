@@ -21,7 +21,7 @@ class RegularController extends Controller
     }
 
     public function soon(){
-        $date = Event::where('title', 'app')->first()->time;
+        $date = Event::where('title', 'Applications')->first()->time;
         return view('misc.soon', [
             'date'=>$date
         ]);
