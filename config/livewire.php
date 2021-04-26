@@ -56,6 +56,7 @@ return [
 
     'asset_url' => 'https://tikety.co.tz',
 
+    // https://tikety.dev/Tikety/public
     /*
     |--------------------------------------------------------------------------
     | Livewire Endpoint Middleware Group

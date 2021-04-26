@@ -61,6 +61,9 @@
                             <a class="nav-link text-black-50" href="{{ route(Route::currentRouteName(), 'sw') }}"><img src="{{ asset('image/tz.png') }}" alt=""></a>
                         </li>
                         @endif
+                        <li class="nav-item">
+                            <button class="btn mr-3" data-toggle="modal" data-target="#search"><i class="fas fa-search"></i></button>
+                        </li>
                         @auth
                         @can('create_fleet', Role::class)
                         <li class="nav-item">
@@ -89,9 +92,6 @@
                                 </div>
                             </ul>
                         </div>
-                        </li>
-                        <li class="nav-item">
-                            <button class="btn mr-3" data-toggle="modal" data-target="#search"><i class="fas fa-search"></i></button>
                         </li>
                         <li class="nav-item">
                         <div class="dropdown">

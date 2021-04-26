@@ -14,6 +14,6 @@ class Search extends Component
     public function render()
     {
         $this->results = Bus::search($this->search)->get();
-        return view('livewire.search', compact(['buses'=>$this->results]));
+        return view('livewire.search');
     }
 }
