@@ -170,6 +170,10 @@ return [
         */
         Intervention\Image\ImageServiceProvider::class,
         /*
+        For Akaunting Firewall
+        */
+        Akaunting\Firewall\Provider::class,
+        /*
         *For sweet alerts
         */
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,

@@ -30,7 +30,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => '{language}',
-    'middleware' => 'setlanguage'
+    'middleware' => ['setlanguage', 'firewall.all'],
 ], function () {
 
     Route::get('/', function () {
