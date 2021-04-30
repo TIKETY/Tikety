@@ -27,6 +27,10 @@ class RegularController extends Controller
         ]);
     }
 
+    public function prevent(){
+        return abort(403);
+    }
+
     public function broadcast(){
         return view('misc.broadcaster');
     }
