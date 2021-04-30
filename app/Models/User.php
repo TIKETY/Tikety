@@ -52,6 +52,11 @@ class User extends Authenticatable
         return $array;
     }
 
+    protected $dates = [
+        'blocked_at',
+        'deleted_at'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

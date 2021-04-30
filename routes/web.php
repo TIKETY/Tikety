@@ -99,7 +99,7 @@ Route::group(['prefix' => '{language}',
 
     Route::get('/invoice', [BusController::class, 'invoicer'])->name('invoicer');
 
-    Route::get('/broadcast', [RegularController::class, 'broadcast'])->name('broadcast');
+    Route::get('/broadcast', [RegularController::class, 'broadcast'])->name('broadcast')->middleware(['can:is_owner']);
     Route::post('/broadcast', [RegularController::class, 'broadcast_event'])->name('broadcast_event');
 
     Route::get('/search', [RegularController::class, 'search'])->name('search');
@@ -107,3 +107,4 @@ Route::group(['prefix' => '{language}',
     Route::get('/event/{event_id}', [RegularController::class, 'event'])->name('event');
     Route::get('/events', [RegularController::class, 'events'])->name('events');
 });
+
