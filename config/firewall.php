@@ -26,7 +26,7 @@ return [
     'notifications' => [
 
         'mail' => [
-            'enabled' => env('FIREWALL_EMAIL_ENABLED', false),
+            'enabled' => env('FIREWALL_EMAIL_ENABLED', true),
             'name' => env('FIREWALL_EMAIL_NAME', 'Tikety Firewall'),
             'from' => env('FIREWALL_EMAIL_FROM', 'support@tikety.co.tz'),
             'to' => env('FIREWALL_EMAIL_TO', 'kea@tikety.co.tz'),
