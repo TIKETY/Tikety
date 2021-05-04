@@ -2,6 +2,7 @@
 
 @section('header_script')
 <x-analytics></x-analytics>
+<x-segment></x-segment>
 <x-recaptcha>
     review
 </x-recaptcha>
@@ -736,7 +737,7 @@
                                 <button type="submit" class="btn rounded-lg w-100 mb-4 mt-4 btn-primary">{{ __('Take Seat') }}</button>
                             </div>
                         </form>
-                        @elsecan('use', $bus)
+                        @else
                         <form action="{{ route('payseat', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="post">
                             @csrf
                             <div class="col-md-12 col-sm-12">

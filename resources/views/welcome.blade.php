@@ -21,6 +21,7 @@
     <link rel="canonical" href="https://tikety.co.tz" />
     @livewireStyles
     <x-analytics></x-analytics>
+    <x-segment></x-segment>
 </head>
 
 <body>
