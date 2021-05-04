@@ -836,7 +836,7 @@ function take(rate){
 </script>
 
 <script>
-jQuery('form[id*="payseat"]').submit(function(){
+jQuery('form[id="payseat"]').submit(function(){
     {
         "type": "track",
         "event": "User Wants to Buy",
