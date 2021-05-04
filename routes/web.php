@@ -11,7 +11,6 @@ use App\Http\Controllers\FleetController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
-use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -30,7 +29,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => '{language}',
-    'middleware' => ['setlanguage', 'firewall.all'],
+    'middleware' => ['setlanguage', 'countryfilter', ['throttle:30,1']],
 ], function () {
 
     Route::get('/', function () {
@@ -107,6 +106,5 @@ Route::group(['prefix' => '{language}',
     Route::get('/event/{event_id}', [RegularController::class, 'event'])->name('event');
     Route::get('/events', [RegularController::class, 'events'])->name('events');
 
-    Route::get('/_ignition/execute-solution', [RegularController::class, 'prevent']);
 });
 

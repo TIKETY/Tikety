@@ -39,6 +39,10 @@ return [
     'recaptcha' => [
         'key' => env('RECAPTCHA_KEY'),
         'secret' => env('RECAPTCHA_SECRET')
-    ]
+    ],
 
+    'ipinfo' => [
+        'access_token' => env('IPINFO_SECRET'),
+        'filter' => false,
+    ],
 ];

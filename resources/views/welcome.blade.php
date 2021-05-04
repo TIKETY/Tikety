@@ -255,7 +255,7 @@
                             data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="s:900;e:Power2.easeInOut;s:900;e:Power2.easeInOut;" data-start="1600" data-splitin="none" data-splitout="none"
                             data-responsive_offset="on">
                             <a class="transition-3 button btn-primary button-padding pagescroll font-13 mr-4" href="#our-feature">{{ __('Learn More') }}</a>
-                            <a class="transition-3 button btn-primary button-padding pagescroll font-13 mr-4" href="{{ route('travel', app()->getLocale()) }}">{{ __('Traveling Today?') }}</a>
+                            <a class="button btn-primary button-padding font-13 mr-4" href="{{ route('travel', ['language'=>app()->getLocale()]) }}">{{ __('Traveling Today?') }}</a>
                         </div>
                     </li>
                 </ul>

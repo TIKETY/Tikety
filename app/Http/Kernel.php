@@ -38,6 +38,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \RealRashid\SweetAlert\ToSweetAlert::class,
+            \ipinfo\ipinfolaravel\ipinfolaravel::class,
         ],
 
         'api' => [
@@ -63,6 +64,7 @@ class Kernel extends HttpKernel
         'phoneisverified' => \App\Http\Middleware\PhoneIsVerified::class,
         'setlanguage' => \App\Http\Middleware\SetLanguage::class,
         'verifiedphone' =>\App\Http\Middleware\PhoneIsVerified::class,
+        'countryfilter' =>\App\Http\Middleware\CountryFilter::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
