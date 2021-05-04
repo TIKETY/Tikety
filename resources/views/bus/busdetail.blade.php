@@ -742,7 +742,7 @@
                             @csrf
                             <div class="col-md-12 col-sm-12">
                                 <input type="hidden" id="seats_id" name="seats_id">
-                                <button type="submit" class="btn rounded-lg w-100 mb-4 mt-4 btn-primary">{{ __('Pay For Seat') }}</button>
+                                <button type="submit" onclick="segment()" class="btn rounded-lg w-100 mb-4 mt-4 btn-primary">{{ __('Pay For Seat') }}</button>
                             </div>
                         </form>
                         @endcan
