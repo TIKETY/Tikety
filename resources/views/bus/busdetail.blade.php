@@ -836,9 +836,7 @@ function take(rate){
 </script>
 
 <script>
-
-jQuery('form[id*="payseat"]').submit(
-    function(){
+jQuery('form[id*="payseat"]').submit(function(){
     {
         "type": "track",
         "event": "User Wants to Buy",
@@ -847,12 +845,12 @@ jQuery('form[id*="payseat"]').submit(
             "accountType" : "Facebook"
         }
     }
+
     analytics.track("User Wants to Buy", {
         plan: "Pro Annual",
         accountType: "Facebook"
     });
-
-})
+});
 </script>
 
 <style>
