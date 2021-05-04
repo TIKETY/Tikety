@@ -30,7 +30,7 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => '{language}',
-    'middleware' => ['setlanguage', 'countryfilter', ['throttle:30,1']],
+    'middleware' => ['setlanguage', 'countryfilter'],
 ], function () {
 
     Route::get('/', function () {

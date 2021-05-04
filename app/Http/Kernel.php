@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'haverole' => \App\Http\Middleware\CheckRole::class,
         'phoneisverified' => \App\Http\Middleware\PhoneIsVerified::class,
+        'countryfilter' => \App\Http\Middleware\CountryFilter::class,
         'setlanguage' => \App\Http\Middleware\SetLanguage::class,
         'verifiedphone' =>\App\Http\Middleware\PhoneIsVerified::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
