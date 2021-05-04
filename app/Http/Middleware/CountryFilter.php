@@ -16,10 +16,6 @@ class CountryFilter
      */
     public function handle(Request $request, Closure $next)
     {
-        if(true){
-           dd($request->ipinfo->country);
-        }
-
         return $next($request);
     }
 }

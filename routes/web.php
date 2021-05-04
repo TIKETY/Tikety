@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,5 +107,8 @@ Route::group(['prefix' => '{language}',
     Route::get('/event/{event_id}', [RegularController::class, 'event'])->name('event');
     Route::get('/events', [RegularController::class, 'events'])->name('events');
 
+    Route::get('/ip', function(Request $request){
+        return $request->ipinfo->country;
+    });
 });
 
