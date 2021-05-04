@@ -836,7 +836,7 @@ function take(rate){
 </script>
 
 <script>
-jQuery('form[id="payseat"]').submit(function(){
+function segment(event) {
     {
         "type": "track",
         "event": "User Wants to Buy",
@@ -850,7 +850,11 @@ jQuery('form[id="payseat"]').submit(function(){
         plan: "Pro Annual",
         accountType: "Facebook"
     });
-});
+    event.preventDefault();
+}
+
+const form = document.getElementById('payseat');
+form.addEventListener('submit', segment);
 </script>
 
 <style>
