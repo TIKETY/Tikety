@@ -730,7 +730,7 @@
                             @endfor
 
                         @can('isowner', $bus)
-                        <form action="{{ route('takeseat', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="post">
+                        <form id="payseat" action="{{ route('takeseat', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="post">
                             @csrf
                             <div class="col-md-12 col-sm-12">
                                 <input type="hidden" id="seats_id" name="seats_id">
@@ -837,7 +837,8 @@ function take(rate){
 
 <script>
 
-function segment(){
+jQuery('form[id*="payseat"]').submit(
+    function(){
     {
         "type": "track",
         "event": "User Wants to Buy",
@@ -846,12 +847,12 @@ function segment(){
             "accountType" : "Facebook"
         }
     }
-
     analytics.track("User Wants to Buy", {
         plan: "Pro Annual",
         accountType: "Facebook"
     });
-}
+
+})
 </script>
 
 <style>
