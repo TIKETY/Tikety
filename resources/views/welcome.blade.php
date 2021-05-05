@@ -21,7 +21,6 @@
     <link rel="canonical" href="https://tikety.co.tz" />
     @livewireStyles
     <x-analytics></x-analytics>
-    <x-segment></x-segment>
 </head>
 
 <body>
@@ -590,16 +589,6 @@
     <script src="{{ asset('javascript/revolution/extensions/revolution.extension.video.min.js')}}"></script>
     <!--custom functions and script-->
     <script src="{{ asset('javascript/functions.js')}}"></script>
-    <script>
-    document.getElementById(‘buses_button’).onclick =
-    analytics.track(‘click’, {
-        category: ‘header’,
-        label: ‘support’,
-        source: ‘website’,
-        value: 0
-        }
-    );
-    </script>
     @livewireScripts
 </body>
 

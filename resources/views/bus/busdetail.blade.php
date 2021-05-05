@@ -2,7 +2,6 @@
 
 @section('header_script')
 <x-analytics></x-analytics>
-<x-segment></x-segment>
 <x-recaptcha>
     review
 </x-recaptcha>
@@ -833,28 +832,6 @@ function take(rate){
     document.getElementById("rate_star").value = rate_array[rate_array.length-1];
 }
 
-</script>
-
-<script>
-function segment(event) {
-    {
-        "type": "track",
-        "event": "User Wants to Buy",
-        "properties": {
-            "plan": "Pro Annual",
-            "accountType" : "Facebook"
-        }
-    }
-
-    analytics.track("User Wants to Buy", {
-        plan: "Pro Annual",
-        accountType: "Facebook"
-    });
-    event.preventDefault();
-}
-
-const form = document.getElementById('payseat');
-form.addEventListener('submit', segment);
 </script>
 
 <style>
