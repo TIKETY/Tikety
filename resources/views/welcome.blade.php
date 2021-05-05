@@ -255,7 +255,7 @@
                         <div class="tp-caption tp-resizeme" data-x="['center','center','center','center']" data-hoffset="['20','20','20','20']" data-y="['middle','middle','middle','middle']" data-voffset="['90','90','90','90']" data-whitespace="nowrap" data-transform_idle="o:1;"
                             data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:1500;e:Power4.easeInOut;" data-transform_out="s:900;e:Power2.easeInOut;s:900;e:Power2.easeInOut;" data-start="1600" data-splitin="none" data-splitout="none"
                             data-responsive_offset="on">
-                            <a onclick="segment(); return false;" class="transition-3 button btn-primary button-padding pagescroll font-13 mr-4" href="{{ route('buses', app()->getLocale()) }}">{{ __('Buses') }}</a>
+                            <a id="buses_button" class="transition-3 button btn-primary button-padding pagescroll font-13 mr-4" href="{{ route('buses', app()->getLocale()) }}">{{ __('Buses') }}</a>
                             <a class="button btn-primary button-padding font-13 mr-4" href="{{ route('travel', ['language'=>app()->getLocale()]) }}">{{ __('Traveling Today?') }}</a>
                         </div>
                     </li>
@@ -591,21 +591,14 @@
     <!--custom functions and script-->
     <script src="{{ asset('javascript/functions.js')}}"></script>
     <script>
-        function segment(){
-            {
-        "type": "track",
-        "event": "User Wants to Buy",
-        "properties": {
-            "plan": "Pro Annual",
-            "accountType" : "Facebook"
+    document.getElementById(‘buses_button’).onclick =
+    analytics.track(‘click’, {
+        category: ‘header’,
+        label: ‘support’,
+        source: ‘website’,
+        value: 0
         }
-    }
-
-    analytics.track("User Wants to Buy", {
-        plan: "Pro Annual",
-        accountType: "Facebook"
-    });
-        }
+    );
     </script>
     @livewireScripts
 </body>
