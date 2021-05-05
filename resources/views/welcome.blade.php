@@ -438,6 +438,35 @@
         </div>
     </section>
     <!--Mobile Apps ends-->
+    <section id="our-partners" class="padding">
+        <div class="container">
+            <div class="row">
+                <h2 class="d-none">Partners Carousel</h2>
+                <div class="col-md-12 col-sm-12">
+                    <div id="partners-slider" class="owl-carousel">
+                        <div class="item">
+                            <div> <img alt="" src="https://tikety.fra1.digitaloceanspaces.com/patners/voda.png"></div>
+                        </div>
+                        <div class="item">
+                            <div><img alt="" src="https://tikety.fra1.digitaloceanspaces.com/patners/tigo.png"></div>
+                        </div>
+                        <div class="item">
+                            <div><img alt="" src="https://tikety.fra1.digitaloceanspaces.com/patners/airtel.png"></div>
+                        </div>
+                        <div class="item">
+                            <div> <img alt="" src="https://tikety.fra1.digitaloceanspaces.com/patners/voda.png"></div>
+                        </div>
+                        <div class="item">
+                            <div><img alt="" src="https://tikety.fra1.digitaloceanspaces.com/patners/tigo.png"></div>
+                        </div>
+                        <div class="item">
+                            <div><img alt="" src="https://tikety.fra1.digitaloceanspaces.com/patners/airtel.png"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!--Site Footer Here-->
     <footer id="site-footer" class=" bgdark padding_top">
         <div class="container">
