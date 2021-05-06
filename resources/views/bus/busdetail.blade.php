@@ -2,6 +2,12 @@
 
 @section('header_script')
 <x-analytics></x-analytics>
+<script>
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="Nbxx6jl4msBuPBq9b0oxNUpFxfw3N5lx";analytics.SNIPPET_VERSION="4.13.2";
+    analytics.load("Nbxx6jl4msBuPBq9b0oxNUpFxfw3N5lx");
+    analytics.page();
+    }}();
+</script>
 <x-recaptcha>
     review
 </x-recaptcha>
@@ -737,7 +743,7 @@
                             </div>
                         </form>
                         @else
-                        <form action="{{ route('payseat', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="post">
+                        <form id="payseat" action="{{ route('payseat', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="post">
                             @csrf
                             <div class="col-md-12 col-sm-12">
                                 <input type="hidden" id="seats_id" name="seats_id">
@@ -832,6 +838,26 @@ function take(rate){
     document.getElementById("rate_star").value = rate_array[rate_array.length-1];
 }
 
+</script>
+
+<script>
+document.getElementById("payseat").onsubmit = function() {myFunction()};
+
+function myFunction() {
+    {
+        "type": "track",
+        "event": "User Registered",
+        "properties": {
+            "plan": "Pro Annual",
+            "accountType" : "Facebook"
+        }
+    }
+
+    analytics.track("User Registered", {
+        plan: "Pro Annual",
+        accountType: "Facebook"
+});
+}
 </script>
 
 <style>
