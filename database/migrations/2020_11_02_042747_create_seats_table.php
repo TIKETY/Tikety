@@ -28,6 +28,7 @@ class CreateSeatsTable extends Migration
             $table->string('to');
             $table->date('date');
             $table->time('time');
+            $table->timestamp('timings');
             $table->string('route');
             $table->string('body');
             $table->timestamp('blocked_at')->nullable();

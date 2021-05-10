@@ -123,14 +123,6 @@
                                     </div>
                                     <div class="col-md-4 col-sm-4">
                                         <div class="form-group">
-                                            <input class="form-control" type="tel" id="phonenumber" placeholder="{{ __('Phone Number:') }}" name="phonenumber">
-                                        @error('phonenumber')
-                                            <p style="color: red;">{{ $message }}</p>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4">
-                                        <div class="form-group">
                                             <input class="form-control" type="text" id="address" placeholder="{{ __('Address:') }}" name="address">
                                         @error('address')
                                             <p style="color: red;">{{ $message }}</p>

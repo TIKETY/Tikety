@@ -18,7 +18,7 @@ class Bus extends Model
     protected $guarded = [];
 
     protected $dates = [
-        'date'
+        'timings'
     ];
 
     /**

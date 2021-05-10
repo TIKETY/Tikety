@@ -2,6 +2,11 @@
 
 @section('header_script')
 <x-analytics></x-analytics>
+<script>
+    window.addEventListener('swal',function(e){
+        Swal.fire(e.detail);
+    });
+</script>
 <x-recaptcha>
     review
 </x-recaptcha>
@@ -11,6 +16,11 @@
 
 <!-- Services us -->
 <section id="our-services" class="padding whitebox">
+    @if (session('seat_message'))
+                            <div class="alert alert-success mt-3 mr-5 ml-5" role="alert">
+                            {{ session('seat_message') }}
+                            </div>
+    @endif
     <div class="container">
         <div class="row whitebox top15">
             <div class="col-lg-4 col-md-5">
@@ -126,17 +136,7 @@
                             {{ session('revoke_message') }}
                             </div>
                     @endif
-                        <form action="{{ route('revokeSeat', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <div class="row">
-                                <div class="form-group mr-1">
-                                    <input class="form-control ml-3" style="width: 200px;" type="text" placeholder="{{ __('Seat No:') }}" required id="seat" name="seat">
-                                    <label for="first_name1" class="d-none"></label>
-                                </div>
-                                <button class="btn btn-primary mb-4" type="submit">{{ __('Revoke') }}</button>
-                            </div>
-                        </form>
+                        <livewire:revoker busid="{{ $bus->id }}"/>
                     <h4 class="text-capitalize darkcolor bottom35">{{ __('Notifications') }}</h4>
                     <div class="contact-table colorone d-table bottom15">
                         @foreach ($notifications as $notification)
@@ -165,7 +165,7 @@
                     @endif
                     <h3 class="darkcolor font-normal bottom30">{{ $bus->name }} {{ $bus->platenumber }}</h3>
                     <p class="bottom30">{{ $bus->from }} {{ __('to') }} {{ $bus->to }}</p>
-                    <p class="bottom30">{{ $bus->date->diffForHumans() }} {{ __('departure time on') }} {{ $bus->time }}</p>
+                    <p class="bottom30">{{ $bus->timings->diffForHumans() }} {{ __('departure time on') }} {{ $bus->time }}</p>
 
                     @auth
                     @can('create_bus', Role::class)
@@ -361,18 +361,13 @@
                                 </div>
                                 <div id="collapseThree" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
-                                        <p>{{ $bus->time }} {{ __('on') }} {{ $bus->date->diffForHumans() }}</p>
+                                        <p>{{ $bus->time }} {{ __('on') }} {{ $bus->timings->diffForHumans() }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 shadow mt-5 mt-md-0">
-                        @if (session('seat_message'))
-                        <div class="alert alert-success mt-3" role="alert">
-                        {{ session('seat_message') }}
-                        </div>
-                        @endif
                         @auth
                             @csrf
                             @for ($i = 0; $i < $bus->rows; $i++)
@@ -727,23 +722,23 @@
                                 @endif
                             </div>
                             @endfor
-
                         @can('isowner', $bus)
                         <form action="{{ route('takeseat', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="post">
                             @csrf
                             <div class="col-md-12 col-sm-12">
-                                <input type="hidden" id="seats_id" name="seats_id">
-                                <button type="submit" class="btn rounded-lg w-100 mb-4 mt-4 btn-primary">{{ __('Take Seat') }}</button>
+                                <input type="hidden" id="seatid" name="seatid">
+                                <button id="action_button" type="submit" class="btn rounded-lg w-100 mb-4 mt-4 btn-primary">{{ __('Take Seat') }}</button>
                             </div>
                         </form>
                         @else
-                        <form action="{{ route('payseat', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="post">
+                        <button id="action_button" class="btn rounded-lg w-100 mb-4 mt-4 btn-primary" data-toggle="modal" data-target="#tikety">{{ __('Pay For Seat') }}</button>
+
+                        {{-- <form action="{{ route('payseat', ['language'=>app()->getLocale(), 'bus'=>$bus]) }}" method="post">
                             @csrf
                             <div class="col-md-12 col-sm-12">
-                                <input type="hidden" id="seats_id" name="seats_id">
                                 <button type="submit" onclick="segment()" class="btn rounded-lg w-100 mb-4 mt-4 btn-primary">{{ __('Pay For Seat') }}</button>
                             </div>
-                        </form>
+                        </form> --}}
                         @endcan
                         @endauth
                         </div>
@@ -752,7 +747,7 @@
             </div>
         </div>
     </div>
-
+    @can('isowner', $bus)
     <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -799,11 +794,20 @@
             </div>
         </div>
     </div>
+    @endcan
+    <livewire:tikety bid="{{ $bus->id }}"/>
 </section>
+
 
 <script>
 var seats = new Array;
 var rate_array = new Array;
+
+document.addEventListener('DOMContentLoaded', function() {
+    if(seats == ''){
+        document.getElementById('action_button').disabled = true;
+    }
+}, false);
 
 function remove(array, id){
     const index = array.indexOf(id);
@@ -816,20 +820,56 @@ function change(id) {
         img3 = "{{ asset('image/reserved_seat.png') }}";
     var imgElement = document.getElementById(id);
 
-
     if(imgElement.src === img1){
     imgElement.src = img2;
-    document.getElementById("seats_id").innerHTML = seats.push(id);
+    document.getElementById("seatid").innerHTML = seats.push(id);
+    if(seats!=''){
+        document.getElementById('action_button').disabled = false;
+    }
     } else{
         imgElement.src = img1;
         remove(seats, id);
+        if(seats==''){
+            document.getElementById('action_button').disabled=true;
+        }
     }
-    document.getElementById("seats_id").value = seats;
+    document.getElementById("seatid").value = seats;
+    document.getElementById("seatid").dispatchEvent(new Event('input'))
 }
 
 function take(rate){
     rate_array.push(rate);
     document.getElementById("rate_star").value = rate_array[rate_array.length-1];
+}
+
+function mobile(id){
+    var x = document.getElementById(id);
+    if(id == 'voda'){
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            document.getElementById('tigo').style.display="none"
+            document.getElementById('airtel').style.display="none"
+        } else {
+            x.style.display = "none";
+        }
+
+    } else if(id == 'tigo'){
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            document.getElementById('voda').style.display="none"
+            document.getElementById('airtel').style.display="none"
+        } else {
+            x.style.display = "none";
+        }
+    } else {
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            document.getElementById('tigo').style.display="none"
+            document.getElementById('voda').style.display="none"
+        } else {
+            x.style.display = "none";
+        }
+    }
 }
 
 </script>

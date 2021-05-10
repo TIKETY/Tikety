@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
 use App\Models\User;
-use App\Models\Temp;
+use App\Models\History;
 use App\Models\Review;
 use App\Models\Bus;
 use App\Rules\RecaptchaRule;
@@ -33,11 +33,10 @@ class BusController extends Controller
         $user = auth()->user();
         $validated = $request->validate([
             'name'=>'required|unique:buses',
-            'image_url'=>'file|max:10240',
+            'image_url'=>'file|max:10240|required',
             'body'=>'required',
             'amount'=>'required',
             'address'=>'required',
-            'phonenumber'=>'required',
             'platenumber'=>'required|unique:buses',
             'workinghours'=>'required',
             'rows'=>'required',
@@ -69,7 +68,7 @@ class BusController extends Controller
             'body'=>$validated['body'],
             'rows'=>$validated['rows'],
             'amount'=>$validated['amount'],
-            'phonenumber'=>$validated['phonenumber'],
+            'phonenumber'=>auth()->user()->phone_number,
             'platenumber'=>$validated['platenumber'],
             'workinghours'=>$validated['workinghours'],
             'address'=>$validated['address'],
@@ -77,6 +76,7 @@ class BusController extends Controller
             'to'=>$validated['to'],
             'date'=>$validated['date'],
             'time'=>$validated['time'],
+            'timings'=>$validated['date'].' '.$validated['time'],
             'route'=>$validated['route'],
             'user_id'=>$user->id
         ]);
@@ -136,7 +136,6 @@ class BusController extends Controller
             'platenumber'=>'required',
             'address'=>'required',
             'workinghours'=>'required',
-            'phonenumber'=>'required',
             'rows'=>'required|max:2',
             'from'=>'required|max:30',
             'to'=>'required|max:30',
@@ -176,47 +175,10 @@ class BusController extends Controller
     }
 
     public function takeseat($language, Request $request, Bus $bus){
-        $string = $request->seats_id;
+        $string = $request->seatid;
         $array = explode(',', $string);
         $bus->seats_to_user($array, $bus->user);
         return redirect()->back()->with('success', trans('You have taken seat(s) successfully'));
-    }
-
-    public function payseat($language, Request $request, Bus $bus){
-        $array = explode(',', $request->seats_id);
-        $seats = sizeof($array);
-        $user = auth()->user()->name;
-        $fare = ($seats*$bus->amount); //for later use of integrating with tigopesa and mpesa push
-        if(!auth()->user()->PhoneIsVerified()){
-            auth()->user()->verifyphone(auth()->user()->phone_number);
-            return redirect()->route('verification_code', app()->getLocale())->with('number_message', trans('Verification code was sent to your number'));
-        } else{
-            for ($i=0; $i < $seats; $i++){
-                    if(!Temp::where('bus_id', $bus->id)->where('variable3', $array[$i])->exists()){
-                        Temp::create([
-                            'user_id'=>auth()->user()->id,
-                            'bus_id'=>$bus->id,
-                            'variable3'=>$array[$i]
-                        ]);
-                    }
-        }
-
-            return view('bus.invoice', ([
-                'seats'=>$array,
-                'bus'=>$bus
-            ]));
-            // $bus->seats_to_user($array, auth()->user());
-            // History::create(['user_id'=>auth()->user()->id,'bus_name'=>$bus->name, 'bus_id'=>$bus->id, 'amount_paid'=>$fare, 'seat'=>$request->seats_id, 'depature_date'=>$bus->date]);
-            // $account_sid = getenv("TWILIO_SID");
-            // $auth_token = getenv("TWILIO_AUTH_TOKEN");
-            // $twilio_number = getenv("TWILIO_NUMBER");
-            // $client = new Client($account_sid, $auth_token);
-            // $client->messages->create($request->user()->phone_number,
-            // ['from' => $twilio_number, 'body' => 'You have taken the seat '.$request->seats_id.' with the price of '.$fare] );
-            // $bus->user->notify(new BusNotification($request->seats_id, $user));
-
-            // return redirect()->back()->with('toast_success', trans('Seat(s) has been reserved'));
-        }
     }
 
     public function invoicer(){

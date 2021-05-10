@@ -79,7 +79,7 @@ class ProfileController extends Controller
 
         Mail::to($user->email)->send(new VerifyEmail($user));
 
-        return redirect()->route('verification', ['language'=>app()->getLocale()])->with('message', trans('Email was resent successfully'));
+        return redirect()->route('verification', ['language'=>app()->getLocale(), 'user'=>auth()->user()])->with('message', trans('Email resent successfully'));
     }
 
     public function verify($language, $token){

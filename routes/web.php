@@ -62,7 +62,6 @@ Route::group(['prefix' => '{language}',
 
     Route::get('/fleet/{user}', [FleetController::class, 'ShowFleet'])->name('ShowFleet')->middleware(['auth', 'verifiedphone', 'haverole']);
     Route::post('/buses/{bus}',[FleetController::class, 'AddBusFleet'])->name('AddBusFleet')->middleware(['auth', 'verifiedphone', 'haverole']);
-    Route::post('/payseat/{bus}',[BusController::class, 'payseat'])->name('payseat')->middleware('auth');
     Route::put('/revokeseat/{bus}',[BusController::class, 'revokeSeat'])->name('revokeSeat')->middleware(['can:isowner,bus', 'auth', 'verifiedphone', 'haverole']);
     Route::get('/verification_code', [RegularController::class, 'verification_code'])->name('verification_code')->middleware('auth');
     Route::put('/verification_code_put', [RegularController::class, 'verification_code_put'])->name('verification_code_put')->middleware(['auth', 'throttle:3,1440']);
@@ -70,8 +69,8 @@ Route::group(['prefix' => '{language}',
     Route::post('/resetbus/{bus}', [BusController::class, 'resetbus'])->name('resetbus')->middleware(['auth', 'verifiedphone', 'haverole']);
 
     Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile')->middleware('auth');
-    Route::get('/profile/edit/{user}', [ProfileController::class, 'editprofileview'])->name('editprofileview')->middleware(['auth', 'verifiedphone', 'haverole']);
-    Route::put('/profile/edit/{user}', [ProfileController::class, 'editprofile'])->name('editprofile')->middleware(['auth', 'verifiedphone', 'haverole']);
+    Route::get('/profile/edit/{user}', [ProfileController::class, 'editprofileview'])->name('editprofileview')->middleware(['auth', 'verifiedphone']);
+    Route::put('/profile/edit/{user}', [ProfileController::class, 'editprofile'])->name('editprofile')->middleware(['auth', 'verifiedphone']);
 
     Route::get('login/facebook', [LoginController::class, 'redirectToProvider'])->name('loginfacebook');
     Route::get('login/facebook/callback', [LoginController::class, 'handleProviderCallback'])->name('loginfacebook_callback');

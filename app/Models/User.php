@@ -14,6 +14,7 @@ use App\Models\History;
 use App\Models\Product;
 use Twilio\Rest\Client;
 use App\Models\Bus;
+use App\Models\Tikety;
 use App\Models\Event;
 use App\Models\Fleet;
 
@@ -77,6 +78,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function tikety(){
+        return $this->belongsToMany(Tikety::class);
+    }
+
     public function events(){
         return $this->belongsToMany(Event::class);
     }

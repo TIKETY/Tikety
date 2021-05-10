@@ -29,7 +29,7 @@ class RoleController extends Controller
             auth()->user()->addRole($role3);
         }
 
-        return redirect()->route('home', app()->getLocale());
+        return redirect()->route('home', app()->getLocale())->with('success', trans('Success'));
     }
 
 }

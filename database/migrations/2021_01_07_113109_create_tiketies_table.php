@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHistoriesTable extends Migration
+class CreateTiketiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,23 @@ class CreateHistoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('histories', function (Blueprint $table) {
+        Schema::create('tiketies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('bus_id');
-            $table->foreignId('tikety_id');
-            $table->string('bus_name');
+            $table->string('from');
             $table->string('seat');
-            $table->string('amount_paid');
-            $table->string('depature_date');
+            $table->string('to');
+            $table->string('date');
+            $table->string('time');
+            $table->string('amount');
+            $table->string('code');
+            $table->string('token');
+            $table->string('used_state')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
-            $table->foreign('tikety_id')->references('id')->on('tiketies')->onDelete('cascade');
         });
     }
 
@@ -37,6 +40,6 @@ class CreateHistoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('histories');
+        Schema::dropIfExists('tiketies');
     }
 }

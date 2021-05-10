@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="col-sm-12 forget-buttons">
                                     <button type="submit" data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" class="g-recaptcha button btn-primary mr-4">{{ __('Verify') }}</button>
-                                    <a href="{{ route('verification_resend', app()->getLocale()) }}" class="mr-4">{{ __('Resend') }}</a>
+                                    <a href="{{ route('verification_resend', ['language'=>app()->getLocale(), 'user'=>auth()->user()]) }}" class="mr-4">{{ __('Resend') }}</a>
                                 </div>
                             </div>
                             <input type="hidden" name="phone_number" value="{{ auth()->user()->phone_number }}">

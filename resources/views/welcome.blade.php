@@ -21,6 +21,14 @@
     <link rel="canonical" href="https://tikety.co.tz" />
     @livewireStyles
     <x-analytics></x-analytics>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var quest = window.localStorage.getItem('construction');
+            if(!quest){
+                return $('#cookieModal').modal('show');
+            }
+        }, false);
+    </script>
 </head>
 
 <body>
@@ -129,6 +137,9 @@
                 </div>
             </div>
             <!--side menu open button-->
+            <li class="d-lg-none sidemenu_btn mb-4" style="right: 70px;">
+                <button class="btn mr-3" data-toggle="modal" data-target="#search"><i class="fas fa-search"></i></button>
+            </li>
             <a href="javascript:void(0)" class="d-inline-block sidemenu_btn" id="sidemenu_toggle">
                 <span></span> <span></span> <span></span>
             </a>
@@ -512,6 +523,20 @@
             </div>
         </div>
     </footer>
+    <div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-body">
+                <div class="notice d-flex justify-content-between align-items-center">
+                <div class="cookie-text">{{ __('This website is still under construction') }}</div>
+                <div class="buttons d-flex flex-column flex-lg-row">
+                    <button onclick="set()" class="btn btn-primary btn-sm" data-dismiss="modal">{{ __('Accept') }}</button>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
     <livewire:search/>
     <!--Footer ends-->
         <!--copyright-->
@@ -552,6 +577,11 @@
                 },
 
             });
+    </script>
+    <script>
+        function set(){
+            return window.localStorage.setItem('construction', true);
+        }
     </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ asset('javascript/jquery-3.4.1.min.js')}}"></script>

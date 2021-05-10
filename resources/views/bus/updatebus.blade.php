@@ -122,14 +122,6 @@
                                     </div>
                                     <div class="col-md-4 col-sm-4">
                                         <div class="form-group">
-                                            <input class="form-control" type="tel" id="phonenumber" placeholder="{{ __('Phone Number:') }}" value="{{ $bus->phonenumber }}" name="phonenumber">
-                                        @error('phonenumber')
-                                            <p class="danger" style="color: red;">{{ $message }}</p>
-                                        @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4">
-                                        <div class="form-group">
                                             <input class="form-control" type="text" id="address" placeholder="{{ __('Address:') }}" value="{{ $bus->address }}" name="address">
                                         @error('address')
                                             <p class="danger" style="color: red;">{{ $message }}</p>
