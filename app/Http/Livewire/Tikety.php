@@ -53,7 +53,6 @@ class Tikety extends Component
             $this->bus->to.trans('. On date ').
             $this->bus->date.trans(' at ').
             $this->bus->time.trans('. This Tikety will expire on the date of depature use it on time. Thank you for using Tikety')]);
-            $this->bus->user->notify(new BusNotification($this->seat, $user));
             session()->flash('seat_message', trans('Seat(s) has been reserved'));
 
             return redirect()->to('/'.app()->getLocale().'/showbus/'.$this->bus->id);
