@@ -35,23 +35,37 @@
             <div class="cbp-item digital brand design shadow">
                 <div class="services-main">
                     <div class="image bottom10">
-                        <div class="image"><img alt="SEO" src="https://i.pravatar.cc/300?u={{ $bus->id }}"></div>
+                        <div class="image"><img alt="SEO" @if (is_null($bus->image_url))
+                            src="{{ asset('image/tikety_bus_image.png') }}"
+                            @else
+                            src="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.$bus->image_url) }}"
+                        @endif ></div>
                         <div class="overlay">
-                            <a href="{{ route('ShowBus', [$bus->id, app()->getLocale()]) }}" class="overlay_center border_radius"><i class="fa fa-eye"></i></a>
+                            <a href="{{ route('ShowBus',['language' => app()->getLocale(), 'bus' => $bus->id]) }}" class="overlay_center border_radius"><i class="fa fa-eye"></i></a>
                         </div>
                     </div>
                     <div class="services-content brand text-center text-md-left">
-                        <h3 class="bottom10 darkcolor"><a href="{{ route('ShowBus', [$bus->id, app()->getLocale()]) }}">{{ $bus->name }}</a></h3>
-                        <p class="bottom15">{{ $bus->route }}
-                        </p>
+                        <h3 class="bottom10 darkcolor"><a href="{{ route('ShowBus', ['language'=>app()->getLocale(), 'bus'=>$bus->id]) }}">{{ $bus->name }}</a></h3>
+                        <div class="row flex">
+                            <p class="bottom15 ml-3 mr-3">{{ $bus->from }} {{ __('to') }} {{ $bus->to }}   </p>
+                            @if ($bus->SeatState())
+                                <p class="mr-3" style="color: red;">{{ __('Full') }}</p>
+                            @else
+                                <p class="mr-1" style="color: green;">{{ __('Seats Present') }}</p>
+                            @endif
+                        </div>
                         @auth
-                        @if (auth()->user()->id==$bus->user_id)
-                        <a href="{{ route('UpdateBus', $bus->id) }}" class="button-readmore">Edit Bus</a>
-                        <form action="{{ route('AddBusFleet', [$bus, app()->getLocale()]) }}" method="POST">
+                        @can('isowner', $bus)
+                        <a href="{{ route('UpdateBus', ['language' => app()->getLocale(), 'bus' => $bus->id]) }}" class="button-readmore">{{ __('Edit Bus') }}</a>
+                        @can('create_fleet', Role::class)
+                        @if (!$bus->checkfleet())
+                        <form action="{{ route('AddBusFleet', ['language' => app()->getLocale(), 'bus' => $bus]) }}" method="POST">
                             @csrf
-                        <button type="submit" class="mt-3  btn btn-primary">Add to Fleet</button>
+                        <button type="submit" class="mt-3  btn btn-primary">{{ __('Add to Fleet') }}</button>
                         </form>
                         @endif
+                        @endcan
+                        @endcan
                         @endauth
                     </div>
                 </div>
