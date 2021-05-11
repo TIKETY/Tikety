@@ -16,7 +16,7 @@ class CountryFilter
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->ipinfo->country != 'TZ'){
+        if($request->ipinfo->country == 'RU'){
             return abort(403);
         }
         return $next($request);
