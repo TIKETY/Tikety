@@ -46,7 +46,7 @@
                         <label for="newsletter-email" class="d-none"></label>
                         <div class="email-placeholder">
                             <input type="hidden" name="title" value="app">
-                            <input type="email" placeholder="{{ __('Be the first to be Notified') }}" class="form-control form-placeholder" name="email" required id="newsletter-email">
+                            <input type="email" placeholder="{{ __('Email') }}" class="form-control form-placeholder" name="email" required id="newsletter-email">
                             <input type="submit" data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" class="g-recaptcha button gradient-btn" value="{{ __('Subscribe') }}">
                         </div>
                     </form>
