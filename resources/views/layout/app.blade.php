@@ -126,6 +126,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact', app()->getLocale()) }}">{{ __('Contact') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <form action="{{ route('logout', app()->getLocale()) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn nav-link text-black-50">{{ __('Logout') }}</button>
+                            </form>
+                        </li>
                     </ul>
                 </nav>
                 <div class="side-footer w-100">
