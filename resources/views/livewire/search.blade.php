@@ -3,14 +3,12 @@
         <div class="modal-content">
         <div class="modal-body">
             <form action="{{ route('search', ['language'=>app()->getLocale()]) }}" method="GET">
-
                 <div class="input-group">
                     <input wire:model="search" type="text" id="query" value="{{ request()->input('query') }}" class="form-control" placeholder="{{ __('Search Buses') }}" aria-label="Recipient's username" aria-describedby="basic-addon2" name="search">
                     <div class="input-group-append">
                     <button type="submit" class="btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
-
             </form>
         </div>
         @if ($search!='')

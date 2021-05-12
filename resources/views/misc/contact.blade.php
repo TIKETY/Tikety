@@ -24,6 +24,11 @@
                         </h2>
                         <div class="col-md-8 offset-md-2 bottom35">
                             <p>{{ __('Please, leave us a message') }}</p>
+                            @if (session('success'))
+                            <div class="alert alert-success mt-3 mr-5 ml-5" role="alert">
+                            {{ session('success') }}
+                            </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 order-sm-2">
@@ -45,44 +50,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
-
-                            <form id="contact" class="getin_form wow fadeInUp" data-wow-delay="400ms" method="POST" action="{{ route('ContactForm', app()->getLocale()) }}">
-                                @csrf
-                                <div class="row px-2">
-                                    <div class="col-md-12 col-sm-12" id="result1"></div>
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="name1" class="d-none"></label>
-                                            <input class="form-control" id="name" type="text" placeholder="{{ __('Name:') }}" required  name="name">
-                                            @error('name')
-                                            <p style="color: red;">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="email1" class="d-none"></label>
-                                            <input class="form-control" type="email" id="email" placeholder="{{ __('Email:') }}" name="email">
-                                            @error('email')
-                                            <p style="color: red;">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="message1" class="d-none"></label>
-                                            <textarea class="form-control" id="body" placeholder="{{ __('Message:') }}" required  name="body"></textarea>
-                                            @error('body')
-                                            <p style="color: red;">{{ $message }}</p>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12">
-                                        <button data-callback="onSubmit" data-sitekey="{{ config('services.recaptcha.key') }}" type="submit" id="submit_btn1" class="g-recaptcha button gradient-btn w-100">Send</button>
-                                    </div>
-                                </div>
-                            </form>
-
+                            <livewire:contact/>
                         </div>
                     </div>
                 </div>

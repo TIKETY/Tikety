@@ -44,10 +44,10 @@ class ContactController extends Controller
         ]);
 
         $details = [
-            'title' => 'Contact Made successful',
+            'title' => trans('Contact Made successful'),
             'user' => 'Tikety',
             'user_email' => 'support@tikety.co.tz',
-            'body' =>'Your Message was Received successfully'
+            'body' =>trans('Your Message was Received successfully')
         ];
 
 
