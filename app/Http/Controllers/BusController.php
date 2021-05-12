@@ -185,12 +185,8 @@ class BusController extends Controller
         return view('bus.invoice');
     }
 
-    public function travel($language, Request $request){
-        $from = $request['from'];
-        $to = $request['to'];
-
+    public function travel($language, $from, $to){
         $buses = Bus::where('from', $from)->where('to', $to)->get();
-
         return view('travel.travel-output', compact('buses'));
     }
 

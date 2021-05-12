@@ -44,7 +44,7 @@ Route::group(['prefix' => '{language}',
     Route::get('/about', [RegularController::class, 'about'])->name('about');
     Route::get('/faq', [RegularController::class, 'faq'])->name('faq');
     Route::get('/travel', [RegularController::class, 'travel'])->name('travel');
-    Route::post('/travel/form', [BusController::class, 'travel'])->name('TravelForm');
+    Route::get('/travel/{from}/{to}', [BusController::class, 'travel'])->name('TravelForm');
     Route::get('/mybuses', [BusController::class, 'MyBus'])->name('mybuses');
     Route::get('/createbus', [BusController::class, 'CreateBus'])->name('CreateBus')->middleware(['auth', 'verifiedphone', 'haverole']);
     Route::get('/showbus/{bus}', [BusController::class, 'show'])->name('ShowBus')->middleware('auth');
