@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'asset_url' => 'https://tikety.dev/Tikety/public',
+    'asset_url' => 'https://tikety.co.tz',
 
     // https://tikety.dev/Tikety/public
     /*
