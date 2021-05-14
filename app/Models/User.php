@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
 use App\Models\Role;
 use App\Models\Temp;
@@ -20,7 +21,7 @@ use App\Models\Fleet;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, Searchable, SoftDeletes;
+    use HasFactory, Notifiable, Searchable, SoftDeletes, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
