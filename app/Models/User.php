@@ -191,7 +191,11 @@ class User extends Authenticatable
     }
 
     public function verify(){
-        return User::where('id', $this->id)->update(['phone_verified_at'=>date("Y-m-d H:i:s")]);
+        User::where('id', $this->id)->update(['phone_verified_at'=>date("Y-m-d H:i:s")]);
+
+        return $this->forceFill([
+            'verification_code'=>mt_rand(100000, 999999)
+        ])->save();
     }
     public function email_verify(){
         return User::where('id', $this->id)->update(['email_verified_at'=>date("Y-m-d H:i:s")]);

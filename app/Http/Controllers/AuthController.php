@@ -68,4 +68,25 @@ class AuthController extends Controller
             'message' => 'Tokens Revoked'
         ];
     }
+
+    public function verify(Request $request){
+        $attr = $request->validate([
+            'code' => 'required|string|max:8',
+        ]);
+
+        $checker = User::where('verification_code', $attr['code'])->where('id', auth()->user()->id)->exists();
+
+        if($checker){
+            auth()->user()->verify();
+            return response()->json([
+                'Success'=>true,
+                'message'=>'Phone Number Verified'
+            ]);
+        } else{
+            return response()->json([
+                'Success'=>false,
+                'message'=>'Phone Number Not Verified'
+            ]);
+        }
+    }
 }

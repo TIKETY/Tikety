@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/me', function(Request $request) {
         return auth()->user();
     });
+    Route::post('/auth/verify',[AuthController::class, 'verify']);
 
     Route::post('/auth/logout', [AuthController::class, 'logout']);
 });
