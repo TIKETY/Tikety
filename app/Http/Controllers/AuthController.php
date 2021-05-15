@@ -26,6 +26,8 @@ class AuthController extends Controller
             'password' => bcrypt($attr['password']),
         ]);
 
+        $user->verifyphone($attr['phone_number']);
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
