@@ -16,9 +16,16 @@ class AuthController extends Controller
     {
         $attr = $request->validate([
             'name' => 'required|string|max:255',
-            'phone_number' => 'required|max:15|min:10|unique:users|string',
+            'phone_number' => 'required|max:15|min:10|string',
             'password' => 'required|string|min:6',
         ]);
+
+        if(User::where('phone_number', $attr['phone_number'])->exists()){
+            return response()->json([
+                'Success'=>false,
+                'User'=>'The User phone number exists'
+            ]);
+        }
 
         $user = User::create([
             'name' => $attr['name'],
@@ -31,6 +38,7 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
+                    'Success'=>true,
                     'access_token' => $token,
                     'token_type' => 'Bearer',
         ]);
