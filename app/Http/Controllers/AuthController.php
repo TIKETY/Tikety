@@ -79,6 +79,13 @@ class AuthController extends Controller
             ]);
     }
 
+    public function buses(){
+        $buses = Bus::inRandomOrder()->get();
+        return response()->json([
+            'buses'=>$buses,
+        ]);
+    }
+
     public function verify(Request $request){
         $attr = $request->validate([
             'code' => 'required|string|max:8',
