@@ -16,7 +16,7 @@ class RegularController extends Controller
 {
     public function search($language, Request $request){
         $buses = Bus::query()
-                ->where('name', 'LIKE', "%{$request->input('name')}%")->latest()->paginate(10);
+                ->where('name', 'LIKE', "%{$request->input('name')}%")->inRandomOrder()->paginate(10);
         return view('bus.search', compact('buses'));
     }
 

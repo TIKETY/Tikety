@@ -7,6 +7,7 @@ use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Bus;
 
 class AuthController extends Controller
 {
@@ -68,6 +69,14 @@ class AuthController extends Controller
             'Success'=>true,
             'message' => 'Tokens Revoked'
         ];
+    }
+
+    public function search(Request $request){
+        $buses = Bus::query()
+                ->where('name', 'LIKE', "%{$request->input('name')}%")->inRandomOrder()->get();
+        return response()->json([
+                    'buses'=>$buses,
+            ]);
     }
 
     public function verify(Request $request){

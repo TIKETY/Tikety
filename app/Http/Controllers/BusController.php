@@ -113,7 +113,7 @@ class BusController extends Controller
     }
 
     public function showbuses(){
-        $buses = Bus::latest()->paginate(10);
+        $buses = Bus::inRandomOrder()->paginate(10);
         return view('bus.bus', compact('buses'));
     }
 
