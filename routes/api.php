@@ -21,6 +21,8 @@ Route::post('/search', [AuthController::class, 'search']);
 
 Route::get('/buses', [AuthController::class, 'buses']);
 
+Route::get('/bus/{bus}', [AuthController::class, 'show']);
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/me', function(Request $request) {
         return auth()->user();

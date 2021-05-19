@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Bus;
+use App\Models\Review;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Gate;
 
 class AuthController extends Controller
 {
@@ -105,5 +108,24 @@ class AuthController extends Controller
                 'message'=>'Phone Number Not Verified'
             ]);
         }
+    }
+
+    public function show(Bus $bus){
+        $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')));
+        $users_t = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->whereNotNull('user_id')->pluck('user_id')));
+        $users = User::whereIn('id', $users_t)->get();
+
+        if(Gate::allows('isowner', $bus)){
+            $reviews = Review::where('bus_id', $bus->id)->paginate(1);
+        } else{
+            $reviews = Review::where('bus_id', $bus->id)->where('approved', 1)->paginate(1);
+        }
+
+        return response()->json([
+            'bus'=>$bus,
+            'seats'=>$seats,
+            'users'=>$users,
+            'reviews'=>$reviews,
+        ]);
     }
 }
