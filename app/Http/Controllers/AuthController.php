@@ -118,7 +118,11 @@ class AuthController extends Controller
         if(Gate::allows('isowner', $bus)){
             $reviews = Review::where('bus_id', $bus->id)->paginate(1);
         } else{
-            $reviews = Review::where('bus_id', $bus->id)->where('approved', 1)->paginate(1);
+            if(Review::where('bus_id', $bus->id)->where('approved', 1)->exists()){
+                $reviews = Review::where('bus_id', $bus->id)->where('approved', 1)->paginate(1);
+            } else{
+                $reviews = null;
+            }
         }
 
         return response()->json([
