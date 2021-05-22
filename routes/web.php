@@ -106,5 +106,7 @@ Route::group(['prefix' => '{language}',
     Route::get('/event/{event_id}', [RegularController::class, 'event'])->name('event');
     Route::get('/events', [RegularController::class, 'events'])->name('events');
 
+    Route::post('/image', [BusController::class, 'image'])->name('image');
+
 });
 

@@ -24,11 +24,38 @@
     <div class="container">
         <div class="row whitebox top15">
             <div class="col-lg-4 col-md-5">
-                <div class="image widget bottom20 shadow"><img alt="SEO" @if (is_null($bus->image_url))
-                    src="{{ asset('image/tikety_bus_image.png') }}"
-                    @else
-                    src="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.$bus->image_url) }}"
-                @endif ></div>
+                <div class="image widget bottom20 shadow">
+                    <div class="wow fadeInLeft heading-space" id="shop-dual-carousel" data-wow-delay="20ms" data-wow-duration="1100ms">
+                        <!-- syncCarousel -->
+                        <div class="owl-carousel carousel-shop-detail owl-theme" id="syncCarousel">
+                            <!--Item 1-->
+                            @foreach ($images as $image)
+                            <div class="item">
+                                <a href="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.$image->image_url) }}" data-fancybox="gallery" title="Zoom In">
+                                    <img src="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.$image->image_url) }}" alt="Latest News">
+                                </a>
+                            </div>
+                            @endforeach
+                            <!--Item 2-->
+                            <div class="item">
+                                <a href="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.$bus->image_url) }}" data-fancybox="gallery" title="Zoom In">
+                                    <img src="{{ ('https://tikety.fra1.digitaloceanspaces.com/'.$bus->image_url) }}" alt="Latest News">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @can('isowner', $bus)
+                        <form action="{{ route('image', ['language'=>app()->getLocale()]) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row mt-4">
+                                <input type="hidden" name="bus" value="{{ $bus->id }}">
+                                <input type="file" class="form-control w-50" style="border: 0mm" name="image" id="image">
+                                <button type="submit" class="button btn-primary">{{ __('Upload') }}</button>
+                            </div>
+                        </form>
+                    @endcan
+                        <!-- The second carousel will be created dynamically using JS Based upon the items added in upper carousel -->
+                </div>
                 <div class="widget shadow heading_space text-center text-md-left">
                     <h4 class="text-capitalize darkcolor bottom35">{{ __('Need Help?') }}</h4>
                     <div class="contact-table colorone d-table bottom15">

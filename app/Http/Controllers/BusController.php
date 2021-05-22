@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Gate;
 use App\Models\User;
-use App\Models\History;
+use App\Models\Gallery;
 use App\Models\Review;
 use App\Models\Bus;
 use App\Rules\RecaptchaRule;
@@ -96,6 +96,7 @@ class BusController extends Controller
         $seats = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->where('user_id', NULL)->pluck('seat')));
         $users_t = (Arr::flatten($bus->seats()->where('bus_id', $bus->id)->whereNotNull('user_id')->pluck('user_id')));
         $users = User::whereIn('id', $users_t)->get();
+        $images = Gallery::where('bus_id', $bus->id)->get();
 
         if(Gate::allows('isowner', $bus)){
             $reviews = Review::where('bus_id', $bus->id)->paginate(1);
@@ -106,6 +107,7 @@ class BusController extends Controller
         return view('bus.busdetail', [
             'bus'=>$bus,
             'seats'=>$seats,
+            'images'=>$images,
             'users'=>$users,
             'reviews'=>$reviews,
             'notifications'=>auth()->user()->unreadNotifications
@@ -179,6 +181,23 @@ class BusController extends Controller
         $array = explode(',', $string);
         $bus->seats_to_user($array, $bus->user);
         return redirect()->back()->with('success', trans('You have taken seat(s) successfully'));
+    }
+
+    public function image($language, Request $request){
+        $validated=$request->validate([
+            'image'=>'file|max:10240|required'
+        ]);
+
+        Storage::disk('do')->putFile('buses', $request->file('image'), 'public');
+
+        $validated['image'] = request('image')->store('buses');
+
+        Gallery::create([
+            'bus_id'=>$request->bus,
+            'image_url'=>$validated['image']
+        ]);
+
+        return redirect()->back()->with('success', trans('Image Uploaded Successfully'));
     }
 
     public function invoicer(){

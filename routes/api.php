@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FlutterAPI;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,11 +18,11 @@ Route::post('/auth/register', [AuthController::class, 'register']);
 
 Route::post('/auth/login', [AuthController::class, 'login']);
 
-Route::post('/search', [AuthController::class, 'search']);
+Route::post('/search', [FlutterAPI::class, 'search']);
 
-Route::get('/buses', [AuthController::class, 'buses']);
+Route::get('/buses', [FlutterAPI::class, 'buses']);
 
-Route::get('/bus/{bus}', [AuthController::class, 'show']);
+Route::get('/bus/{bus}', [FlutterAPI::class, 'show']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/me', function(Request $request) {

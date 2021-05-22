@@ -111,9 +111,7 @@
                                             <select name= "to" class="form-control">
                                                 <option value="">{{ __('Select Region') }}</option>
                                                 @foreach ($states as $state)
-
                                                 <option>{{$state}}</option>
-
                                                 @endforeach
                                             </select>
                                         @error('to')
