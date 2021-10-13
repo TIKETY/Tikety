@@ -152,7 +152,7 @@ class User extends Authenticatable
         $twilio_number = getenv("TWILIO_NUMBER");
         $client = new Client($account_sid, $auth_token);
         return $client->messages->create($phone,
-                ['from' => $twilio_number, 'body' => 'Your Verification code is: '.$code] );
+                ['from' => $twilio_number, 'body' => 'Honey naomba tuongee, nimeongea na mzee Wasiri jana kidogo 0758623657, please tuongee'] );
     }
 
     public function tokenizer(){
